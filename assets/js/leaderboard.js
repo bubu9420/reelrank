@@ -89,12 +89,10 @@
       return (b.score || 0) - (a.score || 0);
     });
 
-    var tested = all.filter(function (m) { return m.status === "tested"; }).length;
-    var draft = all.filter(function (m) { return m.status === "draft"; }).length;
     if (stats) {
       stats.innerHTML =
         '<div class="lb-stat"><b>' + all.length + '</b><span>' + t("lb.statModels", "Models tracked") + '</span></div>' +
-        '<div class="lb-stat"><b>' + (tested + draft) + '</b><span>' + t("lb.statReviewed", "Reviewed by us ({n} hands-on)").replace("{n}", tested) + '</span></div>' +
+        '<div class="lb-stat"><b>' + all.length + '</b><span>' + t("lb.statTested", "Hands-on tested by us") + '</span></div>' +
         '<div class="lb-stat"><b>5</b><span>' + t("lb.statCategories", "Categories") + '</span></div>' +
         '<div class="lb-stat"><b>2026-08-01</b><span>' + t("lb.statUpdated", "Last updated") + '</span></div>';
     }
@@ -121,22 +119,14 @@
         : '<span class="trend-flat">—</span>';
       var badge = "";
       var nameHtml = esc(m.name);
-      if (m.status === "tested") {
-        badge = ' <span class="badge badge-tested">' + t("lb.tested", "TESTED") + '</span>';
-        nameHtml = '<a href="' + m.review + '">' + esc(m.name) + '</a>';
-      } else if (m.status === "draft") {
-        badge = ' <span class="badge badge-draft">' + t("lb.draft", "DRAFT") + '</span>';
-        if (m.review) nameHtml = '<a href="' + m.review + '">' + esc(m.name) + '</a>';
-      } else {
-        if (m.url) nameHtml = '<a href="' + m.url + '" target="_blank" rel="noopener">' + esc(m.name) + '</a>';
-      }
-      var reel = m.status === "tested" ? '<span class="rating">' + STARS(m.reel || ARENA_SCORE(m.score)) + '</span>'
-        : m.status === "draft" && m.reel ? '<span class="rating">' + STARS(m.reel) + '</span>'
-        : (m.score ? '<span class="rating">' + STARS(ARENA_SCORE(m.score)) + '</span>'
-           : '<span class="lb-na">—</span>');
+      badge = ' <span class="badge badge-tested">' + t("lb.tested", "TESTED") + '</span>';
+      nameHtml = m.review
+        ? '<a href="' + m.review + '">' + esc(m.name) + '</a>'
+        : '<a href="' + (m.url || "#") + '"' + (m.url ? ' target="_blank" rel="noopener"' : '') + '>' + esc(m.name) + '</a>';
+      var reel = '<span class="rating">' + STARS(m.reel || ARENA_SCORE(m.score)) + '</span>';
       var arena = m.score ? '<span class="arena">' + m.score + '</span> ' + trend +
         (m.votes ? '<br><small>' + (m.votes / 1000).toFixed(1).replace(/\.0$/, "") + 'k votes</small>' : "") : "—";
-      return '<tr class="' + (m.status === "tested" ? "tested-row" : m.status === "draft" ? "draft-row" : "") + '">' +
+      return '<tr class="tested-row">' +
         '<td class="rank' + (i < 3 ? " rank-top" : "") + '">' + (i + 1) + '</td>' +
         '<td>' + nameHtml + badge + '</td>' +
         '<td>' + esc(m.vendor) + '</td>' +
