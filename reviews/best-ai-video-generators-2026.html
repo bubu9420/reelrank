@@ -33,6 +33,7 @@
         <a href="../about.html" data-i18n="nav.howWeTest">How We Test</a>
         <a href="../feedback.html" data-i18n="nav.feedback">Feedback</a>
       </nav>
+      <select id="langSelect" class="lang-select" aria-label="Language"></select>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </div>
@@ -51,10 +52,10 @@
     </header>
 
     <div class="glance">
-      <div class="glance-item"><b>7</b><span>Tools compared</span></div>
-      <div class="glance-item"><b>5.0</b><span>Top score — Veo 3.1</span></div>
-      <div class="glance-item"><b>$0.05/s</b><span>Lowest API price — Runway</span></div>
-      <div class="glance-item"><b>Aug 2026</b><span>Data verified</span></div>
+      <div class="glance-item"><b>7</b><span data-i18n="glance.tools">Tools compared</span></div>
+      <div class="glance-item"><b>5.0</b><span data-i18n="glance.top">Top score — Veo 3.1</span></div>
+      <div class="glance-item"><b>$0.05/s</b><span data-i18n="glance.lowest">Lowest API price — Runway</span></div>
+      <div class="glance-item"><b>Aug 2026</b><span data-i18n="glance.verified">Data verified</span></div>
     </div>
 
     <div class="verdict">
@@ -71,16 +72,16 @@
         </div>
         <div class="tool-body">
           <div class="tool-title-row">
-            <h3><a href="veo-3-review.html">Google Veo 3.1</a></h3>
+            <h3><a href="veo-3-review.html" data-i18n="tc1.title">Google Veo 3.1</a></h3>
             <span class="badge badge-draft">DRAFT</span>
           </div>
-          <span class="tool-best badge badge-winner">Best overall</span>
+          <span class="tool-best badge badge-winner" data-i18n="tc1.best">Best overall</span>
           <span class="rating">★★★★★ 5.0</span>
-          <p>The cinematic benchmark: 4K output, 2+ minute shots and native audio in a single model.</p>
+          <p data-i18n="tc1.desc">The cinematic benchmark: 4K output, 2+ minute shots and native audio in a single model.</p>
           <div class="tool-chips">
-            <span class="chip">4K · 2+ min</span>
-            <span class="chip">Native audio</span>
-            <span class="chip">≈ $0.12/s</span>
+            <span class="chip" data-i18n="tc1.c1">4K · 2+ min</span>
+            <span class="chip" data-i18n="tc1.c2">Native audio</span>
+            <span class="chip" data-i18n="tc1.c3">≈ $0.12/s</span>
           </div>
           <a class="card-link" href="veo-3-review.html">Read the full review →</a>
         </div>
@@ -94,16 +95,16 @@
         </div>
         <div class="tool-body">
           <div class="tool-title-row">
-            <h3><a href="kling-3-review.html">Kling 3.0</a></h3>
+            <h3><a href="kling-3-review.html" data-i18n="tc2.title">Kling 3.0</a></h3>
             <span class="badge badge-tested">TESTED</span>
           </div>
-          <span class="tool-best badge badge-winner">Best value</span>
+          <span class="tool-best badge badge-winner" data-i18n="tc2.best">Best value</span>
           <span class="rating">★★★★☆ 4.0</span>
-          <p>Native 4K 60fps at the lowest per-clip cost, plus a 5-minute long-form mode with lip-sync.</p>
+          <p data-i18n="tc2.desc">Native 4K 60fps at the lowest per-clip cost, plus a 5-minute long-form mode with lip-sync.</p>
           <div class="tool-chips">
-            <span class="chip">4K 60fps</span>
-            <span class="chip">5 min long-form</span>
-            <span class="chip">Credit-based</span>
+            <span class="chip" data-i18n="tc2.c1">4K 60fps</span>
+            <span class="chip" data-i18n="tc2.c2">5 min long-form</span>
+            <span class="chip" data-i18n="tc2.c3">Credit-based</span>
           </div>
           <a class="card-link" href="kling-3-review.html">Read the full review →</a>
         </div>
@@ -117,16 +118,16 @@
         </div>
         <div class="tool-body">
           <div class="tool-title-row">
-            <h3><a href="runway-gen-4-review.html">Runway Gen-4</a></h3>
+            <h3><a href="runway-gen-4-review.html" data-i18n="tc3.title">Runway Gen-4</a></h3>
             <span class="badge badge-draft">DRAFT</span>
           </div>
-          <span class="tool-best badge badge-winner">Best creative control</span>
+          <span class="tool-best badge badge-winner" data-i18n="tc3.best">Best creative control</span>
           <span class="rating">★★★★☆ 4.5</span>
-          <p>Style references, camera moves and consistent characters for brand work and cinematic b-roll.</p>
+          <p data-i18n="tc3.desc">Style references, camera moves and consistent characters for brand work and cinematic b-roll.</p>
           <div class="tool-chips">
-            <span class="chip">4K export</span>
-            <span class="chip">Editing suite</span>
-            <span class="chip">≈ $0.05/s</span>
+            <span class="chip" data-i18n="tc3.c1">4K export</span>
+            <span class="chip" data-i18n="tc3.c2">Editing suite</span>
+            <span class="chip" data-i18n="tc3.c3">≈ $0.05/s</span>
           </div>
           <a class="card-link" href="runway-gen-4-review.html">Read the full review →</a>
         </div>
@@ -140,16 +141,16 @@
         </div>
         <div class="tool-body">
           <div class="tool-title-row">
-            <h3><a href="capcut-director-mode-review.html">CapCut Director Mode</a></h3>
+            <h3><a href="capcut-director-mode-review.html" data-i18n="tc4.title">CapCut Director Mode</a></h3>
             <span class="badge badge-draft">DRAFT</span>
           </div>
-          <span class="tool-best badge badge-winner">Best all-in-one</span>
+          <span class="tool-best badge badge-winner" data-i18n="tc4.best">Best all-in-one</span>
           <span class="rating">★★★★☆ 4.5</span>
-          <p>Write, generate, edit and export AI short dramas from one dashboard — script to finished video.</p>
+          <p data-i18n="tc4.desc">Write, generate, edit and export AI short dramas from one dashboard — script to finished video.</p>
           <div class="tool-chips">
-            <span class="chip">Editor + generator</span>
-            <span class="chip">AI characters</span>
-            <span class="chip">Free / Pro</span>
+            <span class="chip" data-i18n="tc4.c1">Editor + generator</span>
+            <span class="chip" data-i18n="tc4.c2">AI characters</span>
+            <span class="chip" data-i18n="tc4.c3">Free / Pro</span>
           </div>
           <a class="card-link" href="capcut-director-mode-review.html">Read the full review →</a>
         </div>

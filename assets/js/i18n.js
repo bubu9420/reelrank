@@ -1,7 +1,11 @@
 (function () {
-  var SUPPORTED = ["en"];
+  var SUPPORTED = ["en", "zh", "de", "fr", "ru"];
   var LANG_NAMES = {
-    en: "English"
+    en: "English",
+    zh: "简体中文",
+    de: "Deutsch",
+    fr: "Français",
+    ru: "Русский"
   };
 
   // derive asset prefix from this script's src (works from root and subfolders)
@@ -22,6 +26,7 @@
   }
 
   function applyDict(dict) {
+    window.RR_I18N = dict;
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
       if (dict[key]) el.textContent = dict[key];
@@ -32,6 +37,7 @@
       var attr = parts[1] || "placeholder";
       if (dict[key]) el.setAttribute(attr, dict[key]);
     });
+    document.dispatchEvent(new Event("reelrank-i18n"));
   }
 
   function buildSelect(lang) {

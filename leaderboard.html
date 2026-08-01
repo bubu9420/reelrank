@@ -19,15 +19,16 @@
     <div class="container header-inner">
       <a href="index.html" class="logo">Reel<span class="dot">Rank</span></a>
       <nav class="nav" id="nav">
-        <a href="reviews/best-ai-video-generators-2026.html">Top Picks</a>
-        <a href="leaderboard.html" class="active">Leaderboard</a>
-        <a href="reviews/veo-3-review.html">Veo 3.1</a>
-        <a href="reviews/kling-3-review.html">Kling 3.0</a>
-        <a href="reviews/runway-gen-4-review.html">Runway Gen-4</a>
-        <a href="reviews/capcut-director-mode-review.html">CapCut</a>
-        <a href="about.html">How We Test</a>
-        <a href="feedback.html">Feedback</a>
+        <a href="reviews/best-ai-video-generators-2026.html" data-i18n="nav.topPicks">Top Picks</a>
+        <a href="leaderboard.html" class="active" data-i18n="nav.leaderboard">Leaderboard</a>
+        <a href="reviews/veo-3-review.html" data-i18n="nav.veo">Veo 3.1</a>
+        <a href="reviews/kling-3-review.html" data-i18n="nav.kling">Kling 3.0</a>
+        <a href="reviews/runway-gen-4-review.html" data-i18n="nav.runway">Runway Gen-4</a>
+        <a href="reviews/capcut-director-mode-review.html" data-i18n="nav.capcut">CapCut</a>
+        <a href="about.html" data-i18n="nav.howWeTest">How We Test</a>
+        <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
       </nav>
+      <select id="langSelect" class="lang-select" aria-label="Language"></select>
       <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
     </div>
@@ -35,25 +36,25 @@
 
   <section class="hero lb-hero">
     <div class="container">
-      <span class="eyebrow">Complete AI model leaderboard</span>
-      <h1>AI Model Leaderboard 2026</h1>
-      <p>Every published model across <strong>video, image, audio, text and code</strong> — ranked by real-user arena votes and public benchmarks. ReelRank scores come from our own hands-on tests: reviewed tools carry a <span class="badge badge-tested">TESTED</span> or <span class="badge badge-draft">DRAFT</span> badge; the rest are benchmark-reference entries, updated continuously.</p>
+      <span class="eyebrow" data-i18n="lb.eyebrow">Complete AI model leaderboard</span>
+      <h1 data-i18n="lb.h1">AI Model Leaderboard 2026</h1>
+      <p><span data-i18n="lb.sub">Every published model across video, image, audio, text and code — ranked by real-user arena votes and public benchmarks. ReelRank scores come from our own hands-on tests: reviewed tools carry a TESTED or DRAFT badge; the rest are benchmark-reference entries, updated continuously.</span></p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="reviews/best-ai-video-generators-2026.html">Read the 2026 comparison</a>
-        <a class="btn btn-ghost" href="about.html#methodology">How we test</a>
+        <a class="btn btn-primary" href="reviews/best-ai-video-generators-2026.html" data-i18n="lb.ctaCompare">Read the 2026 comparison</a>
+        <a class="btn btn-ghost" href="about.html#methodology" data-i18n="hero.btnHow">How we test</a>
       </div>
-      <p class="lcd-status">SYS.ONLINE — 247 MODELS TRACKED — 5 CATEGORIES — 1 HANDS-ON TESTED · 5 DRAFT REVIEWS</p>
+      <p class="lcd-status" data-i18n="lb.status">SYS.ONLINE — 247 MODELS TRACKED — 5 CATEGORIES — 1 HANDS-ON TESTED · 5 DRAFT REVIEWS</p>
       <div class="hero-panel lb-hero-panel">
-        <div class="hero-panel-head"><span class="bar-dots">◉◉◉</span><span>CATEGORY BREAKDOWN</span><span>247</span></div>
-        <div class="lb-cat-row"><span class="lb-cat-name">Video</span><span class="lb-cat-bar"><i style="width:21%"></i></span><b>52</b></div>
-        <div class="lb-cat-row"><span class="lb-cat-name">Image</span><span class="lb-cat-bar"><i style="width:19%"></i></span><b>47</b></div>
-        <div class="lb-cat-row"><span class="lb-cat-name">Audio</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>50</b></div>
-        <div class="lb-cat-row"><span class="lb-cat-name">Text</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>49</b></div>
-        <div class="lb-cat-row"><span class="lb-cat-name">Code</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>49</b></div>
+        <div class="hero-panel-head"><span class="bar-dots">◉◉◉</span><span data-i18n="lb.panelHead">CATEGORY BREAKDOWN</span><span>247</span></div>
+        <div class="lb-cat-row"><span class="lb-cat-name" data-i18n="lb.tabVideo">Video</span><span class="lb-cat-bar"><i style="width:21%"></i></span><b>52</b></div>
+        <div class="lb-cat-row"><span class="lb-cat-name" data-i18n="lb.tabImage">Image</span><span class="lb-cat-bar"><i style="width:19%"></i></span><b>47</b></div>
+        <div class="lb-cat-row"><span class="lb-cat-name" data-i18n="lb.tabAudio">Audio</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>50</b></div>
+        <div class="lb-cat-row"><span class="lb-cat-name" data-i18n="lb.tabText">Text</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>49</b></div>
+        <div class="lb-cat-row"><span class="lb-cat-name" data-i18n="lb.tabCode">Code</span><span class="lb-cat-bar"><i style="width:20%"></i></span><b>49</b></div>
         <div class="lb-hero-foot">
-          <span class="badge badge-tested">TESTED</span> hands-on
-          <span class="badge badge-draft">DRAFT</span> review
-          <span class="badge badge-plain">BENCH</span> reference
+          <span class="badge badge-tested" data-i18n="lb.tested">TESTED</span> <span data-i18n="lb.legendTested">hands-on</span>
+          <span class="badge badge-draft" data-i18n="lb.draft">DRAFT</span> <span data-i18n="lb.legendDraft">review</span>
+          <span class="badge badge-plain" data-i18n="lb.bench">BENCH</span> <span data-i18n="lb.legendBench">reference</span>
         </div>
       </div>
     </div>
@@ -66,12 +67,12 @@
       <div class="lb-controls">
         <div class="lb-search-shell">
           <span class="icon">⌕</span>
-          <input id="lbSearch" class="lb-search" type="search" placeholder="Search model or vendor…" aria-label="Search models">
+          <input id="lbSearch" class="lb-search" type="search" placeholder="Search model or vendor…" aria-label="Search models" data-i18n-attr="lb.searchPlaceholder:placeholder">
         </div>
         <select id="lbSort" class="lb-sort" aria-label="Sort">
-          <option value="score">Sort: Arena score</option>
-          <option value="new">Sort: Newest</option>
-          <option value="name">Sort: Name</option>
+          <option value="score" data-i18n="lb.sortScore">Sort: Arena score</option>
+          <option value="new" data-i18n="lb.sortNew">Sort: Newest</option>
+          <option value="name" data-i18n="lb.sortName">Sort: Name</option>
         </select>
         <span class="lb-count" id="lbCount"></span>
       </div>
@@ -82,27 +83,27 @@
         <table class="data-table lb-table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Model</th>
-              <th>Vendor</th>
-              <th>Country</th>
-              <th>Strengths</th>
-              <th>Key spec</th>
-              <th>Price</th>
-              <th>Arena</th>
-              <th>ReelRank</th>
+              <th data-i18n="lb.thRank">#</th>
+              <th data-i18n="lb.thModel">Model</th>
+              <th data-i18n="lb.thVendor">Vendor</th>
+              <th data-i18n="lb.thCountry">Country</th>
+              <th data-i18n="lb.thStrengths">Strengths</th>
+              <th data-i18n="lb.thSpec">Key spec</th>
+              <th data-i18n="lb.thPrice">Price</th>
+              <th data-i18n="lb.thArena">Arena</th>
+              <th data-i18n="lb.thReel">ReelRank</th>
             </tr>
           </thead>
           <tbody id="lbBody"></tbody>
         </table>
       </div>
 
-      <p class="disclaimer">Scores and prices are public benchmark and vendor data, updated periodically. ReelRank scores come from our own hands-on tests with identical prompts. Reviewed tools carry TESTED / DRAFT badges; the rest are benchmark-reference entries.</p>
+      <p class="disclaimer" data-i18n="lb.note">Scores and prices are public benchmark and vendor data, updated periodically. ReelRank scores come from our own hands-on tests with identical prompts. Reviewed tools carry TESTED / DRAFT badges; the rest are benchmark-reference entries.</p>
 
       <div class="cta">
-        <h2>Planning to buy an AI tool?</h2>
-        <p>Start with our head-to-head comparison before you spend a dollar on subscriptions.</p>
-        <a class="btn" href="reviews/best-ai-video-generators-2026.html">Read the 2026 comparison</a>
+        <h2 data-i18n="cta.h2">Planning to buy an AI tool?</h2>
+        <p data-i18n="cta.p">Start with our head-to-head comparison before you spend a dollar on subscriptions.</p>
+        <a class="btn" href="reviews/best-ai-video-generators-2026.html" data-i18n="cta.btn">Read the 2026 comparison</a>
       </div>
     </div>
   </section>
@@ -112,34 +113,35 @@
       <div class="footer-grid">
         <div>
           <h4>ReelRank</h4>
-          <p>Independent, hands-on reviews of AI video tools. We keep our verdicts free, honest, and updated.</p>
+          <p data-i18n="footer.tagline">Independent, hands-on reviews of AI video tools. We keep our verdicts free, honest, and updated.</p>
         </div>
         <div>
-          <h4>Reviews</h4>
+          <h4 data-i18n="footer.reviewsTitle">Reviews</h4>
           <ul>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-            <li><a href="reviews/best-ai-video-generators-2026.html">Best AI video generators 2026</a></li>
-            <li><a href="reviews/veo-3-review.html">Veo 3.1</a></li>
-            <li><a href="reviews/kling-3-review.html">Kling 3.0</a></li>
-            <li><a href="reviews/runway-gen-4-review.html">Runway Gen-4</a></li>
+            <li><a href="leaderboard.html" data-i18n="nav.leaderboard">Leaderboard</a></li>
+            <li><a href="reviews/best-ai-video-generators-2026.html" data-i18n="roundup.title">Best AI video generators 2026</a></li>
+            <li><a href="reviews/veo-3-review.html" data-i18n="nav.veo">Veo 3.1</a></li>
+            <li><a href="reviews/kling-3-review.html" data-i18n="nav.kling">Kling 3.0</a></li>
+            <li><a href="reviews/runway-gen-4-review.html" data-i18n="nav.runway">Runway Gen-4</a></li>
           </ul>
         </div>
         <div>
-          <h4>Site</h4>
+          <h4 data-i18n="footer.siteTitle">Site</h4>
           <ul>
-            <li><a href="about.html">About &amp; methodology</a></li>
-            <li><a href="about.html#disclosure">Disclosure</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="about.html" data-i18n="footer.about">About &amp; methodology</a></li>
+            <li><a href="about.html#disclosure" data-i18n="footer.disclosure">Disclosure</a></li>
+            <li><a href="feedback.html" data-i18n="footer.feedback">Feedback</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
         <span>© <span id="year">2026</span> ReelRank</span>
-        <span class="disclaimer">Some links are affiliate links. We may earn a commission at no extra cost to you. This never affects our verdicts.</span>
+        <span class="disclaimer" data-i18n="footer.disclaimer">Some links are affiliate links. We may earn a commission at no extra cost to you. This never affects our verdicts.</span>
       </div>
     </div>
   </footer>
 
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/models-data.js"></script>
   <script src="assets/js/leaderboard.js"></script>
   <script src="assets/js/main.js"></script>
