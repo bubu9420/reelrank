@@ -50,7 +50,7 @@
         (email ? "\n\nReply-to: " + email : "") +
         "\n\n(sent from reelrank.com feedback page)"
       );
-      var mailto = "mailto:?subject=" + subject + "&body=" + body;
+      var mailto = "mailto:yibulayinjiang@gmail.com?subject=" + subject + "&body=" + body;
       var success = document.getElementById("fbSuccess");
       if (success) success.classList.add("show");
       window.location.href = mailto;
