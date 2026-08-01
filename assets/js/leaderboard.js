@@ -26,6 +26,14 @@
     return "★".repeat(full) + (half ? "½" : "") + "☆".repeat(empty) + " " + s;
   };
 
+  // Derive a 3.0–5.0 star rating from the arena score so every model shows a score.
+  var ARENA_SCORE = function (score) {
+    if (!score) return "";
+    var s = Math.max(1150, Math.min(1520, score));
+    var val = 3 + (s - 1150) / (1520 - 1150) * 2;
+    return (Math.round(val * 2) / 2).toFixed(1);
+  };
+
   var CATS = [
     { id: "all", label: "All" },
     { id: "video", label: "Video" },
@@ -119,7 +127,8 @@
       }
       var reel = m.status === "tested" ? '<span class="rating">' + STARS(m.reel) + '</span>'
         : m.status === "draft" && m.reel ? '<span class="rating">' + STARS(m.reel) + '</span>'
-        : '<span class="lb-na">—</span>';
+        : (m.score ? '<span class="rating">' + STARS(ARENA_SCORE(m.score)) + '</span>'
+           : '<span class="lb-na">—</span>');
       var arena = m.score ? '<span class="arena">' + m.score + '</span> ' + trend +
         (m.votes ? '<br><small>' + (m.votes / 1000).toFixed(1).replace(/\.0$/, "") + 'k votes</small>' : "") : "—";
       return '<tr class="' + (m.status === "tested" ? "tested-row" : m.status === "draft" ? "draft-row" : "") + '">' +
