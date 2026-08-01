@@ -1,13 +1,10 @@
 (function () {
-  var SUPPORTED = ["en", "zh", "zh-TW", "es", "fr", "de", "pt", "ru"];
+  var SUPPORTED = ["en", "zh", "de", "fr", "ru"];
   var LANG_NAMES = {
     en: "English",
     zh: "简体中文",
-    "zh-TW": "繁體中文",
-    es: "Español",
-    fr: "Français",
     de: "Deutsch",
-    pt: "Português",
+    fr: "Français",
     ru: "Русский"
   };
 
@@ -24,7 +21,6 @@
       if (s && SUPPORTED.indexOf(s) > -1) return s;
     } catch (e) {}
   var nav = (navigator.language || "en").toLowerCase();
-  if (nav.indexOf("zh-tw") === 0 || nav.indexOf("zh-hant") === 0) return "zh-TW";
   if (nav.indexOf("zh") === 0) return "zh";
   var code = nav.slice(0, 2);
   return SUPPORTED.indexOf(code) > -1 ? code : "en";
