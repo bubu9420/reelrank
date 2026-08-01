@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback — ReelRank</title>
+  <meta name="description" content="Send feedback, corrections, or review suggestions to ReelRank. Help us keep AI video tool reviews honest and accurate.">
+  <link rel="canonical" href="https://reelrank.com/feedback.html">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Feedback — ReelRank",
+    "url": "https://reelrank.com/feedback.html"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">Reel<span class="dot">Rank</span></a>
+      <nav class="nav" id="nav">
+        <a href="reviews/best-ai-video-generators-2026.html">Top Picks</a>
+        <a href="reviews/veo-3-review.html">Veo 3.1</a>
+        <a href="reviews/kling-3-review.html">Kling 3.0</a>
+        <a href="reviews/runway-gen-4-review.html">Runway Gen-4</a>
+        <a href="reviews/capcut-director-mode-review.html">CapCut</a>
+        <a href="about.html">How We Test</a>
+        <a href="feedback.html">Feedback</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="prose" style="padding: 40px 0 60px;">
+      <p class="lcd-status">FEEDBACK — INPUT CHANNEL OPEN</p>
+      <h1>Send us feedback</h1>
+      <p>Spotted a mistake in a review? Tried a tool and disagree with our score? Know a tool we should test? Tell us. Every message helps us keep the verdicts accurate — we read everything and correct errors publicly when we get it wrong.</p>
+
+      <div class="form-success" id="fbSuccess">
+        ✓ Your email client has been opened with your message ready to send. If it didn't open, copy the message and send it to our contact address (published at launch).
+      </div>
+
+      <form class="feedback-form" id="feedbackForm" novalidate>
+        <div class="form-row">
+          <div>
+            <label for="fbCategory">Category</label>
+            <select id="fbCategory" name="category">
+              <option value="Correction">Correction</option>
+              <option value="Suggestion">Suggestion</option>
+              <option value="Test request">Test request</option>
+              <option value="Partnership">Partnership</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="fbEmail">Your email (optional)</label>
+            <input type="email" id="fbEmail" name="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+        </div>
+        <div>
+          <label for="fbMessage">Message</label>
+          <textarea id="fbMessage" name="message" required placeholder="Tell us what's on your mind — which page, what's wrong, what you'd like to see..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send feedback</button>
+        <p class="form-note">While the site is in beta, submitting opens your email client with the message pre-filled. After launch we'll switch to a direct online form.</p>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> ReelRank</span>
+        <span class="disclaimer">Some links are affiliate links. We may earn a commission at no extra cost to you.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
