@@ -359,5 +359,11 @@
   "capcut.typeVal": "Générateur + éditeur",
   "capcut.bestFor": "Courts drames, reels, contenu sans visage",
   "capcut.priceNote": "Offre gratuite disponible ; Pro débloque la génération IA avancée, l’export sans filigrane et des limites plus élevées. Vérifiez les prix actuels sur le site officiel de CapCut.",
-  "lb.statCategories": "Catégories"
+  "lb.statCategories": "Catégories",
+  "hero.h1pre": "Quel outil vidéo IA",
+  "hero.h1grad": "vaut vraiment le coup ?",
+  "veo.title": "Test de Google Veo 3.1",
+  "kling.title": "Test de Kling 3.0",
+  "runway.title": "Test de Runway Gen-4",
+  "capcut.title": "Test de CapCut Director Mode"
 }

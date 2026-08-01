@@ -359,5 +359,11 @@
   "capcut.typeVal": "Generator + Editor",
   "capcut.bestFor": "Kurzdramen, Reels, Faceless-Content",
   "capcut.priceNote": "Free-Tier verfügbar; Pro entsperrt erweiterte KI-Generierung, wasserzeichenfreien Export und höhere Limits. Aktuelle Preise auf CapCuts offizieller Seite prüfen.",
-  "lb.statCategories": "Kategorien"
+  "lb.statCategories": "Kategorien",
+  "hero.h1pre": "Welches KI-Videotool",
+  "hero.h1grad": "liefert wirklich?",
+  "veo.title": "Google Veo 3.1 Test",
+  "kling.title": "Kling 3.0 Test",
+  "runway.title": "Runway Gen-4 Test",
+  "capcut.title": "CapCut Director Mode Test"
 }

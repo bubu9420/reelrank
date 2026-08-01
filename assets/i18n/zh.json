@@ -359,5 +359,11 @@
   "teaser.btn": "打开完整排行榜 →",
   "teaser.sub": "247 个模型，覆盖视频、图像、音频、文本、代码——按 Arena 投票与基准排名，并经我们亲手实测验证。",
   "teaser.title": "实时排行榜",
-  "lb.statCategories": "分类数"
+  "lb.statCategories": "分类数",
+  "hero.h1pre": "哪款 AI 视频工具",
+  "hero.h1grad": "真正值得用？",
+  "veo.title": "Google Veo 3.1 评测",
+  "kling.title": "Kling 3.0 评测",
+  "runway.title": "Runway Gen-4 评测",
+  "capcut.title": "CapCut Director Mode 评测"
 }

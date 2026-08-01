@@ -359,5 +359,11 @@
   "capcut.typeVal": "Генератор + редактор",
   "capcut.bestFor": "Короткие драмы, рилсы, контент без лица",
   "capcut.priceNote": "Есть бесплатный тариф; Pro открывает расширенную ИИ-генерацию, экспорт без водяных знаков и выше лимиты. Актуальные цены на официальном сайте CapCut.",
-  "lb.statCategories": "Категорий"
+  "lb.statCategories": "Категорий",
+  "hero.h1pre": "Какой ИИ-видеоинструмент",
+  "hero.h1grad": "действительно стоит использовать?",
+  "veo.title": "Обзор Google Veo 3.1",
+  "kling.title": "Обзор Kling 3.0",
+  "runway.title": "Обзор Runway Gen-4",
+  "capcut.title": "Обзор CapCut Director Mode"
 }
