@@ -3,3 +3,5 @@ testing/cocoloop_*
 testing/model_*.html
 testing/lb_*.png
 testing/*-mobile.png
+testing/home_*.png
+testing/lb_live_*.png

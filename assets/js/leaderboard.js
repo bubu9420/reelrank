@@ -68,6 +68,8 @@
       if (q && (m.name + " " + m.vendor + " " + (m.st || []).join(" ")).toLowerCase().indexOf(q) === -1) return false;
       return true;
     });
+    var count = document.getElementById("lbCount");
+    if (count) count.textContent = list.length + " / " + all.length + " models";
     list.sort(function (a, b) {
       if (state.sort === "name") return a.name.localeCompare(b.name);
       if (state.sort === "new") return (b.rel || "").localeCompare(a.rel || "");
@@ -113,10 +115,8 @@
         badge = ' <span class="badge badge-draft">DRAFT</span>';
         if (m.review) nameHtml = '<a href="' + m.review + '">' + esc(m.name) + '</a>';
       } else {
-        badge = ' <span class="badge badge-ref">REF</span>';
         if (m.url) nameHtml = '<a href="' + m.url + '" target="_blank" rel="noopener">' + esc(m.name) + '</a>';
       }
-      var refNote = m.refNote ? '<br><small>' + esc(m.refNote) + '</small>' : "";
       var reel = m.status === "tested" ? '<span class="rating">' + STARS(m.reel) + '</span>'
         : m.status === "draft" && m.reel ? '<span class="rating">' + STARS(m.reel) + '</span>'
         : '<span class="lb-na">—</span>';
@@ -124,7 +124,7 @@
         (m.votes ? '<br><small>' + (m.votes / 1000).toFixed(1).replace(/\.0$/, "") + 'k votes</small>' : "") : "—";
       return '<tr class="' + (m.status === "tested" ? "tested-row" : m.status === "draft" ? "draft-row" : "") + '">' +
         '<td class="rank' + (i < 3 ? " rank-top" : "") + '">' + (i + 1) + '</td>' +
-        '<td>' + nameHtml + badge + refNote + '</td>' +
+        '<td>' + nameHtml + badge + '</td>' +
         '<td>' + esc(m.vendor) + '</td>' +
         '<td>' + esc(m.country) + '</td>' +
         '<td>' + esc((m.st || []).join(" · ")) + '</td>' +

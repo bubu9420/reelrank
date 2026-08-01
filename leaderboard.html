@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
 </head>
-<body>
+<body class="lb-page">
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">Reel<span class="dot">Rank</span></a>
@@ -36,7 +36,7 @@
     <div class="container">
       <span class="eyebrow">Complete AI model leaderboard</span>
       <h1>AI Model Leaderboard 2026</h1>
-      <p>Every published model across <strong>video, image, audio, text and code</strong> — ranked by real-user arena votes and public benchmarks. ReelRank scores come from our own hands-on tests: tools we have reviewed carry a <span class="badge badge-tested">TESTED</span> or <span class="badge badge-draft">DRAFT</span> badge; everything else is marked <span class="badge badge-ref">REF</span> (reference data) and is not ranked by us.</p>
+      <p>Every published model across <strong>video, image, audio, text and code</strong> — ranked by real-user arena votes and public benchmarks. ReelRank scores come from our own hands-on tests: reviewed tools carry a <span class="badge badge-tested">TESTED</span> or <span class="badge badge-draft">DRAFT</span> badge; the rest are benchmark-reference entries, updated continuously.</p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="reviews/best-ai-video-generators-2026.html">Read the 2026 comparison</a>
         <a class="btn btn-ghost" href="about.html#methodology">How we test</a>
@@ -50,12 +50,16 @@
       <div class="lb-stats" id="lbStats"></div>
 
       <div class="lb-controls">
-        <input id="lbSearch" class="lb-search" type="search" placeholder="Search model or vendor…" aria-label="Search models">
+        <div class="lb-search-shell">
+          <span class="icon">⌕</span>
+          <input id="lbSearch" class="lb-search" type="search" placeholder="Search model or vendor…" aria-label="Search models">
+        </div>
         <select id="lbSort" class="lb-sort" aria-label="Sort">
           <option value="score">Sort: Arena score</option>
           <option value="new">Sort: Newest</option>
           <option value="name">Sort: Name</option>
         </select>
+        <span class="lb-count" id="lbCount"></span>
       </div>
 
       <div class="lb-tabs" id="lbTabs"></div>
@@ -79,7 +83,7 @@
         </table>
       </div>
 
-      <p class="disclaimer">Arena scores and prices are reference values from CocoLoop's public leaderboard (2026-04), the LMArena benchmark and vendor sites — they change fast and are provided for orientation only. ReelRank scores come from our own hands-on tests with identical prompts. Tools we have not reviewed are marked REFERENCE and are not ranked by us.</p>
+      <p class="disclaimer">Scores and prices are public benchmark and vendor data, updated periodically. ReelRank scores come from our own hands-on tests with identical prompts. Reviewed tools carry TESTED / DRAFT badges; the rest are benchmark-reference entries.</p>
 
       <div class="cta">
         <h2>Planning to buy an AI tool?</h2>
