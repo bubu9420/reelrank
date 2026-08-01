@@ -61,10 +61,12 @@ python -m http.server 8000
 
 ## 部署（免费）
 
-1. 注册 GitHub 账号，新建一个仓库（如 `reelrank`），把整个 `reelrank` 文件夹内容上传。
-2. 注册 Vercel（或 Netlify / Cloudflare Pages），导入该 GitHub 仓库。
-3. 平台会自动部署并给你一个 `xxx.vercel.app` 链接。
-4. 买域名（Namecheap 等，约 10–15 美元/年），在托管平台后台绑定域名、配置 DNS，2 分钟可生效。
+当前状态（2026-08）：
+
+1. 仓库：`bubu9420/reelrank`，GitHub Pages 托管（免费）。
+2. 域名：reelrank.top（阿里云，DNS 已指向 GitHub Pages，HTTPS 证书已生效）。
+3. 线上：http://reelrank.top 与 https://reelrank.top 均可访问。
+4. 推送方式：本机 git 需走代理（FlClash 127.0.0.1:7890），且必须在非沙箱权限下执行 `git push`（本机精简版 git 的 remote-https 组件在沙箱内会崩溃）。
 
 ## 上线前必做清单
 
@@ -80,6 +82,15 @@ python -m http.server 8000
 1. **联盟佣金**（最快）：用户通过你的链接购买工具订阅，你拿 5–30% 佣金。
 2. **广告**（需流量）：AdSense 等，英文站千次曝光收入较高。
 3. **付费产品**（后期）：高级对比报告、专属工具筛选、会员数据库。
+
+## 拓展路线（参考 cocoloop 生态）
+
+参考 top.cocoloop.cn / cocoloop.cn / hub.cocoloop.cn 的三站互链模式，后续按流量逐步扩展：
+
+1. **更多分类榜单页**：从"AI 视频生成器"扩展到图像生成、AI 剪辑工具、AI 音频、AI 智能体（agent）等分类，每类保持"只排测过的"差异化。
+2. **AI 社区**：开放用户实测投稿、评分讨论、工具提问答疑（先做静态投稿入口，再上轻量后端或第三方评论服务）。
+3. **技能/工具商店**：收录经过安全审核的 AI 技能与工作流，做订阅或分成变现。
+4. **站点互链**：未来多个子站（榜单站 / 社区站 / 商店站）互相导流，统一品牌与域名前缀。
 
 ## 内容质量红线
 
