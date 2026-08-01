@@ -1,11 +1,7 @@
 (function () {
-  var SUPPORTED = ["en", "zh", "de", "fr", "ru"];
+  var SUPPORTED = ["en"];
   var LANG_NAMES = {
-    en: "English",
-    zh: "简体中文",
-    de: "Deutsch",
-    fr: "Français",
-    ru: "Русский"
+    en: "English"
   };
 
   // derive asset prefix from this script's src (works from root and subfolders)
@@ -21,7 +17,6 @@
       if (s && SUPPORTED.indexOf(s) > -1) return s;
     } catch (e) {}
   var nav = (navigator.language || "en").toLowerCase();
-  if (nav.indexOf("zh") === 0) return "zh";
   var code = nav.slice(0, 2);
   return SUPPORTED.indexOf(code) > -1 ? code : "en";
   }

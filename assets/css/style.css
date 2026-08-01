@@ -983,3 +983,62 @@ img { max-width: 100%; display: block; }
 .lb-hero h1 {
   font-size: clamp(1.7rem, 4vw, 2.6rem);
 }
+
+.lb-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.lb-search {
+  flex: 1;
+  min-width: 220px;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.lb-search::placeholder { color: var(--muted); }
+
+.lb-sort {
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+}
+
+.badge-ref {
+  background: color-mix(in srgb, #64748b 14%, transparent);
+  color: var(--muted);
+  border-color: color-mix(in srgb, #64748b 40%, transparent);
+}
+
+.lb-table .draft-row td {
+  background: color-mix(in srgb, #f59e0b 5%, transparent);
+  box-shadow: inset 3px 0 0 #f59e0b;
+}
+
+.lb-table .draft-row:hover td {
+  background: color-mix(in srgb, #f59e0b 9%, transparent);
+}
+
+.lb-tab em {
+  font-style: normal;
+  opacity: .7;
+  font-size: .75em;
+  margin-left: 3px;
+}
+
+.lb-empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 30px;
+}
+
+.lb-na { color: var(--muted); }
