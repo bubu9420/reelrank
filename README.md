@@ -1,4 +1,4 @@
-# ReelRank — AI 视频工具测评站
+﻿# ReelRank — AI 视频工具测评站
 
 一个英文独立测评站：真实测试 AI 视频生成/编辑工具，输出可信对比和评分，靠联盟佣金 + 广告 + 后续会员付费变现。
 
@@ -60,7 +60,7 @@ python -m http.server 8000
 
 ## 上线前必做清单
 
-- [ ] 买真实域名，把全站 `canonical`、`sitemap.xml`、`robots.txt` 里的 `reelrank.com` 替换成真实域名
+- [ ] 买真实域名，把全站 `canonical`、`sitemap.xml`、`robots.txt` 里的 `reelrank.top` 替换成真实域名
 - [ ] 注册 Google Search Console 提交站点地图，申请 Google AdSense（需内容充实且原创，建议先发 10+ 篇）
 - [ ] 逐个真实测试工具，把 `Draft` 改成 `Tested`，补上测试截图/视频
 - [ ] 注册工具联盟计划（Veo/Google、Kling、Runway、CapCut 等）拿到推广链接，替换正文链接

@@ -1,4 +1,4 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
 
-Sitemap: https://reelrank.com/sitemap.xml
+Sitemap: https://reelrank.top/sitemap.xml
