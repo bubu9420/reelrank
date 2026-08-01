@@ -865,3 +865,121 @@ img { max-width: 100%; display: block; }
 }
 
 ::selection { background: var(--accent-soft); color: var(--ink); }
+
+/* ============ Leaderboard ============ */
+
+.lb-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.lb-stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  text-align: center;
+}
+
+.lb-stat b {
+  display: block;
+  font-family: var(--font-lcd);
+  font-size: 1.5rem;
+  background: linear-gradient(120deg, var(--blue), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 4px;
+}
+
+.lb-stat span {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.lb-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.lb-tab {
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: .85rem;
+  cursor: default;
+}
+
+.lb-tab.active {
+  background: linear-gradient(120deg, var(--blue), var(--purple));
+  color: #fff;
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 0 14px var(--accent-glow);
+}
+
+.lb-soon {
+  color: var(--muted);
+  font-size: .82rem;
+  margin: 0 0 20px;
+}
+
+.lb-table th, .lb-table td {
+  white-space: nowrap;
+}
+
+.lb-table td:nth-child(5) {
+  white-space: normal;
+  min-width: 180px;
+  color: var(--muted);
+  font-size: .85rem;
+}
+
+.lb-table td:nth-child(6) {
+  font-family: var(--font-lcd);
+  font-size: .8rem;
+}
+
+.lb-table .rank {
+  font-family: var(--font-lcd);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.lb-table .rank-top {
+  color: var(--purple);
+  text-shadow: 0 0 10px var(--purple-glow);
+}
+
+.lb-table .arena {
+  font-family: var(--font-lcd);
+  font-weight: 700;
+}
+
+.lb-table .trend-up { color: var(--ok); font-family: var(--font-lcd); font-size: .75rem; }
+.lb-table .trend-down { color: var(--bad); font-family: var(--font-lcd); font-size: .75rem; }
+.lb-table .trend-flat { color: var(--muted); font-family: var(--font-lcd); font-size: .75rem; }
+
+.lb-table small {
+  color: var(--muted);
+  font-size: .68rem;
+}
+
+.lb-table .tested-row td {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.lb-table .tested-row:hover td {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+
+.lb-hero h1 {
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
