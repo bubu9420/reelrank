@@ -517,7 +517,7 @@ img { max-width: 100%; display: block; }
 
 .lb-teaser .lb-table th { font-size: .72rem; }
 
-.lb-teaser .lb-table td { padding: 8px 10px; font-size: .82rem; }
+.lb-teaser .lb-table td { padding: 8px 10px; font-size: .82rem; white-space: normal; }
 
 
 /* ---------- Buttons (key style) ---------- */
@@ -1237,21 +1237,21 @@ img { max-width: 100%; display: block; }
 
 .lb-table td:nth-child(1) { width: 44px; }
 
-.lb-table td:nth-child(2) { min-width: 178px; }
+.lb-table td:nth-child(2) { min-width: 150px; }
 
-.lb-table td:nth-child(3) { min-width: 108px; }
+.lb-table td:nth-child(3) { min-width: 88px; }
 
 .lb-table td:nth-child(4) { width: 64px; }
 
-.lb-table td:nth-child(5) { min-width: 210px; color: var(--muted); }
+.lb-table td:nth-child(5) { min-width: 150px; color: var(--muted); }
 
-.lb-table td:nth-child(6) { min-width: 150px; font-family: var(--font-lcd); font-size: .8rem; }
+.lb-table td:nth-child(6) { min-width: 118px; font-family: var(--font-lcd); font-size: .8rem; }
 
-.lb-table td:nth-child(7) { min-width: 120px; }
+.lb-table td:nth-child(7) { min-width: 96px; }
 
-.lb-table td:nth-child(8) { min-width: 96px; white-space: nowrap; }
+.lb-table td:nth-child(8) { min-width: 78px; white-space: nowrap; }
 
-.lb-table td:nth-child(9) { min-width: 118px; }
+.lb-table td:nth-child(9) { min-width: 96px; }
 
 .lb-table .rank {
   font-family: var(--font-lcd);
@@ -1309,3 +1309,73 @@ img { max-width: 100%; display: block; }
   font-size: clamp(1.7rem, 4vw, 2.6rem);
 }
 
+
+
+/* ---------- Tool spotlight cards (Top Picks page) ---------- */
+.tool-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 28px 0; }
+@media (max-width: 860px) { .tool-grid { grid-template-columns: 1fr; } }
+
+.tool-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.tool-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); box-shadow: var(--shadow), 0 0 26px var(--accent-glow); }
+
+.tool-thumb {
+  position: relative;
+  padding: 30px 22px 22px;
+  color: #fff;
+  font-family: var(--font-lcd);
+}
+.tool-initials { font-size: 1.6rem; font-weight: 700; letter-spacing: .04em; text-shadow: 0 0 18px rgba(255,255,255,.35); }
+.tool-thumb .tool-sub { display: block; margin-top: 6px; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+.tool-rank {
+  position: absolute;
+  top: 14px; right: 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  opacity: .9;
+  text-shadow: 0 0 16px rgba(255,255,255,.45);
+}
+.tool-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.tool-title-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.tool-title-row h3 { margin: 0; font-size: 1.08rem; }
+.tool-title-row h3 a { color: var(--ink); }
+.tool-title-row h3 a:hover { color: var(--accent); text-decoration: none; }
+.tool-best { font-size: .8rem; }
+.tool-body .rating { font-size: .86rem; }
+.tool-body p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.55; }
+.tool-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip {
+  font-size: .74rem;
+  font-family: var(--font-lcd);
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+}
+.tool-card .card-link { margin-top: auto; padding-top: 8px; }
+
+/* ranking table polish */
+.rank-medal { font-size: 1.05rem; }
+.data-table .tool-name { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 600; }
+.data-table .score-cell { font-family: var(--font-lcd); white-space: nowrap; }
+
+/* decision list */
+.decision-list { list-style: none; padding: 0; margin: 0 0 30px; }
+.decision-list li {
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: var(--surface);
+}
+.decision-list li::before { content: "\25B8"; color: var(--accent); font-family: var(--font-lcd); }
+.decision-list a { font-weight: 600; }
