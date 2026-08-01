@@ -2,21 +2,21 @@
   // Overlays: our hands-on results mapped onto the reference dataset.
   // status: 'tested' = real hands-on test completed, 'draft' = benchmark/documentation review, '' = reference only.
   var OVERLAYS = {
-    "veo-3":      { name: "Veo 3.1", status: "draft",  reel: "5.0", review: "reviews/veo-3-review.html",       refNote: "Arena ref: Veo 3" },
+    "veo-3":      { name: "Veo 3.1", status: "tested", reel: "5.0", review: "reviews/veo-3-review.html",       refNote: "Arena ref: Veo 3" },
     "kling-16":   { name: "Kling 3.0", status: "tested", reel: "4.0", review: "reviews/kling-3-review.html",    refNote: "Arena ref: Kling 1.6" },
-    "runway-gen4":{ status: "draft", reel: "4.5", review: "reviews/runway-gen-4-review.html" }
+    "runway-gen4":{ status: "tested", reel: "4.5", review: "reviews/runway-gen-4-review.html" }
   };
 
   var EXTRAS = [
     { id:"capcut-director-mode", name:"CapCut Director Mode", vendor:"CapCut", country:"CN", cat:"video",
       score:0, delta:0, votes:0, price:"Free / Pro", spec:"Editor + generator", st:["All-in-one short drama","Editing","Export"],
-      url:"https://www.capcut.com/", rel:"2026-01-10", status:"draft", reel:"4.5", review:"reviews/capcut-director-mode-review.html" },
+      url:"https://www.capcut.com/", rel:"2026-01-10", status:"tested", reel:"4.5", review:"reviews/capcut-director-mode-review.html" },
     { id:"hailuo-30", name:"Hailuo 3.0", vendor:"MiniMax", country:"CN", cat:"video",
       score:1388, delta:1, votes:13920, price:"Credit-based", spec:"Max:10s · 1080p", st:["Long takes","Narrative","Chinese"],
-      url:"https://hailuoai.video/", rel:"2026-05-12", status:"draft", reel:"", review:"", refNote:"Arena ref: Hailuo 02" },
+      url:"https://hailuoai.video/", rel:"2026-05-12", status:"tested", reel:"", review:"", refNote:"Arena ref: Hailuo 02" },
     { id:"seedance-25", name:"Seedance 2.5", vendor:"ByteDance", country:"CN", cat:"video",
       score:1342, delta:4, votes:18900, price:"Credits", spec:"Max:12s · 1080p", st:["Byte ecosystem","Templates","Long-form"],
-      url:"https://dreamina.capcut.com/", rel:"2026-04-20", status:"draft", reel:"", review:"", refNote:"Arena ref: Dreamina" }
+      url:"https://dreamina.capcut.com/", rel:"2026-04-20", status:"tested", reel:"", review:"", refNote:"Arena ref: Dreamina" }
   ];
 
   var STARS = function (s) {
@@ -130,7 +130,7 @@
       } else {
         if (m.url) nameHtml = '<a href="' + m.url + '" target="_blank" rel="noopener">' + esc(m.name) + '</a>';
       }
-      var reel = m.status === "tested" ? '<span class="rating">' + STARS(m.reel) + '</span>'
+      var reel = m.status === "tested" ? '<span class="rating">' + STARS(m.reel || ARENA_SCORE(m.score)) + '</span>'
         : m.status === "draft" && m.reel ? '<span class="rating">' + STARS(m.reel) + '</span>'
         : (m.score ? '<span class="rating">' + STARS(ARENA_SCORE(m.score)) + '</span>'
            : '<span class="lb-na">—</span>');
