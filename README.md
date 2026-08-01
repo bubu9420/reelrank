@@ -24,7 +24,10 @@ reelrank/
     ├── veo-3-review.html             # Veo 3.1 评测
     ├── kling-3-review.html           # Kling 3.0 评测
     ├── runway-gen-4-review.html      # Runway Gen-4 评测
-    └── capcut-director-mode-review.html    # CapCut 导演模式评测
+    ├── capcut-director-mode-review.html    # CapCut 导演模式评测
+    ├── seedance-25-review.html       # Seedance 2.5 评测
+    ├── hailuo-30-review.html         # Hailuo 3.0 评测
+    └── sora-2-review.html            # Sora 2 评测（含 API 停服警告）
 ```
 
 ## 本地预览

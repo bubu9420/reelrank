@@ -4,7 +4,8 @@
   var OVERLAYS = {
     "veo-3":      { name: "Veo 3.1", status: "tested", reel: "5.0", review: "reviews/veo-3-review.html",       refNote: "Arena ref: Veo 3" },
     "kling-16":   { name: "Kling 3.0", status: "tested", reel: "4.0", review: "reviews/kling-3-review.html",    refNote: "Arena ref: Kling 1.6" },
-    "runway-gen4":{ status: "tested", reel: "4.5", review: "reviews/runway-gen-4-review.html" }
+    "runway-gen4":{ status: "tested", reel: "4.5", review: "reviews/runway-gen-4-review.html" },
+    "sora-2":     { status: "tested", reel: "3.5", review: "reviews/sora-2-review.html" }
   };
 
   var EXTRAS = [
@@ -13,10 +14,10 @@
       url:"https://www.capcut.com/", rel:"2026-01-10", status:"tested", reel:"4.5", review:"reviews/capcut-director-mode-review.html" },
     { id:"hailuo-30", name:"Hailuo 3.0", vendor:"MiniMax", country:"CN", cat:"video",
       score:1388, delta:1, votes:13920, price:"Credit-based", spec:"Max:10s · 1080p", st:["Long takes","Narrative","Chinese"],
-      url:"https://hailuoai.video/", rel:"2026-05-12", status:"tested", reel:"", review:"", refNote:"Arena ref: Hailuo 02" },
+      url:"https://hailuoai.video/", rel:"2026-05-12", status:"tested", reel:"4.0", review:"reviews/hailuo-30-review.html", refNote:"Arena ref: Hailuo 02" },
     { id:"seedance-25", name:"Seedance 2.5", vendor:"ByteDance", country:"CN", cat:"video",
       score:1342, delta:4, votes:18900, price:"Credits", spec:"Max:12s · 1080p", st:["Byte ecosystem","Templates","Long-form"],
-      url:"https://dreamina.capcut.com/", rel:"2026-04-20", status:"tested", reel:"", review:"", refNote:"Arena ref: Dreamina" }
+      url:"https://dreamina.capcut.com/", rel:"2026-04-20", status:"tested", reel:"4.5", review:"reviews/seedance-25-review.html", refNote:"Arena ref: Dreamina" }
   ];
 
   var STARS = function (s) {
@@ -63,6 +64,13 @@
     var d = window.RR_I18N || {};
     return d[key] || fallback;
   }
+
+  var AFF_KEYS = {
+    "sora-2": "sora", "sora-1": "sora", "veo-3": "veo", "kling-16": "kling",
+    "runway-gen4": "runway", "hailuo-2": "hailuo", "hailuo-1": "hailuo",
+    "dreamina": "seedance", "synthesia": "synthesia", "heygen": "heygen",
+    "capcut-director-mode": "capcut", "hailuo-30": "hailuo", "seedance-25": "seedance"
+  };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -120,9 +128,10 @@
       var badge = "";
       var nameHtml = esc(m.name);
       badge = ' <span class="badge badge-tested">' + t("lb.tested", "TESTED") + '</span>';
+      var aff = AFF_KEYS[m.id] ? ' data-aff="' + AFF_KEYS[m.id] + '"' : "";
       nameHtml = m.review
         ? '<a href="' + m.review + '">' + esc(m.name) + '</a>'
-        : '<a href="' + (m.url || "#") + '"' + (m.url ? ' target="_blank" rel="noopener"' : '') + '>' + esc(m.name) + '</a>';
+        : '<a href="' + (m.url || "#") + '"' + (m.url ? ' target="_blank" rel="noopener"' : '') + aff + '>' + esc(m.name) + '</a>';
       var reel = '<span class="rating">' + STARS(m.reel || ARENA_SCORE(m.score)) + '</span>';
       var arena = m.score ? '<span class="arena">' + m.score + '</span> ' + trend +
         (m.votes ? '<br><small>' + (m.votes / 1000).toFixed(1).replace(/\.0$/, "") + 'k votes</small>' : "") : "—";
