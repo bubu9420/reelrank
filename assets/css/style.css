@@ -1403,3 +1403,9 @@ img { max-width: 100%; display: block; }
 .glance-item { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; text-align: center; }
 .glance-item b { display: block; font-family: var(--font-lcd); font-size: 1.25rem; background: linear-gradient(120deg, var(--blue), var(--purple)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 3px; }
 .glance-item span { color: var(--muted); font-size: .78rem; }
+
+/* sub-page hero banner (about / feedback) */
+.page-hero { padding: 58px 0 52px; }
+.page-hero .container { grid-template-columns: 1fr; max-width: 1120px; }
+.page-hero h1 { font-size: clamp(1.8rem, 4.2vw, 2.7rem); }
+.page-hero p { max-width: 46em; }
