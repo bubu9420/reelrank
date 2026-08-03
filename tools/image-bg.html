@@ -3,6 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <script type="importmap">
+  {
+    "imports": {
+      "onnxruntime-web": "../assets/bg-removal/ort.wasm.min.js"
+    }
+  }
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>在线AI抠图去背景 - 免费一键去背景透明PNG | 影剪辑</title>
   <meta name="description" content="免费在线AI抠图工具：一键自动去除图片背景，生成透明 PNG，支持人物、商品、宠物，AI 模型在浏览器本地运行，图片不上传。">
@@ -71,33 +78,75 @@
     (function () {
       var file = null, outBlob = null;
       var TK = window.ToolKit;
-      var MOD_CDNS = [
-        "https://unpkg.com/@imgly/background-removal@1.5.6/dist/index.mjs",
-        "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.6/dist/index.mjs",
-        "https://registry.npmmirror.com/@imgly/background-removal/1.5.6/files/dist/index.mjs"
-      ];
-      var DATA_CDNS = [
-        "https://unpkg.com/@imgly/background-removal-data@1.5.6/dist/",
-        "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.6/dist/",
-        "https://registry.npmmirror.com/@imgly/background-removal-data/1.5.6/files/dist/"
-      ];
-      function loadModule() {
-        var i = 0;
-        function next() {
-          if (i >= MOD_CDNS.length) return Promise.reject(new Error("加载失败，请检查网络"));
-          return import(MOD_CDNS[i++]).catch(function () { return next(); });
-        }
-        return next();
+      var MODEL_URL = "../assets/bg-removal/model_quantized.onnx";
+      var WASM_DIR = "../assets/bg-removal/";
+      var ortRef = null;
+      var sessionPromise = null;
+
+      function loadSession() {
+        if (sessionPromise) return sessionPromise;
+        sessionPromise = import("onnxruntime-web").then(function (ort) {
+          ortRef = ort;
+          ort.env.wasm.numThreads = 1; /* GitHub Pages 无跨域隔离，单线程最稳 */
+          ort.env.wasm.wasmPaths = WASM_DIR;
+          return ort.InferenceSession.create(MODEL_URL, { executionProviders: ["wasm"] });
+        });
+        return sessionPromise;
       }
-      function loadData() {
-        var i = 0;
-        function next() {
-          if (i >= DATA_CDNS.length) return Promise.reject(new Error("模型地址获取失败"));
-          var base = DATA_CDNS[i++];
-          return fetch(base + "package.json").then(function (r) { if (r.ok) return base; throw new Error("no"); }).catch(function () { return next(); });
-        }
-        return next();
+
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var img = new Image();
+          img.onload = function () { resolve(img); };
+          img.onerror = function () { reject(new Error("图片读取失败")); };
+          img.src = url;
+        });
       }
+
+      /* 缩放到 1024x1024，像素归一化到 0-1（量化模型按此校准，不可用 ImageNet 均值方差），输出 NCHW Float32 */
+      function preprocess(img) {
+        var W = 1024, H = 1024;
+        var canvas = document.createElement("canvas");
+        canvas.width = W; canvas.height = H;
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, W, H);
+        var px = ctx.getImageData(0, 0, W, H).data;
+        var n = W * H;
+        var arr = new Float32Array(3 * n);
+        for (var i = 0; i < n; i++) {
+          arr[i] = px[i * 4] / 255;
+          arr[n + i] = px[i * 4 + 1] / 255;
+          arr[2 * n + i] = px[i * 4 + 2] / 255;
+        }
+        return arr;
+      }
+
+      /* 把模型输出的 1024x1024 掩码贴回原图尺寸，作为透明通道 */
+      function composite(img, alpha1024) {
+        var W = img.naturalWidth, H = img.naturalHeight;
+        var mCanvas = document.createElement("canvas");
+        mCanvas.width = 1024; mCanvas.height = 1024;
+        var mctx = mCanvas.getContext("2d");
+        var mImg = mctx.createImageData(1024, 1024);
+        for (var i = 0; i < 1024 * 1024; i++) mImg.data[i * 4 + 3] = alpha1024[i];
+        mctx.putImageData(mImg, 0, 0);
+        var sCanvas = document.createElement("canvas");
+        sCanvas.width = W; sCanvas.height = H;
+        var sctx = sCanvas.getContext("2d");
+        sctx.drawImage(mCanvas, 0, 0, W, H);
+        var sData = sctx.getImageData(0, 0, W, H).data;
+
+        var out = document.createElement("canvas");
+        out.width = W; out.height = H;
+        var octx = out.getContext("2d");
+        octx.drawImage(img, 0, 0, W, H);
+        var oData = octx.getImageData(0, 0, W, H);
+        for (var j = 0; j < W * H; j++) oData.data[j * 4 + 3] = sData[j * 4 + 3];
+        octx.putImageData(oData, 0, 0);
+        return out;
+      }
+
       TK.wireDropzone(document.getElementById("dropzone"), function (f) {
         file = f;
         document.getElementById("fileName").textContent = f.name;
@@ -117,19 +166,24 @@
         TK.show(document.getElementById("progress"));
         TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 3, "正在加载 AI 模型（首次约 40MB）…");
         try {
-          var mod = await loadModule();
-          var base = await loadData();
-          TK.updateProgress(null, document.getElementById("pbLabel"), 12, "模型就绪，开始识别…");
-          outBlob = await mod.removeBackground(file, {
-            publicPath: base,
-            output: { format: "image/png" },
-            progress: function (key, cur, total) {
-              if (total > 0) {
-                var pct = 12 + Math.round((cur / total) * 84);
-                TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), pct, "识别中 " + Math.round(cur / total * 100) + "%");
-              }
-            }
-          });
+          var session = await loadSession();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 15, "模型就绪，正在识别…");
+          var img = await loadImage(file);
+          var input = preprocess(img);
+          var feeds = {};
+          feeds[session.inputNames[0]] = new ortRef.Tensor("float32", input, [1, 3, 1024, 1024]);
+          var out = await session.run(feeds);
+          var outData = out[session.outputNames[0]].data;
+
+          /* 模型输出已过 sigmoid，值域 0-1，直接作为透明度 */
+          var alpha = new Uint8Array(outData.length);
+          for (var k = 0; k < outData.length; k++) {
+            alpha[k] = Math.round(Math.min(1, Math.max(0, outData[k])) * 255);
+          }
+
+          TK.updateProgress(null, document.getElementById("pbLabel"), 85, "正在合成透明 PNG…");
+          var outCanvas = composite(img, alpha);
+          outBlob = await new Promise(function (resolve) { outCanvas.toBlob(resolve, "image/png"); });
           TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
           var name = TK.baseName(file.name) + "-cutout.png";
           var rv = document.getElementById("rPreview"); rv.innerHTML = "";
