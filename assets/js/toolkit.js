@@ -109,6 +109,8 @@
   }
 
   function download(blob, filename) {
+    /* 会员配额守卫：免费用户每日限次，VIP 无限。返回 false 则中断下载。 */
+    if (window.YingMember && !window.YingMember.guardDownload()) return;
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = filename || "download";
