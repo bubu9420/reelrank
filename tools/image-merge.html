@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片拼接 - 多张图片合并成长图/横图 | 影剪辑</title>
+  <meta name="description" content="免费在线图片拼接：多张图片垂直或水平拼接成长图、横向长图，支持 JPG/PNG/WebP，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-merge.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖼️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 图片拼接</p>
+      <h1>图片拼接</h1>
+      <p class="sub">把多张图片拼成一张长图：垂直拼接做截图长图、横向拼接做对比图，自动统一宽度/高度。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" multiple hidden>
+          <span class="dz-ico">🖼️</span>
+          <div class="dz-main">点击选择或拖拽多张图片到这里</div>
+          <div class="dz-sub">可多选，拼接顺序按文件顺序</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="direction">拼接方向</label><select id="direction">
+            <option value="vertical" selected>垂直拼接（上下长图）</option>
+            <option value="horizontal">水平拼接（左右长图）</option>
+          </select></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始拼接</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载拼接图</button></div></div></div>
+        <div class="privacy-note">🔒 图片在浏览器本地处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>图片尺寸不一样怎么办？</summary><p>垂直拼接时统一按最宽图片的宽度等比缩放；水平拼接时统一按最高图片的高度等比缩放。</p></details>
+        <details><summary>支持哪些格式？</summary><p>支持 JPG、PNG、WebP、BMP、GIF（取首帧）。输出为 PNG，保留画质。</p></details>
+        <details><summary>能调整顺序吗？</summary><p>当前按选择文件的顺序拼接，请在选择时按需要的顺序点选。批量排序功能后续上线。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var files = [], outBlob = null;
+      var TK = window.ToolKit;
+
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var img = new Image();
+          img.onload = function () { resolve(img); };
+          img.onerror = function () { reject(new Error("图片读取失败：" + f.name)); };
+          img.src = url;
+        });
+      }
+
+      TK.wireMultiDropzone(document.getElementById("dropzone"), function (list) {
+        files = list;
+        document.getElementById("fileName").textContent = list.length + " 张图片";
+        document.getElementById("fileSize").textContent = TK.humanSize(Array.prototype.reduce.call(list, function (s, x) { return s + x.size; }, 0));
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        files = [];
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!files || !files.length) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 5, "正在读取图片…");
+        try {
+          var imgs = [];
+          for (var i = 0; i < files.length; i++) imgs.push(await loadImage(files[i]));
+          TK.updateProgress(null, document.getElementById("pbLabel"), 50, "正在拼接…");
+          var vertical = document.getElementById("direction").value === "vertical";
+          var gap = 0;
+          var unit = vertical ? "width" : "height";
+          var maxUnit = 0;
+          for (var j = 0; j < imgs.length; j++) {
+            var u = vertical ? imgs[j].naturalWidth : imgs[j].naturalHeight;
+            if (u > maxUnit) maxUnit = u;
+          }
+          var total = 0;
+          var scaled = imgs.map(function (im) {
+            var k = maxUnit / (vertical ? im.naturalWidth : im.naturalHeight);
+            var w = Math.round(im.naturalWidth * k), h = Math.round(im.naturalHeight * k);
+            total += vertical ? h : w;
+            return { img: im, w: w, h: h };
+          });
+          var W = vertical ? maxUnit : total;
+          var H = vertical ? total : maxUnit;
+          var canvas = document.createElement("canvas");
+          canvas.width = W; canvas.height = H;
+          var ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#fff";
+          ctx.fillRect(0, 0, W, H);
+          var pos = 0;
+          for (var k2 = 0; k2 < scaled.length; k2++) {
+            var s = scaled[k2];
+            if (vertical) { ctx.drawImage(s.img, 0, pos, s.w, s.h); pos += s.h; }
+            else { ctx.drawImage(s.img, pos, 0, s.w, s.h); pos += s.w; }
+          }
+          TK.updateProgress(null, document.getElementById("pbLabel"), 90, "正在导出…");
+          outBlob = await new Promise(function (resolve) { canvas.toBlob(resolve, "image/png"); });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var name = "merged-" + Date.now().toString(36) + ".png";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(outBlob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = W + "×" + H + "px · " + TK.humanSize(outBlob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

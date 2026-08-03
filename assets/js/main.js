@@ -79,6 +79,7 @@
     "image-bg.html",
     "video-compress.html", "video-to-gif.html", "video-convert.html", "video-trim.html",
     "video-vertical.html", "video-watermark.html", "video-speed.html", "video-extract-audio.html",
+    "video-merge.html", "video-mute.html", "video-snapshot.html",
     "audio-denoise.html"
   ];
 

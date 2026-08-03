@@ -238,6 +238,12 @@ a:hover { text-decoration: underline; }
 .result .r-info { flex: 1; min-width: 220px; }
 .result .r-info .r-name { font-weight: 700; margin-bottom: 4px; }
 .result .r-info .r-size { font-family: var(--font-lcd); font-size: .84rem; color: var(--ink-soft); margin-bottom: 12px; }
+.snap-player { display: none; margin-top: 18px; }
+.snap-player.show { display: block; }
+.snap-player video { width: 100%; max-height: 420px; border-radius: 12px; background: #000; }
+.snap-timeline { margin: 12px 0; }
+.snap-timeline input[type="range"] { width: 100%; accent-color: var(--accent); }
+.snap-time { font-family: var(--font-lcd); font-size: .8rem; color: var(--ink-soft); }
 .note { font-size: .8rem; color: var(--ink-soft); margin-top: 12px; }
 .privacy-note {
   display: flex; align-items: center; gap: 10px; margin-top: 16px;

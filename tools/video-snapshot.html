@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频截图 - 从视频提取任意帧高清图片 | 影剪辑</title>
+  <meta name="description" content="免费在线视频截图：播放视频并拖到想要的画面，一键提取当前帧为高清 JPG/PNG，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/video-snapshot.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html" class="active">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="video.html">视频工具</a> / 视频截图</p>
+      <h1>视频截图</h1>
+      <p class="sub">播放视频，拖到想要的画面，一键截取当前帧为高清图片，不需要安装任何软件。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="video/*" hidden>
+          <span class="dz-ico">📸</span>
+          <div class="dz-main">点击选择或拖拽视频到这里</div>
+          <div class="dz-sub">支持 MP4 / WebM / MOV</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="snap-player" id="snapPlayer">
+          <video id="videoPreview" controls preload="metadata"></video>
+          <div class="snap-timeline">
+            <input type="range" id="timeSlider" min="0" max="0" value="0" step="0.01">
+            <div class="snap-time"><span id="timeNow">00:00</span> / <span id="timeTotal">00:00</span></div>
+          </div>
+          <button class="btn" id="captureBtn" disabled>📸 截取当前画面</button>
+        </div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载截图</button></div></div></div>
+        <div class="privacy-note">🔒 视频在浏览器本地播放和处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>截图清晰度怎么样？</summary><p>截取的是视频原始分辨率画面，与视频清晰度一致。拖动时间轴可以精准定位到任意帧。</p></details>
+        <details><summary>能截取视频封面吗？</summary><p>可以，把时间轴拖到 00:00 或任意位置，点击截取即可，适合做视频封面图。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, outBlob = null;
+      var TK = window.ToolKit;
+      var video = document.getElementById("videoPreview");
+      var slider = document.getElementById("timeSlider");
+      var captureBtn = document.getElementById("captureBtn");
+
+      function fmt(t) {
+        if (!isFinite(t)) t = 0;
+        var m = Math.floor(t / 60), s = Math.floor(t % 60);
+        return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+      }
+
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("snapPlayer").classList.add("show");
+        TK.hide(document.getElementById("result"));
+        video.src = URL.createObjectURL(f);
+        video.load();
+        captureBtn.disabled = true;
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        video.removeAttribute("src");
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("snapPlayer").classList.remove("show");
+        captureBtn.disabled = true;
+      });
+
+      video.addEventListener("loadedmetadata", function () {
+        slider.max = video.duration || 0;
+        slider.value = 0;
+        document.getElementById("timeTotal").textContent = fmt(video.duration);
+        captureBtn.disabled = false;
+      });
+      video.addEventListener("timeupdate", function () {
+        slider.value = video.currentTime;
+        document.getElementById("timeNow").textContent = fmt(video.currentTime);
+      });
+      slider.addEventListener("input", function () {
+        video.currentTime = +slider.value;
+        document.getElementById("timeNow").textContent = fmt(video.currentTime);
+      });
+
+      captureBtn.addEventListener("click", function () {
+        if (!file) return;
+        var canvas = document.createElement("canvas");
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 360;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(video, 0, 0);
+        canvas.toBlob(function (blob) {
+          if (!blob) return;
+          outBlob = blob;
+          var name = TK.baseName(file.name) + "-frame-" + Math.round(video.currentTime * 100) + ".png";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = canvas.width + "×" + canvas.height + " · " + TK.humanSize(blob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        }, "image/png");
+      });
+    })();
+  </script>
+</body>
+</html>

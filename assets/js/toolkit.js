@@ -185,6 +185,26 @@
     });
   }
 
+  /* 多文件上传区：onChange 收到整个 FileList */
+  function wireMultiDropzone(dz, onChange) {
+    var input = dz.querySelector("input[type=file]");
+    if (!input) return;
+    dz.addEventListener("click", function () { input.click(); });
+    ["dragenter", "dragover"].forEach(function (ev) {
+      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add("drag"); });
+    });
+    ["dragleave", "drop"].forEach(function (ev) {
+      dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove("drag"); });
+    });
+    dz.addEventListener("drop", function (e) {
+      var files = e.dataTransfer && e.dataTransfer.files;
+      if (files && files.length) onChange(files);
+    });
+    input.addEventListener("change", function () {
+      if (input.files && input.files.length) onChange(input.files);
+    });
+  }
+
   function updateProgress(pb, labelEl, pct, msg) {
     if (pb) pb.style.width = Math.max(0, Math.min(100, pct)) + "%";
     if (labelEl) labelEl.textContent = msg || Math.round(pct) + "%";
@@ -227,6 +247,7 @@
     show: show,
     hide: hide,
     preview: preview,
+    wireMultiDropzone: wireMultiDropzone,
     FFMPEG_CDNS: FFMPEG_CDNS,
     CORE_CDNS: CORE_CDNS
   };

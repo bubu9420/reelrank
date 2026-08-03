@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音频压缩 - 在线压缩 MP3 音频体积 | 影剪辑</title>
+  <meta name="description" content="免费在线音频压缩：调整 MP3 码率减小音频体积，支持 64-320kbps，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/audio-compress.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗜️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html" class="active">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="audio.html">音频工具</a> / 音频压缩</p>
+      <h1>音频压缩</h1>
+      <p class="sub">把音频压缩成更小的 MP3，适合减小文件体积方便传输和上传。码率越低体积越小，音质略有损失。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="audio/*" hidden>
+          <span class="dz-ico">🗜️</span>
+          <div class="dz-main">点击选择或拖拽音频到这里</div>
+          <div class="dz-sub">支持 MP3 / WAV / OGG / M4A / FLAC / AAC</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="bitrate">目标码率</label><select id="bitrate">
+            <option value="64">64 kbps（体积优先）</option>
+            <option value="128" selected>128 kbps（均衡）</option>
+            <option value="192">192 kbps（音质优先）</option>
+            <option value="320">320 kbps（接近无损）</option>
+          </select></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始压缩</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载音频</button></div></div></div>
+        <div class="privacy-note">🔒 音频在浏览器本地处理，不会上传到任何服务器。首次使用需加载处理引擎（约 30MB）。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>怎么选择码率？</summary><p>聊天发送或语音类选 64-128kbps；音乐建议 192kbps 以上；追求音质选 320kbps。</p></details>
+        <details><summary>WAV 能压缩吗？</summary><p>可以，WAV 转成 128kbps MP3 通常能缩小到原来的十分之一左右。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, outBlob = null;
+      var TK = window.ToolKit;
+
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 3, "正在加载处理引擎…");
+        try {
+          var ffmpeg = await TK.loadFFmpeg();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 10, "正在读取音频…");
+          var inName = await TK.writeInput(ffmpeg, file);
+          var off = TK.withTimeProgress(ffmpeg, function (sec) {
+            TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 10 + Math.min(85, sec / 30 * 85), "压缩中 " + Math.round(sec) + "s");
+          });
+          await ffmpeg.exec(["-i", inName, "-b:a", document.getElementById("bitrate").value + "k", "-c:a", "libmp3lame", "-y", "out.mp3"]);
+          off();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var blob = await TK.readOut(ffmpeg, "out.mp3");
+          var name = TK.baseName(file.name) + "-compressed.mp3";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "audio"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = "原始 " + TK.humanSize(file.size) + " → " + TK.humanSize(blob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

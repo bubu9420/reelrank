@@ -11,11 +11,11 @@
   }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>在线AI抠图去背景 - 免费一键去背景透明PNG | 影剪辑</title>
-  <meta name="description" content="免费在线AI抠图工具：一键自动去除图片背景，生成透明 PNG，支持人物、商品、宠物，AI 模型在浏览器本地运行，图片不上传。">
-  <link rel="canonical" href="https://reelrank.top/tools/image-bg.html">
+  <title>证件照制作 - 在线换底色改尺寸，一寸二寸证件照 | 影剪辑</title>
+  <meta name="description" content="免费在线制作证件照：AI 一键抠图换底色（白底/蓝底/红底），支持一寸、二寸等标准尺寸，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-idphoto.html">
   <link rel="stylesheet" href="../assets/css/toolkit.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪪</text></svg>">
 </head>
 <body>
   <header class="site-header">
@@ -36,27 +36,41 @@
 
   <main class="tool-page">
     <div class="container">
-      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 一键抠图</p>
-      <h1>在线 AI 抠图去背景</h1>
-      <p class="sub">AI 自动识别并去除图片背景，生成透明背景 PNG。支持人物、商品、宠物、汽车等主体。AI 模型在浏览器本地运行，图片完全不上传。</p>
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 证件照制作</p>
+      <h1>证件照制作</h1>
+      <p class="sub">上传一张正面照，AI 自动抠图并换成白底 / 蓝底 / 红底，直接输出一寸、二寸等标准尺寸。全程在浏览器本地处理，照片不上传。</p>
       <div class="tool-box">
         <div class="dropzone" id="dropzone">
           <input type="file" id="fileInput" accept="image/*" hidden>
-          <span class="dz-ico">🎭</span>
-          <div class="dz-main">点击选择或拖拽图片到这里</div>
-          <div class="dz-sub">支持 JPG / PNG / WebP，主体清晰效果最佳</div>
+          <span class="dz-ico">🪪</span>
+          <div class="dz-main">点击选择或拖拽照片到这里</div>
+          <div class="dz-sub">建议使用正面免冠照，人物头部居中效果最佳</div>
         </div>
         <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
-        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始抠图</button></div>
+        <div class="controls">
+          <div class="field"><label for="size">证件照尺寸</label><select id="size">
+            <option value="295,413">一寸 295×413</option>
+            <option value="260,378">小一寸 260×378</option>
+            <option value="390,567">大一寸 390×567</option>
+            <option value="413,579" selected>二寸 413×579</option>
+            <option value="413,531">小二寸 413×531</option>
+          </select></div>
+          <div class="field"><label for="bg">背景颜色</label><select id="bg">
+            <option value="#FFFFFF" selected>白色</option>
+            <option value="#438EDB">蓝色</option>
+            <option value="#D9001B">红色</option>
+          </select></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始制作证件照</button></div>
         <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
-        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载透明PNG</button></div></div></div>
-        <div class="privacy-note">🔒 AI 模型在浏览器本地运行，图片不会上传到任何服务器。首次使用需下载模型（约 40MB），之后会缓存在浏览器中，无需重复下载。</div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载证件照</button></div></div></div>
+        <div class="privacy-note">🔒 AI 模型在浏览器本地运行，照片不会上传到任何服务器。首次使用需下载模型（约 40MB），之后会缓存在浏览器中。</div>
       </div>
       <section class="faq">
         <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
-        <details><summary>抠图效果怎么样？</summary><p>对人物、商品、宠物等主体清晰的图片效果很好；复杂背景、细小毛发或透明物体效果会打折扣，建议选主体与背景对比明显的图片。</p></details>
-        <details><summary>为什么要下载模型？会不会很慢？</summary><p>AI 模型约 40MB，首次使用需要下载到浏览器缓存，之后无需重复下载。模型在你的设备本地运行，所以需要一点时间。</p></details>
-        <details><summary>可以换背景颜色吗？</summary><p>当前版本输出透明 PNG，你可以用图片工具的「格式转换」在 JPG 上叠加纯色背景。证件照换底色功能即将上线。</p></details>
+        <details><summary>尺寸是标准证件照尺寸吗？</summary><p>是的，一寸（295×413）、二寸（413×579）等均为 300dpi 标准像素尺寸，可直接冲印或上传报名系统。</p></details>
+        <details><summary>为什么首次使用有点慢？</summary><p>AI 抠图模型约 40MB，首次使用需要下载到浏览器缓存，之后无需重复下载。</p></details>
+        <details><summary>可以换底色吗？</summary><p>支持白底、蓝底、红底三种常见底色，选择后点击制作即可。更多颜色后续会加。</p></details>
       </section>
     </div>
   </main>
@@ -91,28 +105,39 @@
         });
       }
 
-      /* 把模型输出的 1024x1024 掩码贴回原图尺寸，作为透明通道 */
-      function composite(img, alpha1024) {
-        var W = img.naturalWidth, H = img.naturalHeight;
-        var mCanvas = document.createElement("canvas");
-        mCanvas.width = 1024; mCanvas.height = 1024;
-        var mctx = mCanvas.getContext("2d");
-        var mImg = mctx.createImageData(1024, 1024);
-        for (var i = 0; i < 1024 * 1024; i++) mImg.data[i * 4 + 3] = alpha1024[i];
-        mctx.putImageData(mImg, 0, 0);
-        var sCanvas = document.createElement("canvas");
-        sCanvas.width = W; sCanvas.height = H;
-        var sctx = sCanvas.getContext("2d");
-        sctx.drawImage(mCanvas, 0, 0, W, H);
-        var sData = sctx.getImageData(0, 0, W, H).data;
+      /* 抠图后按标准尺寸排版：主体等比缩放居中，与底色混合，输出不透明 JPG */
+      function composeIdPhoto(img, alpha1024, bgColor, W, H) {
+        var mCanvas = RMBG.maskToCanvas(alpha1024);
+        var scale = Math.min(W / img.naturalWidth, H / img.naturalHeight);
+        var dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+        var dx = (W - dw) / 2, dy = (H - dh) / 2;
 
         var out = document.createElement("canvas");
         out.width = W; out.height = H;
-        var octx = out.getContext("2d");
-        octx.drawImage(img, 0, 0, W, H);
-        var oData = octx.getImageData(0, 0, W, H);
-        for (var j = 0; j < W * H; j++) oData.data[j * 4 + 3] = sData[j * 4 + 3];
-        octx.putImageData(oData, 0, 0);
+        var ctx = out.getContext("2d", { willReadFrequently: true });
+        ctx.fillStyle = bgColor;
+        ctx.fillRect(0, 0, W, H);
+        ctx.drawImage(img, dx, dy, dw, dh);
+
+        var mScaled = document.createElement("canvas");
+        mScaled.width = W; mScaled.height = H;
+        var mctx = mScaled.getContext("2d");
+        mctx.drawImage(mCanvas, dx, dy, dw, dh);
+        var mData = mctx.getImageData(0, 0, W, H).data;
+
+        var r = parseInt(bgColor.slice(1, 3), 16);
+        var g = parseInt(bgColor.slice(3, 5), 16);
+        var b = parseInt(bgColor.slice(5, 7), 16);
+        var oData = ctx.getImageData(0, 0, W, H);
+        var d = oData.data;
+        for (var i = 0; i < W * H; i++) {
+          var a = mData[i * 4 + 3] / 255;
+          d[i * 4] = d[i * 4] * a + r * (1 - a);
+          d[i * 4 + 1] = d[i * 4 + 1] * a + g * (1 - a);
+          d[i * 4 + 2] = d[i * 4 + 2] * a + b * (1 - a);
+          d[i * 4 + 3] = 255;
+        }
+        ctx.putImageData(oData, 0, 0);
         return out;
       }
 
@@ -136,18 +161,22 @@
         TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 3, "正在加载 AI 模型（首次约 40MB）…");
         try {
           await RMBG.load();
-          TK.updateProgress(null, document.getElementById("pbLabel"), 15, "模型就绪，正在识别…");
+          TK.updateProgress(null, document.getElementById("pbLabel"), 15, "模型就绪，正在抠图…");
           var img = await loadImage(file);
           var alpha = await RMBG.getMask(img);
-          TK.updateProgress(null, document.getElementById("pbLabel"), 85, "正在合成透明 PNG…");
-          var outCanvas = composite(img, alpha);
-          outBlob = await new Promise(function (resolve) { outCanvas.toBlob(resolve, "image/png"); });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 80, "正在排版换底色…");
+          var wh = document.getElementById("size").value.split(",");
+          var W = +wh[0], H = +wh[1];
+          var bgColor = document.getElementById("bg").value;
+          var outCanvas = composeIdPhoto(img, alpha, bgColor, W, H);
+          outBlob = await new Promise(function (resolve) { outCanvas.toBlob(resolve, "image/jpeg", 0.95); });
           TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
-          var name = TK.baseName(file.name) + "-cutout.png";
+          var sizeName = document.getElementById("size").selectedOptions[0].textContent.split(" ")[0];
+          var name = TK.baseName(file.name) + "-" + sizeName + "-" + (bgColor === "#FFFFFF" ? "白底" : bgColor === "#438EDB" ? "蓝底" : "红底") + ".jpg";
           var rv = document.getElementById("rPreview"); rv.innerHTML = "";
           rv.appendChild(TK.preview(outBlob, "image"));
           document.getElementById("rName").textContent = name;
-          document.getElementById("rSize").textContent = TK.humanSize(outBlob.size);
+          document.getElementById("rSize").textContent = W + "×" + H + "px · " + TK.humanSize(outBlob.size);
           document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
           TK.show(document.getElementById("result"));
         } catch (e) {
