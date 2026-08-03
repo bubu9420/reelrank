@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音频剪切 - 免费在线截取音频片段 | 影剪辑</title>
+  <meta name="description" content="免费在线剪切音频，截取指定时间段导出 MP3，适合剪辑音乐片段、制作提示音，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/audio-trim.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html" class="active">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="audio.html">音频工具</a> / 音频剪切</p>
+      <h1>音频剪切</h1>
+      <p class="sub">截取音频中的指定片段，导出 MP3。时间可填秒数或时分秒。适合剪辑音乐高潮、提取语音片段。音频在浏览器本地处理，不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="audio/*" hidden>
+          <span class="dz-ico">🎵</span>
+          <div class="dz-main">点击选择或拖拽音频到这里</div>
+          <div class="dz-sub">支持 MP3 / WAV / OGG / M4A / FLAC</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="start">开始时间</label><input type="text" id="start" value="00:00:00" placeholder="如 00:00:30 或 30"></div>
+          <div class="field"><label for="dur">时长（秒，0=到结尾）</label><input type="number" id="dur" min="0" value="0"></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始剪切</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载音频</button></div></div></div>
+        <div class="privacy-note">🔒 音频在浏览器本地处理，不会上传到任何服务器。首次使用需加载处理引擎（约 30MB）。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>剪切会损失音质吗？</summary><p>剪切只是截取片段，输出使用高品质 MP3（约 320kbps），听感无损失。</p></details>
+        <details><summary>想保留无损格式输出？</summary><p>剪切后请用「音频格式转换」把 MP3 转成 WAV 无损格式。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null;
+      var TK = window.ToolKit;
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 4, "正在加载处理引擎…");
+        try {
+          var ffmpeg = await TK.loadFFmpeg();
+          var inName = await TK.writeInput(ffmpeg, file);
+          var start = document.getElementById("start").value.trim();
+          var dur = parseFloat(document.getElementById("dur").value) || 0;
+          var args = ["-i", inName, "-ss", start];
+          if (dur > 0) args = args.concat(["-t", String(dur)]);
+          args = args.concat(["-c:a", "libmp3lame", "-q:a", "0", "-y", "out.mp3"]);
+          var off = TK.withTimeProgress(ffmpeg, function () { TK.updateProgress(null, document.getElementById("pbLabel"), 55, "剪切中…"); });
+          await ffmpeg.exec(args);
+          off();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var blob = await TK.readOut(ffmpeg, "out.mp3");
+          var name = TK.baseName(file.name) + "-trimmed.mp3";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "audio"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = TK.humanSize(blob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

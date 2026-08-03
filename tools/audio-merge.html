@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音频拼接 - 免费在线合并音频文件 | 影剪辑</title>
+  <meta name="description" content="免费在线合并多段音频，按顺序拼接成一段 MP3，支持多文件选择，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/audio-merge.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html" class="active">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="audio.html">音频工具</a> / 音频拼接</p>
+      <h1>音频拼接（合并）</h1>
+      <p class="sub">把多段音频按选择顺序拼接成一段 MP3，适合合并录音、连播音乐。支持多选文件，拼接顺序为文件选择顺序。音频在浏览器本地处理，不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="audio/*" multiple hidden>
+          <span class="dz-ico">🎵</span>
+          <div class="dz-main">点击选择多个音频文件（可 Ctrl/长按多选）</div>
+          <div class="dz-sub">支持 MP3 / WAV / OGG / M4A</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始拼接</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载音频</button></div></div></div>
+        <div class="privacy-note">🔒 音频在浏览器本地处理，不会上传到任何服务器。首次使用需加载处理引擎（约 30MB）。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>不同格式能拼接吗？</summary><p>可以，本工具会自动统一编码后再拼接，输出为 MP3。</p></details>
+        <details><summary>顺序不对怎么办？</summary><p>重新选择文件时按你想要的顺序依次点击即可（Windows 按住 Ctrl 逐个选择保持点击顺序）。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var files = [];
+      var TK = window.ToolKit;
+      var dz = document.getElementById("dropzone");
+      var input = document.getElementById("fileInput");
+      dz.addEventListener("click", function () { input.click(); });
+      input.addEventListener("change", function () {
+        files = Array.prototype.slice.call(input.files || []);
+        if (!files.length) return;
+        var total = files.reduce(function (s, f) { return s + f.size; }, 0);
+        document.getElementById("fileName").textContent = files.length + " 个文件";
+        document.getElementById("fileSize").textContent = TK.humanSize(total);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        files = [];
+        input.value = "";
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!files.length) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 4, "正在加载处理引擎…");
+        try {
+          var ffmpeg = await TK.loadFFmpeg();
+          var args = [];
+          for (var i = 0; i < files.length; i++) {
+            TK.updateProgress(null, document.getElementById("pbLabel"), 8, "正在读取文件 " + (i + 1) + "/" + files.length);
+            var n = await TK.writeInput(ffmpeg, files[i]);
+            args.push("-i", n);
+          }
+          var fcs = files.map(function (_, i) { return "[" + i + ":a]"; }).join("");
+          args = args.concat(["-filter_complex", fcs + "concat=n=" + files.length + ":v=0:a=1[a]", "-map", "[a]", "-c:a", "libmp3lame", "-q:a", "0", "-y", "out.mp3"]);
+          var off = TK.withTimeProgress(ffmpeg, function () { TK.updateProgress(null, document.getElementById("pbLabel"), 55, "拼接中…"); });
+          await ffmpeg.exec(args);
+          off();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var blob = await TK.readOut(ffmpeg, "out.mp3");
+          var name = "merged-" + Date.now().toString(36) + ".mp3";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "audio"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = TK.humanSize(blob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

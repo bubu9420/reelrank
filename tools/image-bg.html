@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线AI抠图去背景 - 免费一键去背景透明PNG | 影剪辑</title>
+  <meta name="description" content="免费在线AI抠图工具：一键自动去除图片背景，生成透明 PNG，支持人物、商品、宠物，AI 模型在浏览器本地运行，图片不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-bg.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 一键抠图</p>
+      <h1>在线 AI 抠图去背景</h1>
+      <p class="sub">AI 自动识别并去除图片背景，生成透明背景 PNG。支持人物、商品、宠物、汽车等主体。AI 模型在浏览器本地运行，图片完全不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-ico">🎭</span>
+          <div class="dz-main">点击选择或拖拽图片到这里</div>
+          <div class="dz-sub">支持 JPG / PNG / WebP，主体清晰效果最佳</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始抠图</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载透明PNG</button></div></div></div>
+        <div class="privacy-note">🔒 AI 模型在浏览器本地运行，图片不会上传到任何服务器。首次使用需下载模型（约 40MB），之后可离线使用。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>抠图效果怎么样？</summary><p>对人物、商品、宠物等主体清晰的图片效果很好；复杂背景、细小毛发或透明物体效果会打折扣，建议选主体与背景对比明显的图片。</p></details>
+        <details><summary>为什么要下载模型？会不会很慢？</summary><p>AI 模型约 40MB，首次使用需要下载到浏览器缓存，之后无需重复下载。模型在你的设备本地运行，所以需要一点时间。</p></details>
+        <details><summary>可以换背景颜色吗？</summary><p>当前版本输出透明 PNG，你可以用图片工具的「格式转换」在 JPG 上叠加纯色背景。证件照换底色功能即将上线。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, outBlob = null;
+      var TK = window.ToolKit;
+      var MOD_CDNS = [
+        "https://unpkg.com/@imgly/background-removal@1.5.6/dist/index.mjs",
+        "https://cdn.jsdelivr.net/npm/@imgly/background-removal@1.5.6/dist/index.mjs",
+        "https://registry.npmmirror.com/@imgly/background-removal/1.5.6/files/dist/index.mjs"
+      ];
+      var DATA_CDNS = [
+        "https://unpkg.com/@imgly/background-removal-data@1.5.6/dist/",
+        "https://cdn.jsdelivr.net/npm/@imgly/background-removal-data@1.5.6/dist/",
+        "https://registry.npmmirror.com/@imgly/background-removal-data/1.5.6/files/dist/"
+      ];
+      function loadModule() {
+        var i = 0;
+        function next() {
+          if (i >= MOD_CDNS.length) return Promise.reject(new Error("加载失败，请检查网络"));
+          return import(MOD_CDNS[i++]).catch(function () { return next(); });
+        }
+        return next();
+      }
+      function loadData() {
+        var i = 0;
+        function next() {
+          if (i >= DATA_CDNS.length) return Promise.reject(new Error("模型地址获取失败"));
+          var base = DATA_CDNS[i++];
+          return fetch(base + "package.json").then(function (r) { if (r.ok) return base; throw new Error("no"); }).catch(function () { return next(); });
+        }
+        return next();
+      }
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 3, "正在加载 AI 模型（首次约 40MB）…");
+        try {
+          var mod = await loadModule();
+          var base = await loadData();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 12, "模型就绪，开始识别…");
+          outBlob = await mod.removeBackground(file, {
+            publicPath: base,
+            output: { format: "image/png" },
+            progress: function (key, cur, total) {
+              if (total > 0) {
+                var pct = 12 + Math.round((cur / total) * 84);
+                TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), pct, "识别中 " + Math.round(cur / total * 100) + "%");
+              }
+            }
+          });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var name = TK.baseName(file.name) + "-cutout.png";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(outBlob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = TK.humanSize(outBlob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

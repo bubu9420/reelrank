@@ -1,342 +1,201 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ReelRank — Honest, Hands-On Reviews of AI Video Tools</title>
-  <meta name="description" content="Independent, hands-on reviews of AI video generators and editors. We test real output, compare pricing, and tell you which tool is actually worth your money.">
+  <title>影剪辑 - 免费在线图片视频音频工具箱 | 本地处理不上传</title>
+  <meta name="description" content="影剪辑是免费的在线图片、视频、音频处理工具箱：图片压缩、格式转换、裁剪、抠图、加水印，视频压缩、转GIF、竖屏裁剪，音频转换、剪切、铃声制作等 46 款工具，全部在浏览器本地处理，不上传服务器，保护隐私。">
   <link rel="canonical" href="https://reelrank.top/">
-  <meta property="og:title" content="ReelRank — Honest, Hands-On Reviews of AI Video Tools">
-  <meta property="og:description" content="We test AI video tools for real, compare pricing, and tell you which one is actually worth your money.">
+  <meta property="og:title" content="影剪辑 - 免费在线图片视频音频工具箱">
+  <meta property="og:description" content="46 款图片、视频、音频在线处理工具，全部本地运行、免费无限量、不上传保护隐私。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reelrank.top/">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+  <link rel="stylesheet" href="assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "ReelRank",
+    "name": "影剪辑",
+    "alternateName": "YingClip",
     "url": "https://reelrank.top/",
-    "description": "Independent, hands-on reviews of AI video tools."
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is ReelRank?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "ReelRank is an independent, hands-on review site for AI video tools. We test real output, compare pricing, and tell you which tool is actually worth your money."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How do you score AI video tools?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We run identical prompt sets across every tool and score output quality, prompt adherence, speed, audio, and workflow fit on a fixed checklist."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do tool vendors pay for better scores?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. No pay-to-play, ever: vendors can't buy a better score, and any sponsored content would be clearly labeled. Rankings are ours alone."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How often are reviews updated?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "AI video moves monthly. Whenever a major new version ships, we re-run our test suite and update the review with a visible date stamp."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Which AI video tool is best right now?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Google Veo 3.1 tops our leaderboard for overall quality, with Kling 3.0 the best value pick. See the leaderboard and comparison for details."
-        }
-      }
-    ]
+    "description": "免费的在线图片、视频、音频处理工具箱，全部在浏览器本地运行。",
+    "inLanguage": "zh-CN"
   }
   </script>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="/" class="logo">Reel<span class="dot">Rank</span></a>
+      <a href="/" class="logo"><span class="logo-mark">影</span>影剪辑</a>
       <nav class="nav" id="nav">
-        <a href="reviews/best-ai-video-generators-2026.html" data-i18n="nav.topPicks">Top Picks</a>
-        <a href="leaderboard.html" data-i18n="nav.leaderboard">Leaderboard</a>
-        <div class="nav-dd">
-          <button type="button" class="nav-dd-btn" data-i18n="nav.reviews" aria-expanded="false">Reviews</button>
-          <div class="nav-dd-menu">
-            <a href="reviews/veo-3-review.html" data-i18n="nav.veo">Veo 3.1</a>
-            <a href="reviews/kling-3-review.html" data-i18n="nav.kling">Kling 3.0</a>
-            <a href="reviews/runway-gen-4-review.html" data-i18n="nav.runway">Runway Gen-4</a>
-            <a href="reviews/capcut-director-mode-review.html" data-i18n="nav.capcut">CapCut</a>
-            <a href="reviews/seedance-25-review.html" data-i18n="nav.seedance">Seedance 2.5</a>
-            <a href="reviews/hailuo-30-review.html" data-i18n="nav.hailuo">Hailuo 3.0</a>
-            <a href="reviews/sora-2-review.html" data-i18n="nav.sora">Sora 2</a>
-          </div>
-        </div>
-        <a href="about.html" data-i18n="nav.howWeTest">How We Test</a>
-        <a href="feedback.html" data-i18n="nav.feedback">Feedback</a>
+        <a href="/" class="active">首页</a>
+        <a href="tools/image.html">图片工具</a>
+        <a href="tools/video.html">视频工具</a>
+        <a href="tools/audio.html">音频工具</a>
+        <a href="reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="feedback.html" class="nav-cta">反馈建议</a>
       </nav>
-      <select id="langSelect" class="lang-select" aria-label="Language"></select>
-      <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <div>
-        <span class="eyebrow" data-i18n="hero.eyebrow">Independent AI tool reviews</span>
-        <h1><span data-i18n="hero.h1pre">Which AI video tool</span> <span class="grad" data-i18n="hero.h1grad">actually delivers?</span></h1>
-        <p data-i18n="hero.p">Every month, a new AI video generator promises to be "the best ever." We test the real output — quality, speed, audio, pricing, and workflow — so you can pick the tool that's actually worth your money.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="reviews/best-ai-video-generators-2026.html" data-i18n="hero.btnPicks">See our top picks</a>
-          <a class="btn btn-ghost" href="leaderboard.html" data-i18n="nav.leaderboard">Leaderboard</a>
-          <a class="btn btn-ghost" href="about.html#methodology" data-i18n="hero.btnHow">How we test</a>
-        </div>
-        <p class="hero-note"><span data-i18n="hero.note">No pay-to-play. No sponsored verdicts. Tools we don't test, we don't rank.</span></p>
-        <p class="lcd-status" data-i18n="hero.status">SYS.ONLINE — 247 MODELS — 5 CATEGORIES — UPDATED 2026-08-01</p>
-        <div class="hero-stats">
-          <div class="hero-stat"><b>247</b><span data-i18n="hero.statModels">Models tracked</span></div>
-          <div class="hero-stat"><b>5</b><span data-i18n="hero.statCategories">Categories</span></div>
-          <div class="hero-stat"><b>7</b><span data-i18n="hero.statReviews">Reviews live</span></div>
-          <div class="hero-stat"><b>4.86M</b><span data-i18n="hero.statVotes">Arena votes analyzed</span></div>
-        </div>
+      <span class="eyebrow"><span class="dot"></span>SYS.ONLINE · 本地处理 · 隐私安全</span>
+      <h1>图片 / 视频 / 音频<br><span class="grad">一个工具箱全搞定</span></h1>
+      <p class="lead">压缩、转换、裁剪、加水印、去背景、转 GIF、做铃声……所有处理都在你的浏览器里完成，文件不上传服务器，免费、快速、无限量。</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>46</b><span>款工具</span></div>
+        <div class="hero-stat"><b>100%</b><span>免费使用</span></div>
+        <div class="hero-stat"><b>0</b><span>文件上传</span></div>
+        <div class="hero-stat"><b>∞</b><span>无限次数</span></div>
       </div>
-      <div class="hero-panel">
-        <div class="hero-panel-head"><span class="bar-dots">◉◉◉</span><span data-i18n="hero.panelHead">TOP PICKS · LIVE</span><span data-i18n="hero.panelStatus">SYS.ONLINE</span></div>
-        <div class="hero-panel-item">
-          <div class="hero-panel-rank">1</div>
-          <div><h4><a href="reviews/veo-3-review.html">Google Veo 3.1</a></h4><p data-i18n="hero.panel1s">Cinematic quality · native audio</p></div>
-          <div class="hero-panel-score"><span class="rating">★★★★★ 5.0</span></div>
-        </div>
-        <div class="hero-panel-item">
-          <div class="hero-panel-rank">2</div>
-          <div><h4><a href="reviews/kling-3-review.html">Kling 3.0</a></h4><p data-i18n="hero.panel2s">4K 60fps · long-form · value</p></div>
-          <div class="hero-panel-score"><span class="rating">★★★★☆ 4.0</span></div>
-        </div>
-        <div class="hero-panel-item">
-          <div class="hero-panel-rank">3</div>
-          <div><h4><a href="reviews/runway-gen-4-review.html">Runway Gen-4</a></h4><p data-i18n="hero.panel3s">Creative control · workflows</p></div>
-          <div class="hero-panel-score"><span class="rating">★★★★☆ 4.5</span></div>
-        </div>
-        <div class="hero-panel-item">
-          <div class="hero-panel-rank">4</div>
-          <div><h4><a href="reviews/capcut-director-mode-review.html">CapCut Director Mode</a></h4><p data-i18n="hero.panel4s">All-in-one short drama</p></div>
-          <div class="hero-panel-score"><span class="rating">★★★★☆ 4.5</span></div>
-        </div>
+    </div>
+  </section>
+
+  <section class="section" id="image">
+    <div class="container">
+      <div class="section-head">
+        <span class="cat-chip">IMAGE</span>
+        <h2>图片工具</h2>
+        <p>压缩、转换、抠图、水印，常用图片处理一站搞定。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="tools/image-compress.html"><span class="ico">🗜️</span><h3>图片压缩</h3><p>压缩 JPG/PNG/WebP，保留清晰度</p></a>
+        <a class="tool-card" href="tools/image-convert.html"><span class="ico">🔄</span><h3>图片格式转换</h3><p>JPG/PNG/WebP/GIF 互转</p></a>
+        <a class="tool-card" href="tools/image-crop.html"><span class="ico">✂️</span><h3>图片裁剪</h3><p>自由裁剪，支持固定比例</p></a>
+        <a class="tool-card" href="tools/image-resize.html"><span class="ico">📐</span><h3>图片改尺寸</h3><p>缩放图片到指定宽高</p></a>
+        <a class="tool-card" href="tools/image-rotate.html"><span class="ico">🔃</span><h3>图片旋转翻转</h3><p>90° 旋转、水平垂直翻转</p></a>
+        <a class="tool-card" href="tools/image-watermark.html"><span class="ico">💧</span><h3>图片加水印</h3><p>文字水印，批量防盗图</p></a>
+        <a class="tool-card" href="tools/image-nineslice.html"><span class="ico">9️⃣</span><h3>九宫格切图</h3><p>朋友圈小红书发图神器</p></a>
+        <a class="tool-card" href="tools/image-bg.html"><span class="ico">🎭</span><h3>一键抠图去背景</h3><p>AI 自动识别，本地处理</p></a>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🔤</span><h3>图片加文字</h3><p>给图片添加标题和文字</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🎨</span><h3>图片滤镜</h3><p>黑白、复古、模糊等多种效果</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🧩</span><h3>图片拼接</h3><p>多张图片拼接长图</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">⭕</span><h3>圆形裁剪</h3><p>裁剪成圆形或任意形状</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🫧</span><h3>图片马赛克</h3><p>人脸和敏感信息打码</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">✨</span><h3>图片增强</h3><p>一键提升清晰度和画质</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🕵️</span><h3>清除图片EXIF</h3><p>移除拍摄信息和隐私数据</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">📄</span><h3>图片转PDF</h3><p>多张图片合成 PDF 文档</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🪪</span><h3>证件照制作</h3><p>换底色、改尺寸，一寸二寸</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="video">
+    <div class="container">
+      <div class="section-head">
+        <span class="cat-chip">VIDEO</span>
+        <h2>视频工具</h2>
+        <p>短视频时代必备：压缩、转GIF、竖屏裁剪、去水印一条龙。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="tools/video-compress.html"><span class="ico">🗜️</span><h3>视频压缩</h3><p>大幅减小体积，适合上传</p></a>
+        <a class="tool-card" href="tools/video-to-gif.html"><span class="ico">🎞️</span><h3>视频转GIF</h3><p>截取片段转成动图</p></a>
+        <a class="tool-card" href="tools/video-convert.html"><span class="ico">🔄</span><h3>视频格式转换</h3><p>MP4/WebM/MOV 互转</p></a>
+        <a class="tool-card" href="tools/video-trim.html"><span class="ico">✂️</span><h3>视频裁剪</h3><p>截取指定时间段</p></a>
+        <a class="tool-card" href="tools/video-vertical.html"><span class="ico">📱</span><h3>竖屏裁剪 9:16</h3><p>TikTok/抖音/Reels 专用</p></a>
+        <a class="tool-card" href="tools/video-watermark.html"><span class="ico">💧</span><h3>视频加水印</h3><p>添加文字水印防盗版</p></a>
+        <a class="tool-card" href="tools/video-speed.html"><span class="ico">⏩</span><h3>视频变速</h3><p>加速或慢放视频</p></a>
+        <a class="tool-card" href="tools/video-extract-audio.html"><span class="ico">🎧</span><h3>视频提取音频</h3><p>一键导出 MP3 音频</p></a>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">📐</span><h3>视频改尺寸</h3><p>缩放到指定分辨率</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🔃</span><h3>视频旋转翻转</h3><p>90° 旋转、水平翻转</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🧩</span><h3>视频拼接</h3><p>多段视频合并成一段</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🔇</span><h3>视频静音</h3><p>一键去除视频声音</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🔁</span><h3>视频倒放</h3><p>视频反向播放效果</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">📸</span><h3>视频截图</h3><p>从视频提取高清帧</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">♾️</span><h3>视频循环</h3><p>无缝循环片段</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">💬</span><h3>视频加字幕</h3><p>给视频添加文字字幕</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="audio">
+    <div class="container">
+      <div class="section-head">
+        <span class="cat-chip">AUDIO</span>
+        <h2>音频工具</h2>
+        <p>转换、剪切、铃声、降噪，音频处理轻松搞定。</p>
+      </div>
+      <div class="tool-grid">
+        <a class="tool-card" href="tools/audio-convert.html"><span class="ico">🔄</span><h3>音频格式转换</h3><p>MP3/WAV/OGG/M4A 互转</p></a>
+        <a class="tool-card" href="tools/audio-trim.html"><span class="ico">✂️</span><h3>音频剪切</h3><p>截取音频指定片段</p></a>
+        <a class="tool-card" href="tools/audio-merge.html"><span class="ico">🧩</span><h3>音频拼接</h3><p>多段音频合并成一段</p></a>
+        <a class="tool-card" href="tools/audio-volume.html"><span class="ico">🔊</span><h3>音量调节</h3><p>调大调小音量</p></a>
+        <a class="tool-card" href="tools/audio-speed.html"><span class="ico">⏩</span><h3>音频变速</h3><p>加速或变调，听书神器</p></a>
+        <a class="tool-card" href="tools/audio-ringtone.html"><span class="ico">📱</span><h3>铃声制作</h3><p>一键制作手机铃声</p></a>
+        <a class="tool-card" href="tools/audio-denoise.html"><span class="ico">🌊</span><h3>音频降噪</h3><p>去除底噪，声音更干净</p></a>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🗜️</span><h3>音频压缩</h3><p>降低码率减小体积</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🔁</span><h3>音频倒放</h3><p>反向播放音频</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🌗</span><h3>淡入淡出</h3><p>开头结尾音量渐变</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🎤</span><h3>人声分离</h3><p>提取伴奏或人声</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">🎙️</span><h3>在线录音</h3><p>浏览器直接录音保存</p></div>
+        <div class="tool-card"><span class="soon">即将上线</span><span class="ico">✂️</span><h3>静音去除</h3><p>自动删除空白片段</p></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="picks.title">Top picks right now</h2>
-        <p data-i18n="picks.sub">Updated August 2026. Full methodology and detailed reviews below.</p>
-      </div>
-
-      <div class="picks-grid">
-      <div class="pick-card">
-        <div class="pick-rank-big">1</div>
-        <div>
-          <h3><a href="reviews/veo-3-review.html" data-i18n="pick1.title">Google Veo 3.1 — Best overall</a></h3>
-          <span class="rating">★★★★★ 5.0</span>
-          <p data-i18n="pick1.desc">The most realistic clips we've seen: 4K output, up to 2+ minute shots, and native audio in a single model. If cinematic quality is the goal, this is the benchmark.</p>
-          <a class="card-link" href="reviews/veo-3-review.html">Read review →</a>
-        </div>
-      </div>
-
-      <div class="pick-card">
-        <div class="pick-rank-big">2</div>
-        <div>
-          <h3><a href="reviews/kling-3-review.html" data-i18n="pick2.title">Kling 3.0 — Best value</a></h3>
-          <span class="rating">★★★★☆ 4.0</span>
-          <p data-i18n="pick2.desc">Native 4K at 60fps with the cheapest per-clip cost in the top tier. The workhorse pick for teams generating at volume — and its long-form mode goes up to 5 minutes with multilingual lip-sync.</p>
-          <a class="card-link" href="reviews/kling-3-review.html">Read review →</a>
-        </div>
-      </div>
-
-      <div class="pick-card">
-        <div class="pick-rank-big">3</div>
-        <div>
-          <h3><a href="reviews/runway-gen-4-review.html" data-i18n="pick3.title">Runway Gen-4 — Best creative control</a></h3>
-          <span class="rating">★★★★☆ 4.5</span>
-          <p data-i18n="pick3.desc">The most controllable toolkit for art direction: style references, camera moves, and consistent characters. It's the pick for brand work and cinematic b-roll, not raw volume.</p>
-          <a class="card-link" href="reviews/runway-gen-4-review.html">Read review →</a>
-        </div>
-      </div>
-
-      <div class="pick-card">
-        <div class="pick-rank-big">4</div>
-        <div>
-          <h3><a href="reviews/capcut-director-mode-review.html" data-i18n="pick4.title">CapCut Director Mode — Best all-in-one</a></h3>
-          <span class="rating">★★★★☆ 4.5</span>
-          <p data-i18n="pick4.desc">Write, generate, edit, caption, and export AI short dramas from one dashboard. The fastest path from script to finished short-form video, especially for solo creators.</p>
-          <a class="card-link" href="reviews/capcut-director-mode-review.html">Read review →</a>
-        </div>
-      </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="lb-teaser">
-        <div class="teaser-head">
-          <div>
-            <h2 data-i18n="teaser.title">Live leaderboard</h2>
-            <p class="teaser-sub" data-i18n="teaser.sub">247 models across video, image, audio, text and code — ranked by arena votes and benchmarks, verified by our hands-on tests.</p>
-          </div>
-          <a class="btn btn-primary" href="leaderboard.html" data-i18n="teaser.btn">Open leaderboard →</a>
-        </div>
-        <div class="table-wrap">
-          <table class="data-table lb-table">
-            <thead>
-              <tr>
-                <th data-i18n="lb.thRank">#</th><th data-i18n="lb.thModel">Model</th><th data-i18n="lb.thVendor">Vendor</th><th data-i18n="lb.thStrengths">Strengths</th><th data-i18n="lb.thPrice">Price</th><th data-i18n="lb.thArena">Arena</th><th data-i18n="lb.thReel">ReelRank</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td><td><a href="https://www.alibaba.com/" target="_blank" rel="noopener">HappyHorse 1.0</a> <span class="badge badge-tested">TESTED</span></td><td>Alibaba</td><td>Physics realism · native audio</td><td>API in beta</td><td><span class="arena">1512</span> <span class="trend-up">▲18</span></td><td><span class="rating">★★★★★ 5.0</span></td>
-              </tr>
-              <tr>
-                <td>2</td><td><a href="https://sora.com/" target="_blank" rel="noopener" data-aff="sora">Sora 2</a> <span class="badge badge-tested">TESTED</span></td><td>OpenAI</td><td>Physics &amp; consistency · long takes</td><td>$0.10/s</td><td><span class="arena">1498</span> <span class="trend-up">▲8</span></td><td><span class="rating">★★★★★ 5.0</span></td>
-              </tr>
-              <tr class="tested-row">
-                <td>3</td><td><a href="reviews/veo-3-review.html">Veo 3.1</a> <span class="badge badge-tested">TESTED</span></td><td>Google</td><td>Smooth motion · cinematic light</td><td>$0.12/s</td><td><span class="arena">1467</span> <span class="trend-down">▼2</span></td><td><span class="rating">★★★★★ 5.0</span></td>
-              </tr>
-              <tr class="tested-row">
-                <td>4</td><td><a href="reviews/runway-gen-4-review.html">Runway Gen-4</a> <span class="badge badge-tested">TESTED</span></td><td>Runway</td><td>Creative control · workflows</td><td>$0.05/s</td><td><span class="arena">1412</span> <span class="trend-flat">—</span></td><td><span class="rating">★★★★☆ 4.5</span></td>
-              </tr>
-              <tr class="tested-row">
-                <td>5</td><td><a href="reviews/kling-3-review.html">Kling 3.0</a> <span class="badge badge-tested">TESTED</span></td><td>Kuaishou</td><td>4K 60fps · long-form · value</td><td>Credit-based</td><td><span class="arena">1385</span> <span class="trend-down">▼10</span></td><td><span class="rating">★★★★☆ 4.0</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="trust.title">Why trust our verdicts</h2>
-      </div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-body">
-            <h3 data-i18n="trust1.title">🧪 Same test, every tool</h3>
-            <p data-i18n="trust1.desc">We run identical prompt sets across tools and score output quality, prompt adherence, speed, audio, and workflow fit on a fixed checklist.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h3 data-i18n="trust2.title">🚫 No pay-to-play</h3>
-            <p data-i18n="trust2.desc">Vendors can't buy a better score. Sponsored placement, if it ever appears, will be clearly labeled. Rankings are ours alone.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <h3 data-i18n="trust3.title">🔁 Re-tested on release</h3>
-            <p data-i18n="trust3.desc">AI video moves monthly. When a new model ships, we re-run the test suite and update reviews with a visible date stamp.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="review.faqTitle">Frequently asked questions</h2>
-      </div>
+      <div class="privacy-note">🔒 <b>隐私保护承诺：</b>所有工具都在你的浏览器本地处理，文件不会上传到任何服务器。关闭页面即彻底删除，安心使用。</div>
+      <div style="height:18px"></div>
       <div class="faq">
-        <details>
-          <summary data-i18n="faq.q1">What is ReelRank?</summary>
-          <p data-i18n="faq.a1">ReelRank is an independent, hands-on review site for AI video tools. We test real output, compare pricing, and tell you which tool is actually worth your money.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q2">How do you score AI video tools?</summary>
-          <p data-i18n="faq.a2">We run identical prompt sets across every tool and score output quality, prompt adherence, speed, audio, and workflow fit on a fixed checklist.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q3">Do tool vendors pay for better scores?</summary>
-          <p data-i18n="faq.a3">No. No pay-to-play, ever: vendors can't buy a better score, and any sponsored content would be clearly labeled. Rankings are ours alone.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q4">How often are reviews updated?</summary>
-          <p data-i18n="faq.a4">AI video moves monthly. Whenever a major new version ships, we re-run our test suite and update the review with a visible date stamp.</p>
-        </details>
-        <details>
-          <summary data-i18n="faq.q5">Which AI video tool is best right now?</summary>
-          <p data-i18n="faq.a5">Google Veo 3.1 tops our leaderboard for overall quality, with Kling 3.0 the best value pick. See the leaderboard and comparison for details.</p>
-        </details>
+        <div class="section-head"><h2>常见问题</h2></div>
+        <details><summary>影剪辑收费吗？</summary><p>完全免费，所有工具不限制使用次数。后续上线的 VIP 付费功能（如批量处理、更高压缩比）会单独标注。</p></details>
+        <details><summary>我的文件会被上传吗？</summary><p>不会。所有处理都在浏览器本地完成，文件不离开你的设备，隐私安全有保障。</p></details>
+        <details><summary>支持哪些文件格式？</summary><p>图片支持 JPG/PNG/WebP/GIF/BMP；视频支持 MP4/WebM/MOV/AVI；音频支持 MP3/WAV/OGG/M4A/FLAC/AAC。更多格式持续增加中。</p></details>
+        <details><summary>为什么我的视频处理速度比较慢？</summary><p>视频处理在你的电脑本地运行，速度取决于文件大小和电脑性能。处理大文件时请耐心等待，进度条会显示实时进度。</p></details>
+        <details><summary>手机上可以用吗？</summary><p>可以。影剪辑适配电脑和手机浏览器，无需下载安装。注意：大文件在手机上处理可能较慢，建议使用电脑。</p></details>
       </div>
     </div>
   </section>
-
-  <div class="container">
-    <div class="cta">
-      <h2 data-i18n="cta.h2">Planning to buy an AI video tool?</h2>
-      <p data-i18n="cta.p">Start with our head-to-head comparison before you spend a dollar on subscriptions.</p>
-      <a class="btn" href="reviews/best-ai-video-generators-2026.html" data-i18n="cta.btn">Read the 2026 comparison</a>
-    </div>
-  </div>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>ReelRank</h4>
-          <p data-i18n="footer.tagline">Independent, hands-on reviews of AI video tools. We keep our verdicts free, honest, and updated.</p>
+          <h4>影剪辑</h4>
+          <p style="color:var(--ink-soft);font-size:.9rem;margin:0 0 8px;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p>
+          <p style="color:var(--ink-soft);font-size:.82rem;margin:0;">域名：reelrank.top · 品牌：YingClip</p>
         </div>
         <div>
-          <h4 data-i18n="footer.reviewsTitle">Reviews</h4>
+          <h4>图片工具</h4>
           <ul>
-            <li><a href="leaderboard.html" data-i18n="nav.leaderboard">Leaderboard</a></li>
-            <li><a href="reviews/best-ai-video-generators-2026.html" data-i18n="roundup.title">Best AI video generators 2026</a></li>
-            <li><a href="reviews/veo-3-review.html" data-i18n="nav.veo">Veo 3.1</a></li>
-            <li><a href="reviews/kling-3-review.html" data-i18n="nav.kling">Kling 3.0</a></li>
-            <li><a href="reviews/runway-gen-4-review.html" data-i18n="nav.runway">Runway Gen-4</a></li>
+            <li><a href="tools/image-compress.html">图片压缩</a></li>
+            <li><a href="tools/image-convert.html">格式转换</a></li>
+            <li><a href="tools/image-bg.html">一键抠图</a></li>
+            <li><a href="tools/image-watermark.html">图片加水印</a></li>
           </ul>
         </div>
         <div>
-          <h4 data-i18n="footer.siteTitle">Site</h4>
+          <h4>视频/音频工具</h4>
           <ul>
-            <li><a href="about.html" data-i18n="footer.about">About &amp; methodology</a></li>
-            <li><a href="about.html#disclosure" data-i18n="footer.disclosure">Disclosure</a></li>
-            <li><a href="feedback.html" data-i18n="footer.feedback">Feedback</a></li>
+            <li><a href="tools/video-compress.html">视频压缩</a></li>
+            <li><a href="tools/video-to-gif.html">视频转GIF</a></li>
+            <li><a href="tools/audio-convert.html">音频转换</a></li>
+            <li><a href="tools/audio-ringtone.html">铃声制作</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>关于</h4>
+          <ul>
+            <li><a href="about.html">关于我们</a></li>
+            <li><a href="feedback.html">反馈建议</a></li>
+            <li><a href="reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li>
+            <li><a href="sitemap.xml">站点地图</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span id="year">2026</span> ReelRank</span>
-        <span class="disclaimer" data-i18n="footer.disclaimer">Some links are affiliate links. We may earn a commission at no extra cost to you. This never affects our verdicts.</span>
+        <span>© <span id="year">2026</span> 影剪辑 YingClip</span>
+        <span>所有处理均在浏览器本地完成 · 文件不上传</span>
       </div>
     </div>
   </footer>
 
-  <script src="assets/js/i18n.js"></script>
-  <script src="assets/js/affiliate.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

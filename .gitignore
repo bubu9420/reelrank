@@ -11,3 +11,4 @@ testing/*.png
 testing/i18n_inventory.json
 testing/missing_keys_dump.txt
 testing/old_*.json
+testing/_test*

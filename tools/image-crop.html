@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线图片裁剪 - 免费裁剪图片任意比例 | 影剪辑</title>
+  <meta name="description" content="免费在线裁剪图片，支持自由裁剪和 1:1、4:3、16:9、9:16 固定比例，拖拽选框精准裁剪，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-crop.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+  <style>
+    .crop-stage { position: relative; margin-top: 18px; overflow: hidden; border-radius: 12px; background: #111; user-select: none; }
+    .crop-stage img { display: block; width: 100%; height: auto; }
+    .crop-box { position: absolute; border: 2px solid #fff; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); cursor: move; }
+    .crop-box .crop-handle { position: absolute; right: -7px; bottom: -7px; width: 16px; height: 16px; background: #2f6bff; border: 2px solid #fff; border-radius: 4px; cursor: nwse-resize; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 图片裁剪</p>
+      <h1>在线图片裁剪</h1>
+      <p class="sub">自由裁剪或按固定比例裁剪：1:1 头像、4:3、16:9 横屏、9:16 竖屏。拖拽白色选框调整裁剪区域，右下角可缩放。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-ico">🖼️</span>
+          <div class="dz-main">点击选择或拖拽图片到这里</div>
+          <div class="dz-sub">支持 JPG / PNG / WebP</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="ratio">裁剪比例</label><select id="ratio"><option value="free">自由比例</option><option value="1">1:1 方形</option><option value="4:3">4:3</option><option value="3:4">3:4</option><option value="16:9">16:9 横屏</option><option value="9:16">9:16 竖屏</option></select></div>
+          <div class="field"><label for="quality">输出质量</label><input type="range" id="quality" min="10" max="100" value="92"><span class="val" id="qualityVal">92%</span></div>
+        </div>
+        <div class="crop-stage" id="cropStage" hidden>
+          <img id="cropImg" alt="待裁剪图片">
+          <div class="crop-box" id="cropBox"><span class="crop-handle" id="cropHandle"></span></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始裁剪</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载图片</button></div></div></div>
+        <div class="privacy-note">🔒 图片在浏览器本地处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>怎么精确调整裁剪区域？</summary><p>按住选框内部拖动可移动位置，拖动右下角蓝色方块可调整大小。选择固定比例后，选框会保持该比例。</p></details>
+        <details><summary>裁剪会影响画质吗？</summary><p>裁剪只是截取原图的一部分，不会损失画质。如果之后还缩小了尺寸，清晰度会下降。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, img = null, outBlob = null;
+      var TK = window.ToolKit;
+      var box = { x: 0, y: 0, w: 0, h: 0 };
+      var scale = 1, ratio = "free";
+      var stage = document.getElementById("cropStage");
+      var cropImg = document.getElementById("cropImg");
+      var cropBox = document.getElementById("cropBox");
+      var q = document.getElementById("quality"), qv = document.getElementById("qualityVal");
+      q.addEventListener("input", function () { qv.textContent = q.value + "%"; });
+      document.getElementById("ratio").addEventListener("change", function () {
+        ratio = this.value;
+        if (ratio !== "free") { fitBoxToRatio(); render(); }
+      });
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var i = new Image();
+          i.onload = function () { resolve(i); };
+          i.onerror = reject;
+          i.src = url;
+        });
+      }
+      function fitBoxToRatio() {
+        var W = img.naturalWidth, H = img.naturalHeight;
+        if (ratio === "free") return;
+        var r = ratio.split(":").map(Number), rw = r[0], rh = r[1];
+        var w = Math.min(W, box.w || W * 0.6), h = w * rh / rw;
+        if (h > H) { h = H; w = h * rw / rh; }
+        box.w = w; box.h = h;
+        box.x = Math.min(Math.max(0, box.x), W - w);
+        box.y = Math.min(Math.max(0, box.y), H - h);
+      }
+      function render() {
+        cropBox.style.left = (box.x * scale) + "px";
+        cropBox.style.top = (box.y * scale) + "px";
+        cropBox.style.width = (box.w * scale) + "px";
+        cropBox.style.height = (box.h * scale) + "px";
+      }
+      function initCrop() {
+        var W = img.naturalWidth, H = img.naturalHeight;
+        var w = W * 0.6, h = H * 0.6;
+        if (ratio !== "free") {
+          var r = ratio.split(":").map(Number);
+          h = w * r[1] / r[0];
+          if (h > H) { h = H; w = h * r[0] / r[1]; }
+        }
+        box = { x: (W - w) / 2, y: (H - h) / 2, w: w, h: h };
+        scale = stage.clientWidth / W;
+        render();
+      }
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        TK.hide(document.getElementById("result"));
+        loadImage(f).then(function (i) {
+          img = i;
+          cropImg.src = URL.createObjectURL(f);
+          stage.hidden = false;
+          document.getElementById("runBtn").disabled = false;
+          requestAnimationFrame(initCrop);
+        });
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null; img = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+        stage.hidden = true;
+      });
+      function toImageCoords(ev) {
+        var r = stage.getBoundingClientRect();
+        return { x: (ev.clientX - r.left) / scale, y: (ev.clientY - r.top) / scale };
+      }
+      cropBox.addEventListener("pointerdown", function (ev) {
+        ev.preventDefault();
+        var start = toImageCoords(ev);
+        var orig = { x: box.x, y: box.y };
+        cropBox.setPointerCapture(ev.pointerId);
+        function move(e) {
+          var p = toImageCoords(e);
+          box.x = Math.min(Math.max(0, orig.x + (p.x - start.x)), img.naturalWidth - box.w);
+          box.y = Math.min(Math.max(0, orig.y + (p.y - start.y)), img.naturalHeight - box.h);
+          render();
+        }
+        function up() {
+          cropBox.removeEventListener("pointermove", move);
+          cropBox.removeEventListener("pointerup", up);
+        }
+        cropBox.addEventListener("pointermove", move);
+        cropBox.addEventListener("pointerup", up);
+      });
+      document.getElementById("cropHandle").addEventListener("pointerdown", function (ev) {
+        ev.preventDefault(); ev.stopPropagation();
+        var start = toImageCoords(ev);
+        var orig = { w: box.w, h: box.h };
+        document.getElementById("cropHandle").setPointerCapture(ev.pointerId);
+        function move(e) {
+          var p = toImageCoords(e);
+          var dw = p.x - start.x, dh = p.y - start.y;
+          if (ratio === "free") {
+            box.w = Math.min(Math.max(20, orig.w + dw), img.naturalWidth - box.x);
+            box.h = Math.min(Math.max(20, orig.h + dh), img.naturalHeight - box.y);
+          } else {
+            var r = ratio.split(":").map(Number);
+            var nw = Math.min(Math.max(20, orig.w + dw), img.naturalWidth - box.x);
+            var nh = nw * r[1] / r[0];
+            if (nh > img.naturalHeight - box.y) { nh = img.naturalHeight - box.y; nw = nh * r[0] / r[1]; }
+            box.w = nw; box.h = nh;
+          }
+          render();
+        }
+        function up() {
+          document.getElementById("cropHandle").removeEventListener("pointermove", move);
+          document.getElementById("cropHandle").removeEventListener("pointerup", up);
+        }
+        document.getElementById("cropHandle").addEventListener("pointermove", move);
+        document.getElementById("cropHandle").addEventListener("pointerup", up);
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!img) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(null, document.getElementById("pbLabel"), 60, "正在裁剪…");
+        try {
+          var canvas = document.createElement("canvas");
+          canvas.width = Math.round(box.w); canvas.height = Math.round(box.h);
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, box.x, box.y, box.w, box.h, 0, 0, canvas.width, canvas.height);
+          var ext = (file.name.match(/\.([a-z0-9]+)$/i) || ["", "png"])[1].toLowerCase();
+          var type = ["jpeg", "jpg"].indexOf(ext) > -1 ? "image/jpeg" : (ext === "webp" ? "image/webp" : "image/png");
+          if (type === "image/jpeg") { ctx.globalCompositeOperation = "destination-over"; ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+          outBlob = await new Promise(function (resolve) { canvas.toBlob(resolve, type, q.value / 100); });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var name = TK.baseName(file.name) + "-cropped.png";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(outBlob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = canvas.width + " × " + canvas.height + " px · " + TK.humanSize(outBlob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

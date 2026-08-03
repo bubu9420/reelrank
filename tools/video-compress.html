@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线视频压缩 - 免费压缩视频大小MP4 | 影剪辑</title>
+  <meta name="description" content="免费在线压缩视频大小，支持 MP4/WebM/MOV，可调压缩强度，浏览器本地处理不上传，适合微信、抖音、邮件发送大视频。">
+  <link rel="canonical" href="https://reelrank.top/tools/video-compress.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html" class="active">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="video.html">视频工具</a> / 视频压缩</p>
+      <h1>在线视频压缩</h1>
+      <p class="sub">免费压缩视频大小，输出 MP4 格式。适合把大视频压缩后发送微信、上传抖音或邮件附件。视频在浏览器本地处理，不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="video/*" hidden>
+          <span class="dz-ico">🎬</span>
+          <div class="dz-main">点击选择或拖拽视频到这里</div>
+          <div class="dz-sub">支持 MP4 / WebM / MOV / AVI</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="crf">压缩强度（越小越清晰）</label><input type="range" id="crf" min="18" max="40" value="28"><span class="val" id="crfVal">28</span></div>
+        </div>
+        <p class="note">建议：清晰优先用 20-24，体积优先用 30-35。压缩后画质会有所损失，属正常现象。</p>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始压缩</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载视频</button></div></div></div>
+        <div class="privacy-note">🔒 视频在浏览器本地处理，不会上传到任何服务器。首次使用需加载处理引擎（约 30MB）。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>压缩后视频变模糊怎么办？</summary><p>把压缩强度调低（如 22），或用「视频改尺寸」先把分辨率降下来再压缩，效果更好。</p></details>
+        <details><summary>视频太长处理很慢正常吗？</summary><p>正常。视频在浏览器本地编码，速度取决于电脑性能和视频时长。建议先压缩 1-2 分钟的片段试效果。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null;
+      var TK = window.ToolKit;
+      var crf = document.getElementById("crf"), crfv = document.getElementById("crfVal");
+      crf.addEventListener("input", function () { crfv.textContent = crf.value; });
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 4, "正在加载处理引擎…");
+        try {
+          var ffmpeg = await TK.loadFFmpeg();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 10, "正在读取视频…");
+          var inName = await TK.writeInput(ffmpeg, file);
+          var dur = await TK.probeDuration(ffmpeg, inName);
+          var outName = "out.mp4";
+          var off = TK.withTimeProgress(ffmpeg, function (sec) {
+            var pct = dur > 0 ? 10 + (sec / dur) * 85 : 50;
+            TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), pct, "压缩中 " + Math.round(pct) + "%");
+          });
+          await ffmpeg.exec(["-i", inName, "-c:v", "libx264", "-crf", crf.value, "-preset", "fast", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", "-y", outName]);
+          off();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var blob = await TK.readOut(ffmpeg, outName);
+          var name = TK.baseName(file.name) + "-compressed.mp4";
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "video"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = "原始 " + TK.humanSize(file.size) + " → 压缩后 " + TK.humanSize(blob.size) + "（节省 " + Math.max(0, Math.round((1 - blob.size / file.size) * 100)) + "%）";
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

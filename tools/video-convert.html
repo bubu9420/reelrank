@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频格式转换 - 免费MP4/WebM/MOV/AVI互转 | 影剪辑</title>
+  <meta name="description" content="免费在线视频格式转换，支持 MP4、WebM、MOV、AVI 互转，浏览器本地处理不上传，隐私安全。">
+  <link rel="canonical" href="https://reelrank.top/tools/video-convert.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html">图片工具</a>
+        <a href="video.html" class="active">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="video.html">视频工具</a> / 视频格式转换</p>
+      <h1>视频格式转换</h1>
+      <p class="sub">免费转换视频格式：MP4、WebM、MOV、AVI 互转。视频在浏览器本地处理，不上传服务器。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="video/*" hidden>
+          <span class="dz-ico">🎬</span>
+          <div class="dz-main">点击选择或拖拽视频到这里</div>
+          <div class="dz-sub">支持 MP4 / WebM / MOV / AVI</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="format">输出格式</label><select id="format"><option value="mp4">MP4（通用）</option><option value="webm">WebM（网页）</option><option value="mov">MOV（苹果）</option><option value="avi">AVI（兼容）</option></select></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始转换</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载视频</button></div></div></div>
+        <div class="privacy-note">🔒 视频在浏览器本地处理，不会上传到任何服务器。首次使用需加载处理引擎（约 30MB）。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>iPhone 拍的视频电脑打不开？</summary><p>iPhone 默认拍摄 MOV 格式，转成 MP4 后几乎在所有设备上都能播放。</p></details>
+        <details><summary>AVI 为什么文件特别大？</summary><p>AVI 是较老的封装格式，压缩率低。除非必须兼容老设备，建议用 MP4。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null;
+      var TK = window.ToolKit;
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 4, "正在加载处理引擎…");
+        try {
+          var ffmpeg = await TK.loadFFmpeg();
+          var inName = await TK.writeInput(ffmpeg, file);
+          var fmt = document.getElementById("format").value;
+          var args = ["-i", inName];
+          if (fmt === "mp4") args = args.concat(["-c:v", "libx264", "-preset", "fast", "-c:a", "aac", "-movflags", "+faststart"]);
+          else if (fmt === "webm") args = args.concat(["-c:v", "libvpx-vp9", "-b:v", "1M", "-c:a", "libopus"]);
+          else if (fmt === "mov") args = args.concat(["-c:v", "libx264", "-preset", "fast", "-c:a", "aac"]);
+          else if (fmt === "avi") args = args.concat(["-c:v", "mpeg4", "-q:v", "3", "-c:a", "libmp3lame"]);
+          var outName = "out." + fmt;
+          args = args.concat(["-y", outName]);
+          var off = TK.withTimeProgress(ffmpeg, function () { TK.updateProgress(null, document.getElementById("pbLabel"), 55, "转换中…"); });
+          await ffmpeg.exec(args);
+          off();
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var blob = await TK.readOut(ffmpeg, outName);
+          var name = TK.baseName(file.name) + "." + fmt;
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(blob, "video"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = TK.humanSize(blob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(blob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

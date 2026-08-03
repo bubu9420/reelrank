@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线图片改尺寸 - 免费缩放图片宽高 | 影剪辑</title>
+  <meta name="description" content="免费在线修改图片尺寸，输入目标宽度高度，自动保持比例，支持 JPG/PNG/WebP，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-resize.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 图片改尺寸</p>
+      <h1>在线图片改尺寸</h1>
+      <p class="sub">免费修改图片尺寸，支持指定宽度或高度（自动保持比例）。适合网站配图、头像、封面图。文件在浏览器本地处理，不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-ico">🖼️</span>
+          <div class="dz-main">点击选择或拖拽图片到这里</div>
+          <div class="dz-sub">支持 JPG / PNG / WebP</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="width">宽度（像素）</label><input type="number" id="width" min="1" max="10000" placeholder="留空自动"></div>
+          <div class="field"><label for="height">高度（像素）</label><input type="number" id="height" min="1" max="10000" placeholder="留空自动"></div>
+          <div class="field"><label for="format">输出格式</label><select id="format"><option value="jpeg">JPG</option><option value="png">PNG</option><option value="webp">WebP</option></select></div>
+          <div class="field"><label for="quality">质量</label><input type="range" id="quality" min="10" max="100" value="90"><span class="val" id="qualityVal">90%</span></div>
+        </div>
+        <p class="note" id="origNote"></p>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始处理</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载图片</button></div></div></div>
+        <div class="privacy-note">🔒 图片在浏览器本地处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>宽度和高度都填写会变形吗？</summary><p>默认只填一个值即可，另一个会自动按原图比例计算。如果两个都填且比例不一致，图片会被拉伸变形。</p></details>
+        <details><summary>放大会变模糊吗？</summary><p>放大超过原图尺寸会损失清晰度，这是正常的。建议只对原图进行缩小处理。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, outBlob = null, img = null;
+      var TK = window.ToolKit;
+      var q = document.getElementById("quality"), qv = document.getElementById("qualityVal");
+      q.addEventListener("input", function () { qv.textContent = q.value + "%"; });
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var i = new Image();
+          i.onload = function () { resolve(i); };
+          i.onerror = reject;
+          i.src = url;
+        });
+      }
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+        loadImage(f).then(function (i) {
+          img = i;
+          document.getElementById("origNote").textContent = "原图尺寸：" + i.naturalWidth + " × " + i.naturalHeight + " px";
+        });
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null; img = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+        document.getElementById("origNote").textContent = "";
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!img) return;
+        var btn = this; btn.disabled = true;
+        var w = parseInt(document.getElementById("width").value, 10);
+        var h = parseInt(document.getElementById("height").value, 10);
+        var nw, nh;
+        if (w > 0 && h > 0) { nw = w; nh = h; }
+        else if (w > 0) { nw = w; nh = Math.round(img.naturalHeight * w / img.naturalWidth); }
+        else if (h > 0) { nh = h; nw = Math.round(img.naturalWidth * h / img.naturalHeight); }
+        else { nw = img.naturalWidth; nh = img.naturalHeight; }
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(null, document.getElementById("pbLabel"), 50, "正在处理…");
+        try {
+          var canvas = document.createElement("canvas");
+          canvas.width = nw; canvas.height = nh;
+          var ctx = canvas.getContext("2d");
+          var fmt = document.getElementById("format").value;
+          var type = "image/" + fmt;
+          if (type === "image/jpeg") { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, nw, nh); }
+          ctx.drawImage(img, 0, 0, nw, nh);
+          outBlob = await new Promise(function (resolve) {
+            canvas.toBlob(resolve, type, (fmt === "png" ? undefined : q.value / 100));
+          });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var ext = fmt === "jpeg" ? "jpg" : fmt;
+          var name = TK.baseName(file.name) + "-" + nw + "x" + nh + "." + ext;
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(outBlob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = nw + " × " + nh + " px · " + TK.humanSize(outBlob.size);
+          document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

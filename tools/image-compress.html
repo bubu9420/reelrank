@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线图片压缩 - 免费压缩JPG/PNG/WebP图片大小 | 影剪辑</title>
+  <meta name="description" content="免费在线压缩图片大小，支持 JPG/PNG/WebP，可调压缩质量，浏览器本地处理不上传，隐私安全，不限次数。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-compress.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 图片压缩</p>
+      <h1>在线图片压缩</h1>
+      <p class="sub">免费压缩 JPG / PNG / WebP 图片大小，可调节压缩质量，适合网站配图和聊天发送。文件在浏览器本地处理，不上传。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-ico">🖼️</span>
+          <div class="dz-main">点击选择或拖拽图片到这里</div>
+          <div class="dz-sub">支持 JPG / PNG / WebP / GIF</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="quality">压缩质量</label><input type="range" id="quality" min="10" max="95" value="70"><span class="val" id="qualityVal">70%</span></div>
+          <div class="field"><label for="format">输出格式</label><select id="format"><option value="jpeg">JPG</option><option value="webp">WebP（更小）</option><option value="png">PNG（无损）</option></select></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始压缩</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="result" id="result"><div class="r-box"><div id="rPreview"></div><div class="r-info"><div class="r-name" id="rName"></div><div class="r-size" id="rSize"></div><button class="btn" id="dlBtn">下载图片</button></div></div></div>
+        <div class="privacy-note">🔒 图片在浏览器本地处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>压缩后图片会变模糊吗？</summary><p>压缩质量越高，文件越大但越清晰。建议网站用 60-75%，微信聊天 50-70%，可先试试再调整。</p></details>
+        <details><summary>PNG 图片压缩后为什么还是很大？</summary><p>PNG 是无损格式，压缩空间有限。如果对清晰度要求不高，可以转成 JPG 或 WebP，体积能缩小 60% 以上。</p></details>
+        <details><summary>支持批量压缩吗？</summary><p>当前版本一次处理一张，批量压缩功能即将上线。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, outBlob = null;
+      var TK = window.ToolKit;
+      var q = document.getElementById("quality"), qv = document.getElementById("qualityVal");
+      q.addEventListener("input", function () { qv.textContent = q.value + "%"; });
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var img = new Image();
+          img.onload = function () { resolve(img); };
+          img.onerror = reject;
+          img.src = url;
+        });
+      }
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        TK.hide(document.getElementById("result"));
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+      });
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!file) return;
+        var btn = this; btn.disabled = true;
+        TK.show(document.getElementById("progress"));
+        TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), 10, "正在读取图片…");
+        try {
+          var img = await loadImage(file);
+          TK.updateProgress(null, document.getElementById("pbLabel"), 50, "正在压缩…");
+          var canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+          var ctx = canvas.getContext("2d");
+          var type = "image/" + document.getElementById("format").value;
+          if (type === "image/jpeg") { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height); }
+          ctx.drawImage(img, 0, 0);
+          outBlob = await new Promise(function (resolve) {
+            canvas.toBlob(resolve, type, q.value / 100);
+          });
+          TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+          var ext = document.getElementById("format").value === "jpeg" ? "jpg" : document.getElementById("format").value;
+          var name = TK.baseName(file.name) + "-compressed." + ext;
+          var rv = document.getElementById("rPreview"); rv.innerHTML = "";
+          rv.appendChild(TK.preview(outBlob, "image"));
+          document.getElementById("rName").textContent = name;
+          document.getElementById("rSize").textContent = "原始 " + TK.humanSize(file.size) + " → 压缩后 " + TK.humanSize(outBlob.size) + "（节省 " + Math.max(0, Math.round((1 - outBlob.size / file.size) * 100)) + "%）";
+          document.getElementById("dlBtn").onclick = function () { TK.download(outBlob, name); };
+          TK.show(document.getElementById("result"));
+        } catch (e) {
+          TK.updateProgress(null, document.getElementById("pbLabel"), 0, "处理失败：" + e.message);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>

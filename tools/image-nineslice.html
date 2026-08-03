@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线九宫格切图 - 免费朋友圈小红书发图神器 | 影剪辑</title>
+  <meta name="description" content="免费在线九宫格切图工具：一张图切成 9 张，支持重叠像素设置，朋友圈、小红书发九宫格必备，浏览器本地处理不上传。">
+  <link rel="canonical" href="https://reelrank.top/tools/image-nineslice.html">
+  <link rel="stylesheet" href="../assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
+  <style>.slice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; } .slice-item { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; text-align: center; } .slice-item img { width: 100%; display: block; } .slice-item .si-btn { width: 100%; border: none; background: var(--surface-2); color: var(--ink); padding: 8px; cursor: pointer; font-size: .82rem; } .slice-item .si-btn:hover { color: var(--accent); }</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="../index.html">首页</a>
+        <a href="image.html" class="active">图片工具</a>
+        <a href="video.html">视频工具</a>
+        <a href="audio.html">音频工具</a>
+        <a href="../reviews/best-ai-video-generators-2026.html">工具评测</a>
+        <a href="../feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 九宫格切图</p>
+      <h1>在线九宫格切图</h1>
+      <p class="sub">一张图片切成 3×3 共 9 张，发朋友圈、小红书九宫格必备。支持设置相邻切片的重叠像素，避免拼接时出现缝隙。</p>
+      <div class="tool-box">
+        <div class="dropzone" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" hidden>
+          <span class="dz-ico">🖼️</span>
+          <div class="dz-main">点击选择或拖拽图片到这里</div>
+          <div class="dz-sub">建议使用正方形图片效果最佳</div>
+        </div>
+        <div class="file-meta" id="fileMeta"><span class="fm-name" id="fileName"></span><span class="fm-size" id="fileSize"></span><button class="fm-clear" id="fileClear">✕</button></div>
+        <div class="controls">
+          <div class="field"><label for="overlap">重叠像素（拼接防缝隙）</label><input type="range" id="overlap" min="0" max="100" value="10"><span class="val" id="overlapVal">10px</span></div>
+        </div>
+        <div class="btn-row"><button class="btn" id="runBtn" disabled>开始切图</button> <button class="btn btn-ghost" id="allBtn" hidden>全部下载</button></div>
+        <div class="progress" id="progress"><div class="pb-track"><div class="pb-fill" id="pbFill"></div></div><div class="pb-label" id="pbLabel"></div></div>
+        <div class="slice-grid" id="sliceGrid"></div>
+        <div class="privacy-note">🔒 图片在浏览器本地处理，不会上传到任何服务器。</div>
+      </div>
+      <section class="faq">
+        <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
+        <details><summary>为什么发布后九张图之间有缝隙？</summary><p>部分平台会压缩图片导致拼接缝隙，建议把「重叠像素」调到 20-50px 再试试。</p></details>
+        <details><summary>手机怎么发九宫格？</summary><p>下载 9 张图片后，在朋友圈/小红书按 1-9 的顺序选择发布即可。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="image.html">图片工具</a></li><li><a href="video.html">视频工具</a></li><li><a href="audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="../about.html">关于我们</a></li><li><a href="../feedback.html">反馈建议</a></li><li><a href="../sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>评测</h4><ul><li><a href="../reviews/best-ai-video-generators-2026.html">AI 视频工具评测</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="../assets/js/toolkit.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    (function () {
+      var file = null, img = null, slices = [];
+      var TK = window.ToolKit;
+      var ov = document.getElementById("overlap"), ovv = document.getElementById("overlapVal");
+      ov.addEventListener("input", function () { ovv.textContent = ov.value + "px"; });
+      function loadImage(f) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(f);
+          var i = new Image();
+          i.onload = function () { resolve(i); };
+          i.onerror = reject;
+          i.src = url;
+        });
+      }
+      TK.wireDropzone(document.getElementById("dropzone"), function (f) {
+        file = f;
+        document.getElementById("fileName").textContent = f.name;
+        document.getElementById("fileSize").textContent = TK.humanSize(f.size);
+        document.getElementById("fileMeta").classList.add("show");
+        document.getElementById("runBtn").disabled = false;
+        document.getElementById("sliceGrid").innerHTML = "";
+        document.getElementById("allBtn").hidden = true;
+        loadImage(f).then(function (i) { img = i; });
+      });
+      document.getElementById("fileClear").addEventListener("click", function () {
+        file = null; img = null;
+        document.getElementById("fileMeta").classList.remove("show");
+        document.getElementById("runBtn").disabled = true;
+        document.getElementById("sliceGrid").innerHTML = "";
+        document.getElementById("allBtn").hidden = true;
+      });
+      function makeSlice(src, x, y, w, h, label) {
+        var c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        var ctx = c.getContext("2d");
+        ctx.drawImage(src, x, y, w, h, 0, 0, w, h);
+        return new Promise(function (resolve) { c.toBlob(resolve, "image/jpeg", 0.95); });
+      }
+      document.getElementById("runBtn").addEventListener("click", async function () {
+        if (!img) return;
+        var btn = this; btn.disabled = true;
+        slices = [];
+        document.getElementById("sliceGrid").innerHTML = "";
+        TK.show(document.getElementById("progress"));
+        var W = img.naturalWidth, H = img.naturalHeight;
+        var ovp = parseInt(ov.value, 10);
+        var cw = W / 3, ch = H / 3;
+        var grid = document.getElementById("sliceGrid");
+        for (var r = 0; r < 3; r++) {
+          for (var c = 0; c < 3; c++) {
+            var x = Math.max(0, c * cw - (c > 0 ? ovp / 2 : 0));
+            var y = Math.max(0, r * ch - (r > 0 ? ovp / 2 : 0));
+            var w = Math.min(W - x, cw + ovp);
+            var h = Math.min(H - y, ch + ovp);
+            TK.updateProgress(document.getElementById("pbFill"), document.getElementById("pbLabel"), ((r * 3 + c + 1) / 9) * 100, "正在切片 " + (r * 3 + c + 1) + "/9");
+            var blob = await makeSlice(img, Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+            slices.push({ blob: blob, name: TK.baseName(file.name) + "-" + (r * 3 + c + 1) + ".jpg" });
+            var item = document.createElement("div");
+            item.className = "slice-item";
+            item.innerHTML = "<img src='" + URL.createObjectURL(blob) + "'>";
+            var b = document.createElement("button");
+            b.className = "si-btn"; b.textContent = "下载 " + (r * 3 + c + 1);
+            b.onclick = function (idx) { return function () { TK.download(slices[idx].blob, slices[idx].name); }; }(r * 3 + c);
+            item.appendChild(b);
+            grid.appendChild(item);
+          }
+        }
+        TK.updateProgress(null, document.getElementById("pbLabel"), 100, "完成");
+        document.getElementById("allBtn").hidden = false;
+        btn.disabled = false;
+      });
+      document.getElementById("allBtn").addEventListener("click", function () {
+        slices.forEach(function (s, i) {
+          setTimeout(function () { TK.download(s.blob, s.name); }, i * 450);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
