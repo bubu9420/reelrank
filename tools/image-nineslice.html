@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>在线切图工具 - 九宫格/三宫格/对半切，朋友圈小红书发图神器 | 影剪辑</title>
-  <meta name="description" content="免费在线切图工具：九宫格（3×3 切 9 张）、三宫格（竖切两刀切 3 张）、对半切（竖切一刀切 2 张），支持重叠像素防拼接缝隙，朋友圈小红书发图神器，浏览器本地处理不上传。">
+  <title>在线切图工具 - 九宫格/四宫格/三宫格/对半切图，朋友圈小红书发图神器 | 影剪辑</title>
+  <meta name="description" content="免费在线切图工具：九宫格（3×3 切 9 张）、四宫格（2×2 切 4 张）、三宫格（竖切两刀切 3 张）、对半切图（横切/竖切切 2 张），支持重叠像素防拼接缝隙，朋友圈小红书发图神器，浏览器本地处理不上传。">
   <link rel="canonical" href="https://reelrank.top/tools/image-nineslice.html">
   <link rel="stylesheet" href="../assets/css/toolkit.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✂️</text></svg>">
@@ -32,7 +32,7 @@
     <div class="container">
       <p class="breadcrumb"><a href="../index.html">首页</a> / <a href="image.html">图片工具</a> / 九宫格切图</p>
       <h1>在线九宫格切图</h1>
-      <p class="sub">支持三种切法：九宫格（3×3 切 9 张）、三宫格（竖切两刀切 3 张）、对半切（竖切一刀切 2 张），发朋友圈、小红书必备。可设置相邻切片的重叠像素，避免拼接缝隙。</p>
+      <p class="sub">支持五种切法：九宫格（3×3 切 9 张）、四宫格（横一刀竖一刀切 4 张）、三宫格（竖切两刀切 3 张）、对半切图（横切/竖切切 2 张），发朋友圈、小红书必备。可设置相邻切片的重叠像素，避免拼接缝隙。</p>
       <div class="tool-box">
         <div class="dropzone" id="dropzone">
           <input type="file" id="fileInput" accept="image/*" hidden>
@@ -44,8 +44,10 @@
         <div class="controls">
           <div class="field"><label for="mode">切图模式</label><select id="mode">
             <option value="nine" selected>九宫格（3×3，切 9 张）</option>
+            <option value="four">四宫格（2×2，横一刀竖一刀，切 4 张）</option>
             <option value="three">三宫格（竖切两刀，切 3 张）</option>
-            <option value="half">对半切（竖切一刀，切 2 张）</option>
+            <option value="half-v">对半切图（竖切一刀，切 2 张）</option>
+            <option value="half-h">对半切图（横切一刀，切 2 张）</option>
           </select></div>
           <div class="field"><label for="overlap">重叠像素（拼接防缝隙）</label><input type="range" id="overlap" min="0" max="100" value="10"><span class="val" id="overlapVal">10px</span></div>
         </div>
@@ -56,7 +58,7 @@
       </div>
       <section class="faq">
         <h2 style="font-size:1.25rem;margin-bottom:14px;">常见问题</h2>
-        <details><summary>三种切法有什么区别？</summary><p>九宫格把图切成 3×3 共 9 张；三宫格竖着切两刀成 3 张长条；对半切竖着切一刀成 2 张。三宫格适合小红书长图分条发，对半适合朋友圈双图对比。</p></details>
+        <details><summary>五种切法有什么区别？</summary><p>九宫格切成 3×3 共 9 张；四宫格横竖各切一刀成 2×2 共 4 张；三宫格竖着切两刀成 3 张长条；对半切图可横切或竖切成 2 张。三宫格适合小红书长图分条发，对半适合朋友圈双图对比，四宫格适合拼图九选四场景。</p></details>
         <details><summary>为什么发布后图之间有缝隙？</summary><p>部分平台会压缩图片导致拼接缝隙，建议把「重叠像素」调到 20-50px 再试试。</p></details>
         <details><summary>手机怎么发九宫格？</summary><p>下载 9 张图片后，在朋友圈/小红书按 1-9 的顺序选择发布即可。</p></details>
       </section>
@@ -124,8 +126,9 @@
         var W = img.naturalWidth, H = img.naturalHeight;
         var ovp = parseInt(ov.value, 10);
         var mode = document.getElementById("mode").value;
-        var cols = mode === "nine" ? 3 : mode === "three" ? 3 : 2;
-        var rows = mode === "nine" ? 3 : 1;
+        var MODES = { nine: [3, 3], four: [2, 2], three: [3, 1], "half-v": [2, 1], "half-h": [1, 2] };
+        var dim = MODES[mode] || [3, 3];
+        var cols = dim[0], rows = dim[1];
         var total = cols * rows;
         var cw = W / cols, ch = H / rows;
         var grid = document.getElementById("sliceGrid");
