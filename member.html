@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>影剪辑会员 - 无限下载，解锁全部工具次数限制 | YingClip</title>
-  <meta name="description" content="影剪辑会员：每日免费 3 次下载之外，开通会员即可无限下载图片、视频、音频处理结果。月卡 ¥9.9、年卡 ¥69、终身 ¥199。">
+  <title>影剪辑会员 - 无限使用 VIP 功能（AI抠图/视频处理/降噪） | YingClip</title>
+  <meta name="description" content="影剪辑会员：基础功能永久免费，VIP 功能（AI 抠图、视频处理、音频降噪）每日免费 3 次，开通会员无限使用。月卡 ¥9.9、年卡 ¥69、终身 ¥199。">
   <link rel="canonical" href="https://reelrank.top/member.html">
   <meta property="og:title" content="影剪辑会员 - 无限下载">
   <meta property="og:description" content="月卡 ¥9.9 起，无限下载所有图片、视频、音频处理结果。">
@@ -36,7 +36,7 @@
       <p class="breadcrumb"><a href="index.html">首页</a> / 会员</p>
       <section style="text-align:center;padding:22px 0 6px;">
         <h1 style="font-size:clamp(1.7rem,4vw,2.5rem);margin:0 0 10px;">👑 影剪辑会员</h1>
-        <p class="sub" style="max-width:640px;margin:0 auto 8px;">基础工具永久免费，每个账号每天可免费下载 <b>3 次</b>。开通会员后无限下载所有处理结果，不再受限。</p>
+        <p class="sub" style="max-width:680px;margin:0 auto 8px;">基础功能（图片、音频处理等）<b>永久免费、不限次数</b>；VIP 功能（AI 抠图、全部视频处理、音频降噪）每天有 <b>3 次免费额度</b>，开通会员后无限使用。</p>
         <div id="memberStatusBadge" style="display:inline-block;margin-top:10px;"></div>
       </section>
 
@@ -62,8 +62,9 @@
       <section class="section" style="padding-top:8px;">
         <div class="faq">
           <div class="section-head"><h2>常见问题</h2></div>
-          <details><summary>免费用户能用到哪些功能？</summary><p>所有工具都可以正常使用，处理完全不受限，只是每天只能免费下载 3 次处理结果。次日 0 点恢复额度。</p></details>
-          <details><summary>会员的有效期怎么算？</summary><p>月卡 30 天、年卡 365 天，从激活那一刻开始计算。终身卡一次激活永久有效。激活码支持在同一浏览器的不同设备间使用（本地记录）。</p></details>
+          <details><summary>哪些功能属于 VIP 功能？</summary><p>目前包括：AI 抠图、全部视频处理（压缩、转 GIF、格式转换、裁剪、竖屏 9:16、加水印、变速、提取音频）和音频降噪。首页和分类页的卡片上带「VIP」标记，工具页标题旁也有提示。</p></details>
+          <details><summary>免费用户能用到哪些功能？</summary><p>基础功能（图片压缩/转换/裁剪/改尺寸/旋转/水印/九宫格、音频转换/剪切/拼接/音量/变速/铃声等）全部免费、不限次数；VIP 功能每天可免费使用 3 次，次日 0 点恢复额度。</p></details>
+          <details><summary>会员的有效期怎么算？</summary><p>月卡 30 天、年卡 365 天，从激活那一刻开始计算。终身卡一次激活永久有效。激活码支持在多个设备上使用（本地记录）。</p></details>
           <details><summary>激活码丢了 / 换了设备怎么办？</summary><p>激活记录保存在浏览器本地，换设备或清缓存后需要重新输入激活码。激活码本身不限设备数，但请勿公开传播；如需找回，可发邮件到 yibulayinjiang@gmail.com。</p></details>
           <details><summary>会员到期后文件会丢失吗？</summary><p>不会。文件始终只存在于你的设备上，会员状态只影响下载次数。</p></details>
           <details><summary>为什么是人工开通而不是直接在线支付？</summary><p>现阶段网站刚起步，为了把精力放在功能和内容上，先采用「转账 + 激活码」的方式。等用户量上来后会接入在线支付，已购会员时长不受影响。</p></details>
@@ -100,7 +101,7 @@
         if (YM.isVip()) {
           el.innerHTML = '<span class="member-badge is-vip">👑 VIP 已激活 · 无限下载</span>';
         } else {
-          el.innerHTML = '<span class="member-badge">每日剩余免费下载 ' + YM.remaining() + ' 次</span>';
+          el.innerHTML = '<span class="member-badge">每日剩余 VIP 功能免费额度 ' + YM.remaining() + ' 次</span>';
         }
       }
 

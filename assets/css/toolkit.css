@@ -165,10 +165,25 @@ a:hover { text-decoration: underline; }
 .tool-card .soon.hot {
   color: var(--purple); border-color: rgba(139, 92, 246, .4); background: rgba(139, 92, 246, .08);
 }
+.tool-card .card-tag {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--grad); color: #fff;
+  font-family: var(--font-lcd); font-size: .66rem; font-weight: 700;
+  letter-spacing: .08em;
+  border-radius: 999px; padding: 2px 8px;
+  box-shadow: 0 2px 8px var(--accent-glow);
+}
 
 /* Tool page */
 .tool-page { padding: 44px 0 64px; }
 .tool-page h1 { font-size: 1.9rem; margin: 10px 0 6px; }
+.tool-tag {
+  display: inline-block; vertical-align: middle; margin-left: 10px;
+  font-family: var(--font-lcd); font-size: .72rem; font-weight: 700;
+  border-radius: 999px; padding: 3px 10px; white-space: nowrap;
+}
+.tool-tag.vip { color: #fff; background: var(--grad); }
+.tool-tag.free { color: var(--ok); border: 1px solid rgba(14, 159, 110, .45); background: rgba(14, 159, 110, .08); }
 .tool-page .sub { color: var(--ink-soft); margin: 0 0 26px; max-width: 720px; }
 .breadcrumb { font-size: .85rem; color: var(--ink-soft); margin: 0 0 12px; }
 .tool-box {

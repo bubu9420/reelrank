@@ -70,10 +70,25 @@
   var LS_QUOTA = "yingclip_quota";
   var CONTACT = "yibulayinjiang@gmail.com";
   var PLANS = {
-    M: { key: "M", name: "月卡", days: 30, price: "¥9.9", unit: "/月", note: "30 天无限下载", hot: false },
-    Y: { key: "Y", name: "年卡", days: 365, price: "¥69", unit: "/年", note: "365 天无限下载，比月卡省 ¥49.8", hot: true },
-    L: { key: "L", name: "终身", days: 36500, price: "¥199", unit: "买断", note: "一次付费，永久无限下载", hot: false }
+    M: { key: "M", name: "月卡", days: 30, price: "¥9.9", unit: "/月", note: "30 天无限使用 VIP 功能", hot: false },
+    Y: { key: "Y", name: "年卡", days: 365, price: "¥69", unit: "/年", note: "365 天无限使用，比月卡省 ¥49.8", hot: true },
+    L: { key: "L", name: "终身", days: 36500, price: "¥199", unit: "买断", note: "一次付费，永久无限使用", hot: false }
   };
+  /* VIP 功能清单：免费用户每日限次使用，会员无限用。可按需增删（文件名）。 */
+  var VIP_TOOLS = [
+    "image-bg.html",
+    "video-compress.html", "video-to-gif.html", "video-convert.html", "video-trim.html",
+    "video-vertical.html", "video-watermark.html", "video-speed.html", "video-extract-audio.html",
+    "audio-denoise.html"
+  ];
+
+  function currentToolPage() {
+    var p = (location.pathname || "").split("/").pop().split("?")[0];
+    return p || "";
+  }
+  function isVipTool() {
+    return VIP_TOOLS.indexOf(currentToolPage()) > -1;
+  }
 
   function todayStr() {
     var d = new Date();
@@ -224,7 +239,7 @@
           '<button id="memberActivateBtn" class="btn">激活</button>' +
         '</div>' +
         '<div class="member-msg" id="memberCodeMsg"></div>' +
-        '<details class="member-faq"><summary>会员有哪些权益？</summary><p>无限下载所有工具的处理结果、跳过每日次数限制、优先体验新上线工具。文件处理始终在你的设备本地完成，会员只解锁下载次数，不会上传你的文件。</p></details>' +
+        '<details class="member-faq"><summary>会员有哪些权益？</summary><p>基础功能永久免费；VIP 功能（AI 抠图、全部视频处理、音频降噪等）免费用户每天可免费使用 ' + FREE_DAILY + ' 次，开通会员后无限使用并优先体验新工具。文件处理始终在你的设备本地完成，不会上传。</p></details>' +
       '</div>';
     body.appendChild(modal);
 
@@ -270,6 +285,29 @@
     body.appendChild(toast);
 
     refreshBadge();
+    injectToolTags();
+  }
+
+  /* 首页/分类页卡片与工具页标题上的「基础免费 / VIP 功能」标记 */
+  function injectToolTags() {
+    var cards = document.querySelectorAll("a.tool-card");
+    for (var i = 0; i < cards.length; i++) {
+      var href = cards[i].getAttribute("href") || "";
+      var base = href.split("/").pop().split("?")[0];
+      if (VIP_TOOLS.indexOf(base) > -1) {
+        var b = document.createElement("span");
+        b.className = "card-tag";
+        b.textContent = "VIP";
+        cards[i].appendChild(b);
+      }
+    }
+    var h1 = document.querySelector(".tool-page h1");
+    if (h1 && document.querySelector(".dropzone")) {
+      var tag = document.createElement("span");
+      tag.className = "tool-tag" + (isVipTool() ? " vip" : " free");
+      tag.textContent = isVipTool() ? "VIP 功能 · 每日免费 " + FREE_DAILY + " 次" : "基础功能 · 永久免费";
+      h1.appendChild(tag);
+    }
   }
 
   function renderPlans(container) {
@@ -304,11 +342,14 @@
       badge.textContent = "👑 VIP";
       badge.classList.add("is-vip");
       badge.classList.remove("is-out");
-    } else {
+    } else if (isVipTool()) {
       var r = remaining();
       badge.textContent = "免费 " + r + " 次";
       badge.classList.remove("is-vip");
       badge.classList.toggle("is-out", r <= 0);
+    } else {
+      badge.textContent = "基础免费";
+      badge.classList.remove("is-vip", "is-out");
     }
   }
 
@@ -321,12 +362,18 @@
     if (v) {
       status.textContent = "VIP · " + v.plan + " · " + fmtDate(v.expiresAt) + " 到期";
       fill.style.width = "100%";
-      text.textContent = "👑 会员有效期内无限下载";
+      text.textContent = "👑 会员有效期内无限使用全部 VIP 功能";
     } else {
-      var r = remaining();
-      status.textContent = "当前状态：免费用户";
-      fill.style.width = (r / FREE_DAILY * 100) + "%";
-      text.textContent = "每日免费下载 " + r + " / " + FREE_DAILY + " 次" + (r <= 0 ? "（今日已用完）" : "");
+      if (isVipTool()) {
+        var r = remaining();
+        status.textContent = "当前状态：免费用户";
+        fill.style.width = (r / FREE_DAILY * 100) + "%";
+        text.textContent = "VIP 功能每日免费 " + r + " / " + FREE_DAILY + " 次" + (r <= 0 ? "（今日已用完）" : "");
+      } else {
+        status.textContent = "当前状态：免费用户";
+        fill.style.width = "100%";
+        text.textContent = "基础功能永久免费 · VIP 功能每日免费 " + FREE_DAILY + " 次";
+      }
     }
   }
 
@@ -349,28 +396,29 @@
     toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2800);
   }
 
-  /* 拦截处理按钮：次数为 0 时先弹窗，避免浪费处理时间 */
+  /* 拦截处理按钮：VIP 功能次数为 0 时先弹窗，避免浪费处理时间 */
   document.addEventListener("click", function (e) {
     var el = e.target;
     var btn = el && el.closest ? el.closest("#runBtn") : null;
-    if (btn && !isVip() && remaining() <= 0) {
+    if (btn && isVipTool() && !isVip() && remaining() <= 0) {
       e.stopImmediatePropagation();
       openModal();
-      showToast("今日免费次数已用完，开通会员即可继续");
+      showToast("今日 VIP 功能免费次数已用完，开通会员即可继续");
     }
   }, true);
 
   function guardDownload() {
+    if (!isVipTool()) return true; /* 基础功能完全免费 */
     if (isVip()) return true;
     if (remaining() <= 0) {
       openModal();
-      showToast("今日免费次数已用完，开通会员可无限下载");
+      showToast("今日 VIP 功能免费次数已用完，开通会员可无限使用");
       return false;
     }
     consume();
     var r = remaining();
     refreshBadge();
-    showToast("已使用 1 次免费下载 · 今日剩余 " + r + " 次");
+    showToast("已使用 1 次 VIP 功能免费额度 · 今日剩余 " + r + " 次");
     return true;
   }
 
@@ -383,14 +431,17 @@
   window.YingMember = {
     FREE_DAILY: FREE_DAILY,
     PLANS: PLANS,
+    VIP_TOOLS: VIP_TOOLS,
     MEMBER_URL: MEMBER_URL,
     isVip: isVip,
+    isVipTool: isVipTool,
     remaining: remaining,
     validateCode: validateCode,
     activate: activate,
     renderPlans: renderPlans,
     refreshBadge: refreshBadge,
     guardRun: function () {
+      if (!isVipTool()) return true;
       if (isVip()) return true;
       if (remaining() <= 0) { openModal(); return false; }
       return true;
