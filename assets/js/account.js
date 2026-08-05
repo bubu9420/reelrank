@@ -29,15 +29,28 @@
     guard.hidden = true;
     content.hidden = false;
     var u = Auth.user();
-    var p = Auth.profile() || {};
+    var p = Auth.profile() || null;
+    if (!p) {
+      document.getElementById("accNick").textContent = "加载中…";
+      document.getElementById("accVip").textContent = "加载中…";
+      document.getElementById("accQuota").textContent = "…";
+      return;
+    }
+    p = p || {};
     document.getElementById("accAvatar").textContent = (p.nickname || u.email || "用").slice(0, 1);
     document.getElementById("accNick").textContent = p.nickname || "-";
     document.getElementById("accEmail").textContent = u.email || "-";
 
-    var vip = YM.getVip ? YM.getVip() : null;
+    var vip = Auth.serverVipActive && Auth.serverVipActive()
+      ? {
+          plan: (Auth.serverVipPlan && Auth.serverVipPlan()) || "VIP",
+          expiresAt: p.vip_expires_at
+        }
+      : null;
     var vipEl = document.getElementById("accVip");
     if (vip) {
-      vipEl.textContent = vip.plan + " · " + fmtDate(vip.expiresAt).slice(0, 16) + " 到期";
+      var planName = vip.plan === "M" ? "月卡" : vip.plan === "Y" ? "年卡" : vip.plan === "L" ? "终身" : "VIP";
+      vipEl.textContent = planName + " · " + fmtDate(vip.expiresAt).slice(0, 16) + " 到期";
       document.getElementById("accVipBox").innerHTML = '<p class="acc-note" style="color:var(--ok);">👑 会员有效期内，VIP 功能无限使用。</p>';
     } else {
       vipEl.textContent = "未开通";

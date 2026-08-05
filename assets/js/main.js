@@ -126,15 +126,20 @@
   }
 
   function getVip() {
+    /* 已登录：VIP 状态以账号绑定为准（服务端），不读浏览器本地 */
+    var a = auth();
+    if (a && a.isLoggedIn && a.isLoggedIn()) {
+      if (a.serverVipActive && a.serverVipActive()) {
+        var p = a.profile();
+        var code = a.serverVipPlan() || "";
+        var planName = code === "M" ? "月卡" : code === "Y" ? "年卡" : code === "L" ? "终身" : "VIP";
+        return { plan: planName, expiresAt: p ? p.vip_expires_at : null, fromServer: true };
+      }
+      return null;
+    }
+    /* 未登录：兼容旧的本地激活码状态 */
     var v = readJSON(LS_VIP);
     if (v && v.expiresAt && Date.now() < v.expiresAt) return v;
-    var a = auth();
-    if (a && a.serverVipActive && a.serverVipActive()) {
-      var p = a.profile();
-      var code = a.serverVipPlan() || "";
-      var planName = code === "M" ? "月卡" : code === "Y" ? "年卡" : code === "L" ? "终身" : "VIP";
-      return { plan: planName, expiresAt: p ? p.vip_expires_at : null, fromServer: true };
-    }
     return null;
   }
   function getQuota() {
