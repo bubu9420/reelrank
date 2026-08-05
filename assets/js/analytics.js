@@ -2,7 +2,7 @@
 // 1) Google Analytics 4：在 Google Analytics 创建数据流后，把 G-XXXXXX 填到 GA4_MEASUREMENT_ID
 // 2) 百度统计：在 tongji.baidu.com 创建站点后，把 hm.js? 后面的 ID 填到 BAIDU_HM_ID
 window.YC_ANALYTICS = window.YC_ANALYTICS || {
-  GA4_MEASUREMENT_ID: '', // 例如 'G-ABCDEF1234'
+  GA4_MEASUREMENT_ID: 'G-99ZF1K3BXS', // 例如 'G-ABCDEF1234'
   BAIDU_HM_ID: ''         // 例如 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 };
 (function () {
