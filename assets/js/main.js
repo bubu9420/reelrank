@@ -131,7 +131,9 @@
     var a = auth();
     if (a && a.serverVipActive && a.serverVipActive()) {
       var p = a.profile();
-      return { plan: a.serverVipPlan() || "VIP", expiresAt: p ? p.vip_expires_at : null, fromServer: true };
+      var code = a.serverVipPlan() || "";
+      var planName = code === "M" ? "月卡" : code === "Y" ? "年卡" : code === "L" ? "终身" : "VIP";
+      return { plan: planName, expiresAt: p ? p.vip_expires_at : null, fromServer: true };
     }
     return null;
   }

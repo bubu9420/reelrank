@@ -1,8 +1,8 @@
 /* 影剪辑账号系统（Supabase 后端）
    配置：创建 Supabase 项目后，把 URL 和 anon key 填入下方两个常量。 */
 (function () {
-  var SUPABASE_URL = "https://YOUR-PROJECT.supabase.co"; // TODO 用户创建项目后填入
-  var SUPABASE_ANON_KEY = "YOUR-ANON-KEY";              // TODO 用户创建项目后填入
+  var SUPABASE_URL = "https://pjqzxespdzrofrwwwsdl.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBqcXp4ZXNwZHpyb2Zyd3d3c2RsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU5MTgwMzUsImV4cCI6MjEwMTQ5NDAzNX0.M2gwb9Nikka7Jpr9v8JKbdl6_8YE_hitBGKjYF4EYQg";
 
   var LOGIN_BONUS = 5;
   var configured = SUPABASE_URL.indexOf("YOUR-") === -1 && SUPABASE_ANON_KEY.indexOf("YOUR-") === -1;
@@ -150,7 +150,7 @@
 
   function activateCode(code) {
     return api("activate_code", { p_code: String(code || "").trim().toUpperCase() }).then(function (r) {
-      if (r.ok) syncProfile();
+      if (r.ok) return syncProfile().then(function () { return r; });
       return r;
     });
   }
@@ -303,7 +303,8 @@
     activateCode: activateCode,
     syncProfile: syncProfile,
     openLogin: openLogin,
-    closeLogin: closeLogin
+    closeLogin: closeLogin,
+    getClient: function () { return sb; }
   };
 
   init();

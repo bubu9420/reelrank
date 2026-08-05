@@ -101,7 +101,7 @@ create trigger trg_replies_author before insert on public.replies
 
 -- ---------- 激活码绑定（服务端校验，密钥不暴露给前端） ----------
 create or replace function public.activate_code(p_code text)
-returns json language plpgsql security definer set search_path = public as $$
+returns json language plpgsql security definer set search_path = public, extensions as $$
 declare
   v_uid uuid := auth.uid();
   v_plan text;
@@ -150,7 +150,7 @@ grant execute on function public.activate_code(text) to authenticated;
 
 -- ---------- 登录奖励：每天登录 +5 次 VIP 功能免费额度 ----------
 create or replace function public.claim_bonus()
-returns json language plpgsql security definer set search_path = public as $$
+returns json language plpgsql security definer set search_path = public, extensions as $$
 declare v_uid uuid := auth.uid();
 begin
   if v_uid is null then
@@ -169,7 +169,7 @@ grant execute on function public.claim_bonus() to authenticated;
 
 -- ---------- 我的资料（登录后同步会员状态） ----------
 create or replace function public.my_profile()
-returns json language sql stable security definer set search_path = public as $$
+returns json language sql stable security definer set search_path = public, extensions as $$
   select json_build_object(
     'nickname', coalesce(nullif(p.nickname, ''), split_part(p.email, '@', 1)),
     'vip_plan', p.vip_plan,
