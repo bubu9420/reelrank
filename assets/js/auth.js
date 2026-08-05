@@ -10,6 +10,7 @@
   var sb = null;
   var cachedUser = null;   // { id, email }
   var cachedProfile = null; // { nickname, vip_plan, vip_expires_at, last_bonus_date }
+  var cachedIsAdmin = null;
   var listeners = [];
 
   function storageKey() {
@@ -28,6 +29,7 @@
   function setUser(u) {
     cachedUser = u ? { id: u.id, email: u.email } : null;
     if (!cachedUser) cachedProfile = null;
+    cachedIsAdmin = null;
     listeners.forEach(function (fn) { try { fn(cachedUser); } catch (e) {} });
     document.dispatchEvent(new CustomEvent("yingclip:auth", { detail: { user: cachedUser } }));
     if (window.YingMember && YingMember.onAuthRefresh) YingMember.onAuthRefresh();
@@ -73,6 +75,15 @@
   }
   function serverVipPlan() {
     return cachedProfile ? cachedProfile.vip_plan : null;
+  }
+
+  function isAdmin() {
+    if (!sb || !cachedUser) return Promise.resolve(false);
+    if (cachedIsAdmin !== null) return Promise.resolve(cachedIsAdmin);
+    return sb.rpc("is_admin").then(function (r) {
+      cachedIsAdmin = !r.error && r.data === true;
+      return cachedIsAdmin;
+    }).catch(function () { return false; });
   }
 
   function onAuthChange(fn) {
@@ -300,6 +311,7 @@
     bonusClaimedToday: bonusClaimedToday,
     serverVipActive: serverVipActive,
     serverVipPlan: serverVipPlan,
+    isAdmin: isAdmin,
     onAuthChange: onAuthChange,
     login: login,
     register: register,

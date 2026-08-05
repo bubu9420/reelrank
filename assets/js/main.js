@@ -449,8 +449,13 @@
         var u = auth().user();
         authRow.innerHTML =
           '<span class="member-auth-ok">✅ 已登录：' + esc(u.email) + "</span>" +
-          '<button class="member-logout" id="memberLogoutBtn">退出登录</button>';
+          '<span><button class="member-logout" id="memberLogoutBtn">退出登录</button> ' +
+          '<a class="member-logout" id="adminLink" href="' + prefix + 'admin.html" hidden>管理后台</a></span>';
         modal.querySelector("#memberLogoutBtn").onclick = function () { auth().logout(); };
+        auth().isAdmin().then(function (ok) {
+          var el = modal.querySelector("#adminLink");
+          if (el) el.hidden = !ok;
+        });
       } else {
         authRow.innerHTML =
           "<span>未登录</span>" +

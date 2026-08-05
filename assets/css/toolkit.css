@@ -627,3 +627,48 @@ a:hover { text-decoration: underline; }
   .login-btn { padding: 0 10px; font-size: .74rem; }
   .disc-cats select { margin-left: 0; width: 100%; }
 }
+
+/* ============ 管理后台 ============ */
+.admin-guard {
+  text-align: center; padding: 48px 18px;
+  background: var(--surface); border: 1px dashed var(--border); border-radius: 16px;
+  color: var(--ink-soft);
+}
+.admin-guard .btn { margin-top: 8px; }
+.admin-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.admin-tab {
+  background: var(--surface); border: 1px solid var(--border); color: var(--ink-soft);
+  border-radius: 999px; padding: 7px 18px; font-size: .9rem; font-weight: 600; cursor: pointer;
+}
+.admin-tab:hover { color: var(--accent); border-color: var(--accent); }
+.admin-tab.active { background: var(--grad); color: #fff; border-color: transparent; }
+.admin-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.admin-stat {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px; text-align: center; box-shadow: var(--shadow-sm);
+}
+.admin-stat b { display: block; font-family: var(--font-lcd); font-size: 1.7rem; color: var(--accent); }
+.admin-stat span { color: var(--ink-soft); font-size: .85rem; }
+.admin-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; color: var(--ink-soft); }
+.admin-note {
+  background: var(--surface-2); border: 1px dashed var(--border); border-radius: 10px;
+  padding: 10px 14px; font-size: .84rem; color: var(--ink-soft); margin-bottom: 12px;
+}
+.admin-note code { font-family: var(--font-lcd); color: var(--accent); }
+.admin-table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+.admin-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+.admin-table th, .admin-table td {
+  text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border);
+  vertical-align: top; white-space: nowrap;
+}
+.admin-table th { background: var(--surface-2); font-weight: 700; }
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table .admin-post-content { white-space: normal; max-width: 420px; }
+.admin-ops button {
+  background: var(--accent-soft); border: 1px solid rgba(47, 107, 255, .35); color: var(--accent);
+  border-radius: 8px; padding: 4px 10px; font-size: .78rem; cursor: pointer; margin-right: 4px;
+}
+.admin-ops button:hover { box-shadow: 0 0 8px var(--accent-glow); }
+.admin-ops button[data-act="del"], .admin-ops button[data-act="delpost"] { color: var(--err); background: rgba(220, 38, 38, .08); border-color: rgba(220, 38, 38, .35); }
+.admin-err { color: var(--err); padding: 16px; }
+.member-admin-link { display: inline-block; }

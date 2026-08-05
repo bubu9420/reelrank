@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - 影剪辑</title>
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://reelrank.top/admin.html">
+  <link rel="stylesheet" href="assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="index.html">首页</a>
+        <a href="tools/image.html">图片工具</a>
+        <a href="tools/video.html">视频工具</a>
+        <a href="tools/audio.html">音频工具</a>
+        <a href="discussion.html">讨论区</a>
+        <a href="feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首页</a> / 管理后台</p>
+      <h1>管理后台</h1>
+      <p class="sub">用户、激活码与讨论管理。仅管理员可见。</p>
+
+      <div class="admin-guard" id="adminGuard">
+        <p>请先登录管理员账号后进入。</p>
+        <button class="btn" id="adminLoginBtn">登录 / 注册</button>
+      </div>
+      <div class="admin-guard" id="adminNoPerm" hidden>
+        <p>该账号没有管理权限。请使用站长邮箱账号登录。</p>
+      </div>
+
+      <div id="adminContent" hidden>
+        <div class="admin-tabs">
+          <button class="admin-tab active" data-tab="stats">概览</button>
+          <button class="admin-tab" data-tab="users">用户管理</button>
+          <button class="admin-tab" data-tab="codes">激活码</button>
+          <button class="admin-tab" data-tab="posts">讨论管理</button>
+        </div>
+
+        <div class="admin-panel" id="tab-stats">
+          <div class="admin-stats" id="statCards"></div>
+        </div>
+
+        <div class="admin-panel" id="tab-users" hidden>
+          <div class="admin-bar"><span id="usersCount"></span></div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="usersTable"></table>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="tab-codes" hidden>
+          <div class="admin-note">新增激活码：运行 <code>node member/gen_codes_sql.cjs Y 3</code> 生成码和 INSERT 语句，粘贴到 Supabase SQL Editor 执行即可。</div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="codesTable"></table>
+          </div>
+        </div>
+
+        <div class="admin-panel" id="tab-posts" hidden>
+          <div class="admin-bar"><span id="postsCount"></span> <button class="btn btn-ghost" id="refreshPostsBtn">刷新</button></div>
+          <div class="admin-table-wrap">
+            <table class="admin-table" id="postsTable"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="tools/image.html">图片工具</a></li><li><a href="tools/video.html">视频工具</a></li><li><a href="tools/audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="about.html">关于我们</a></li><li><a href="feedback.html">反馈建议</a></li><li><a href="member.html">会员中心</a></li><li><a href="sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>社区</h4><ul><li><a href="discussion.html">工具讨论区</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
