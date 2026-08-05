@@ -18,6 +18,7 @@
     audio: ["audio-convert.html", "audio-trim.html", "audio-merge.html", "audio-volume.html", "audio-speed.html", "audio-ringtone.html", "audio-denoise.html", "audio-compress.html"]
   };
   var state = { cat: "all", tool: "" };
+  var pendingPostId = "";
 
   function isLoggedIn() {
     return !!(Auth && Auth.isLoggedIn && Auth.isLoggedIn());
@@ -83,6 +84,7 @@
     posts.forEach(function (p) {
       var card = document.createElement("article");
       card.className = "disc-post";
+      card.dataset.id = p.id;
       card.innerHTML =
         '<div class="disc-post-head">' +
           '<span class="disc-avatar">' + esc((p.author || "用").slice(0, 1)) + "</span>" +
@@ -132,6 +134,17 @@
         }
       });
     });
+    if (pendingPostId) {
+      var target = feedBox.querySelector('.disc-post[data-id="' + pendingPostId + '"]');
+      if (target) {
+        target.classList.add("hl");
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(function () { target.classList.remove("hl"); }, 4000);
+      } else {
+        setHint("没有找到这条帖子（可能已删除或不在当前列表）");
+      }
+      pendingPostId = "";
+    }
   }
 
   async function loadPosts() {
@@ -178,6 +191,8 @@
         toolFilter.value = t;
       }
     }
+    var pm = /[?&]post=([^&]+)/.exec(location.search);
+    if (pm) pendingPostId = decodeURIComponent(pm[1]);
   })();
 
   postBtn.addEventListener("click", async function () {

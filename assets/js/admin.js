@@ -24,6 +24,11 @@
     "audio-ringtone.html": "铃声制作", "audio-denoise.html": "音频降噪",
     "audio-compress.html": "音频压缩"
   };
+  var TOOLS_BY_CAT = {
+    image: ["image-compress.html", "image-convert.html", "image-crop.html", "image-resize.html", "image-rotate.html", "image-watermark.html", "image-nineslice.html", "image-bg.html", "image-idphoto.html", "image-merge.html"],
+    video: ["video-compress.html", "video-to-gif.html", "video-convert.html", "video-trim.html", "video-vertical.html", "video-watermark.html", "video-speed.html", "video-extract-audio.html", "video-merge.html", "video-mute.html", "video-snapshot.html"],
+    audio: ["audio-convert.html", "audio-trim.html", "audio-merge.html", "audio-volume.html", "audio-speed.html", "audio-ringtone.html", "audio-denoise.html", "audio-compress.html"]
+  };
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (ch) {
@@ -109,6 +114,7 @@
       box.innerHTML =
         "<tr><th>邮箱</th><th>昵称</th><th>注册时间</th><th>VIP</th><th>发帖</th><th>操作</th></tr>" +
         users.map(function (u) {
+          var hasVip = u.vip_expires_at && new Date(u.vip_expires_at) > new Date();
           return (
             "<tr>" +
             "<td>" + esc(u.email) + "</td>" +
@@ -119,7 +125,9 @@
             '<td class="admin-ops">' +
               '<button data-act="vip" data-plan="M" data-days="30" data-uid="' + u.id + '">+月卡</button>' +
               '<button data-act="vip" data-plan="Y" data-days="365" data-uid="' + u.id + '">+年卡</button>' +
-              '<button data-act="del" data-uid="' + u.id + '" data-email="' + esc(u.email) + '">删除</button>' +
+              '<button data-act="vip" data-plan="L" data-days="36500" data-uid="' + u.id + '">+终身</button>' +
+              (hasVip ? '<button data-act="delvip" data-uid="' + u.id + '">取消VIP</button>' : "") +
+              '<button data-act="del" data-uid="' + u.id + '" data-email="' + esc(u.email) + '">删除用户</button>' +
             "</td>" +
             "</tr>"
           );
@@ -156,7 +164,12 @@
     var box = document.getElementById("postsTable");
     var cnt = document.getElementById("postsCount");
     try {
-      var d = await rpc("admin_list_posts", { p_limit: 200 });
+      var d = await rpc("admin_list_posts", {
+        p_cat: document.getElementById("adminPostCat").value || null,
+        p_tool: document.getElementById("adminPostTool").value || null,
+        p_search: document.getElementById("adminPostSearch").value.trim() || null,
+        p_limit: 200
+      });
       var posts = d.data || [];
       cnt.textContent = "最新 " + posts.length + " 条";
       box.innerHTML =
@@ -168,7 +181,10 @@
             "<td>" + esc(TOOL_NAMES[p.tool] || p.tool) + "</td>" +
             '<td class="admin-post-content">' + esc(p.content) + "</td>" +
             "<td>" + fmtDate(p.created_at).slice(0, 16) + "</td>" +
-            '<td class="admin-ops"><button data-act="delpost" data-id="' + p.id + '">删除</button></td>' +
+            '<td class="admin-ops">' +
+              '<button data-act="view" data-tool="' + esc(p.tool) + '" data-id="' + p.id + '">查看</button>' +
+              '<button data-act="delpost" data-id="' + p.id + '">删除</button>' +
+            "</td>" +
             "</tr>"
           );
         }).join("");
@@ -176,6 +192,23 @@
       box.innerHTML = '<tr><td class="admin-err">' + esc(e.message) + "</td></tr>";
     }
   }
+
+  function populateToolSelect() {
+    var cat = document.getElementById("adminPostCat").value;
+    var toolSel2 = document.getElementById("adminPostTool");
+    var tools = cat ? TOOLS_BY_CAT[cat] || [] : [];
+    toolSel2.innerHTML = '<option value="">' + (cat ? "全部" + (cat === "image" ? "图片" : cat === "video" ? "视频" : "音频") + "工具" : "全部工具") + "</option>" +
+      tools.map(function (t) { return '<option value="' + t + '">' + TOOL_NAMES[t] + "</option>"; }).join("");
+  }
+  document.getElementById("adminPostCat").addEventListener("change", function () {
+    populateToolSelect();
+    loadPosts();
+  });
+  document.getElementById("adminPostTool").addEventListener("change", loadPosts);
+  document.getElementById("adminPostGo").addEventListener("click", loadPosts);
+  document.getElementById("adminPostSearch").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") loadPosts();
+  });
 
   document.getElementById("adminContent").addEventListener("click", async function (e) {
     var btn = e.target.closest("button[data-act]");
@@ -190,6 +223,11 @@
         });
         alert("已开通 VIP");
         loadUsers();
+      } else if (act === "delvip") {
+        if (!confirm("确定取消该用户的 VIP？")) return;
+        await rpc("admin_remove_vip", { p_user_id: btn.getAttribute("data-uid") });
+        alert("已取消 VIP");
+        loadUsers();
       } else if (act === "del") {
         if (!confirm("确定删除用户 " + btn.getAttribute("data-email") + "？其帖子也会被删除。")) return;
         await rpc("admin_delete_user", { p_user_id: btn.getAttribute("data-uid") });
@@ -199,6 +237,9 @@
         if (!confirm("确定删除这条帖子？")) return;
         await rpc("admin_delete_post", { p_post_id: btn.getAttribute("data-id") });
         loadPosts();
+      } else if (act === "view") {
+        var href = "discussion.html?tool=" + encodeURIComponent(btn.getAttribute("data-tool")) + "&post=" + btn.getAttribute("data-id");
+        window.open(href, "_blank");
       }
     } catch (err) {
       alert("操作失败：" + err.message);

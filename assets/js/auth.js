@@ -26,13 +26,17 @@
     return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
   }
 
+  function notify() {
+    listeners.forEach(function (fn) { try { fn(cachedUser); } catch (e) {} });
+    document.dispatchEvent(new CustomEvent("yingclip:auth", { detail: { user: cachedUser } }));
+    if (window.YingMember && YingMember.onAuthRefresh) YingMember.onAuthRefresh();
+  }
+
   function setUser(u) {
     cachedUser = u ? { id: u.id, email: u.email } : null;
     if (!cachedUser) cachedProfile = null;
     cachedIsAdmin = null;
-    listeners.forEach(function (fn) { try { fn(cachedUser); } catch (e) {} });
-    document.dispatchEvent(new CustomEvent("yingclip:auth", { detail: { user: cachedUser } }));
-    if (window.YingMember && YingMember.onAuthRefresh) YingMember.onAuthRefresh();
+    notify();
   }
 
   function init() {
@@ -108,8 +112,7 @@
         try {
           if (r.data.last_bonus_date) localStorage.setItem("yingclip_bonus_date", r.data.last_bonus_date);
         } catch (e) {}
-        document.dispatchEvent(new CustomEvent("yingclip:auth"));
-        if (window.YingMember && YingMember.onAuthRefresh) YingMember.onAuthRefresh();
+        notify();
       } else if (r.error && r.error.code === "PGRST116") {
         // 还没有 profile：登录时创建
         await sb.from("profiles").upsert({
@@ -236,6 +239,8 @@
       setMsg("注册成功！请到邮箱查收确认邮件后登录。");
       return;
     }
+    await claimBonus().catch(function () {});
+    await syncProfile().catch(function () {});
     setMsg("✅ " + (isReg ? "注册" : "登录") + "成功，已为你领取今日 +5 次免费额度", true);
     setTimeout(closeLogin, 900);
   }

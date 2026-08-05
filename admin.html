@@ -68,7 +68,21 @@
         </div>
 
         <div class="admin-panel" id="tab-posts" hidden>
-          <div class="admin-bar"><span id="postsCount"></span> <button class="btn btn-ghost" id="refreshPostsBtn">刷新</button></div>
+          <div class="admin-bar">
+            <span id="postsCount"></span>
+            <div class="admin-filter">
+              <select id="adminPostCat">
+                <option value="">全部分类</option>
+                <option value="image">图片工具</option>
+                <option value="video">视频工具</option>
+                <option value="audio">音频工具</option>
+              </select>
+              <select id="adminPostTool"><option value="">全部工具</option></select>
+              <input id="adminPostSearch" type="search" placeholder="搜索作者或内容…">
+              <button class="btn btn-ghost" id="adminPostGo">搜索</button>
+              <button class="btn btn-ghost" id="refreshPostsBtn">刷新</button>
+            </div>
+          </div>
           <div class="admin-table-wrap">
             <table class="admin-table" id="postsTable"></table>
           </div>

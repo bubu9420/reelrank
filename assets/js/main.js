@@ -231,7 +231,7 @@
       loginBtn.className = "login-btn";
       loginBtn.id = "loginBtn";
       loginBtn.addEventListener("click", function () {
-        if (isLoggedIn()) openModal();
+        if (isLoggedIn()) location.href = prefix + "account.html";
         else openLogin();
       });
       header.insertBefore(loginBtn, badge);
@@ -513,30 +513,25 @@
     toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2800);
   }
 
-  /* 拦截处理按钮：VIP 功能次数为 0 时先弹窗，避免浪费处理时间 */
+  /* VIP 功能：点击「开始处理」时扣 1 次免费额度；次数为 0 时先弹窗 */
   document.addEventListener("click", function (e) {
     var el = e.target;
-    var btn = el && el.closest ? el.closest("#runBtn") : null;
-    if (btn && isVipTool() && !isVip() && remaining() <= 0) {
-      e.stopImmediatePropagation();
-      openModal();
-      showToast("今日 VIP 功能免费次数已用完，登录可再领 5 次，或开通会员无限使用");
+    var btn = el && el.closest ? el.closest("#runBtn, #captureBtn") : null;
+    if (btn && isVipTool() && !isVip()) {
+      if (remaining() <= 0) {
+        e.stopImmediatePropagation();
+        openModal();
+        showToast("今日 VIP 功能免费次数已用完，登录可再领 5 次，或开通会员无限使用");
+      } else {
+        consume();
+        refreshBadge();
+        showToast("已使用 1 次 VIP 功能免费额度 · 今日剩余 " + remaining() + " 次");
+      }
     }
   }, true);
 
   function guardDownload() {
-    if (!isVipTool()) return true; /* 基础功能完全免费 */
-    if (isVip()) return true;
-    if (remaining() <= 0) {
-      openModal();
-      showToast("今日 VIP 功能免费次数已用完，登录可再领 5 次，或开通会员无限使用");
-      return false;
-    }
-    consume();
-    var r = remaining();
-    refreshBadge();
-    showToast("已使用 1 次 VIP 功能免费额度 · 今日剩余 " + r + " 次");
-    return true;
+    return true; /* 免费额度在「开始处理」时扣除，下载不再扣次数 */
   }
 
   function boot() {
@@ -556,6 +551,16 @@
     isVipTool: isVipTool,
     remaining: remaining,
     dailyLimit: dailyLimit,
+    getQuotaInfo: function () {
+      return {
+        used: getQuota().used,
+        base: FREE_DAILY,
+        bonus: bonusToday() ? ((auth() && auth().LOGIN_BONUS) || 5) : 0,
+        limit: dailyLimit(),
+        remaining: remaining(),
+        isVip: isVip()
+      };
+    },
     validateCode: validateCode,
     activate: activate,
     renderPlans: renderPlans,
@@ -573,6 +578,8 @@
       if (!isVipTool()) return true;
       if (isVip()) return true;
       if (remaining() <= 0) { openModal(); return false; }
+      consume();
+      refreshBadge();
       return true;
     },
     guardDownload: guardDownload,

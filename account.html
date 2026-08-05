@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <script>(function(){try{var t=localStorage.getItem("reelrank-theme")||(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){document.documentElement.setAttribute("data-theme","light");}})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户中心 - 影剪辑</title>
+  <meta name="description" content="影剪辑用户中心：查看账号信息、会员状态、每日免费额度、我的帖子。">
+  <link rel="canonical" href="https://reelrank.top/account.html">
+  <link rel="stylesheet" href="assets/css/toolkit.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><span class="logo-mark">影</span>影剪辑</a>
+      <nav class="nav" id="nav">
+        <a href="index.html">首页</a>
+        <a href="tools/image.html">图片工具</a>
+        <a href="tools/video.html">视频工具</a>
+        <a href="tools/audio.html">音频工具</a>
+        <a href="discussion.html">讨论区</a>
+        <a href="feedback.html" class="nav-cta">反馈建议</a>
+      </nav>
+      <button class="theme-toggle" id="themeToggle" aria-label="切换明暗模式" title="切换明暗模式">☾</button>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <div class="container">
+      <p class="breadcrumb"><a href="index.html">首页</a> / 用户中心</p>
+      <h1>用户中心</h1>
+
+      <div class="admin-guard" id="accGuard">
+        <p>请先登录后查看你的账号信息。</p>
+        <button class="btn" id="accLoginBtn">登录 / 注册</button>
+      </div>
+
+      <div id="accContent" hidden>
+        <div class="acc-grid">
+          <section class="acc-card">
+            <h2>👤 账号信息</h2>
+            <div class="acc-avatar" id="accAvatar">?</div>
+            <div class="acc-rows">
+              <div><span>昵称</span><b id="accNick">-</b></div>
+              <div><span>邮箱</span><b id="accEmail">-</b></div>
+              <div><span>注册时间</span><b id="accCreated">-</b></div>
+              <div><span>会员状态</span><b id="accVip">-</b></div>
+            </div>
+            <div id="accAdminLink" class="acc-admin-link" hidden><a href="admin.html">⚙️ 进入管理后台</a></div>
+          </section>
+
+          <section class="acc-card">
+            <h2>🎟️ 每日免费额度</h2>
+            <div class="acc-quota-big" id="accQuota">-</div>
+            <p class="acc-note">VIP 功能（AI 抠图、视频处理、音频降噪等）每天有 3 次基础免费额度，登录后每天再送 5 次；会员无限使用，不扣次数。</p>
+          </section>
+
+          <section class="acc-card">
+            <h2>👑 会员中心</h2>
+            <div id="accVipBox">
+              <p class="acc-note">还没有开通会员？开通后 VIP 功能无限使用。</p>
+              <div class="member-code">
+                <input id="accCodeInput" placeholder="粘贴激活码，如 YC-Y-AB12CD-34EF5678" autocomplete="off" spellcheck="false">
+                <button class="btn" id="accActivateBtn">激活</button>
+              </div>
+              <div class="member-msg" id="accCodeMsg"></div>
+              <p class="acc-note" style="margin-top:8px;">购买流程：<a href="member.html">查看会员套餐</a> · 激活码与账号绑定，一个码只能绑定一个账号。</p>
+            </div>
+          </section>
+
+          <section class="acc-card">
+            <h2>📝 我的帖子</h2>
+            <div id="accPosts">
+              <p class="acc-note">去<a href="discussion.html">讨论区</a>分享你的使用体验吧。</p>
+            </div>
+          </section>
+        </div>
+
+        <div style="text-align:center;margin-top:24px;">
+          <button class="btn btn-ghost" id="accLogoutBtn">退出登录</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div><h4>影剪辑</h4><p style="color:var(--ink-soft);font-size:.9rem;margin:0;">免费的在线图片、视频、音频处理工具箱。本地处理，保护隐私。</p></div>
+        <div><h4>工具</h4><ul><li><a href="tools/image.html">图片工具</a></li><li><a href="tools/video.html">视频工具</a></li><li><a href="tools/audio.html">音频工具</a></li></ul></div>
+        <div><h4>关于</h4><ul><li><a href="about.html">关于我们</a></li><li><a href="feedback.html">反馈建议</a></li><li><a href="member.html">会员中心</a></li><li><a href="account.html">用户中心</a></li><li><a href="sitemap.xml">站点地图</a></li></ul></div>
+        <div><h4>社区</h4><ul><li><a href="discussion.html">工具讨论区</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> 影剪辑 YingClip</span><span>所有处理均在浏览器本地完成 · 文件不上传</span></div>
+    </div>
+  </footer>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/account.js"></script>
+</body>
+</html>
