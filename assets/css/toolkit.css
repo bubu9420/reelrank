@@ -581,3 +581,49 @@ a:hover { text-decoration: underline; }
 .member-login-link { background: var(--accent-soft); border-color: transparent; font-weight: 600; }
 .member-login-cta { margin-top: 10px; }
 .member-login-cta .btn { width: 100%; }
+
+/* ============ 头部登录按钮 / 工具讨论入口 ============ */
+.login-btn {
+  font-family: var(--font-lcd);
+  background: var(--accent-soft);
+  border: 1px solid rgba(47, 107, 255, .35);
+  color: var(--accent);
+  height: 32px; padding: 0 13px; border-radius: 999px;
+  font-size: .8rem; font-weight: 700; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;
+  flex-shrink: 0;
+  transition: box-shadow .15s ease, transform .1s ease;
+}
+.login-btn:hover { box-shadow: 0 0 12px var(--accent-glow); transform: translateY(-1px); }
+.login-btn.logged-in { background: var(--surface-2); color: var(--ink); border-color: var(--border); }
+.tool-discuss-link {
+  display: inline-block; vertical-align: middle; margin-left: 10px;
+  font-size: .78rem; font-weight: 600; color: var(--accent);
+  background: var(--accent-soft); border: 1px solid rgba(47, 107, 255, .35);
+  border-radius: 999px; padding: 4px 12px; white-space: nowrap;
+}
+.tool-discuss-link:hover { box-shadow: 0 0 10px var(--accent-glow); text-decoration: none; }
+
+/* ============ 讨论区分类 ============ */
+.disc-cats {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.disc-cat {
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--ink-soft); border-radius: 999px; padding: 6px 16px;
+  font-size: .88rem; font-weight: 600; cursor: pointer;
+}
+.disc-cat:hover { color: var(--accent); border-color: var(--accent); }
+.disc-cat.active { background: var(--grad); color: #fff; border-color: transparent; }
+.disc-cats select {
+  margin-left: auto; min-width: 180px;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 7px 10px; font-size: .86rem; outline: none;
+}
+.disc-actions-btns { display: inline-flex; gap: 8px; }
+@media (max-width: 480px) {
+  .login-btn { padding: 0 10px; font-size: .74rem; }
+  .disc-cats select { margin-left: 0; width: 100%; }
+}

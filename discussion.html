@@ -72,13 +72,55 @@
             <textarea id="postContent" rows="4" maxlength="2000" placeholder="说说你的使用体验、技巧或遇到的问题…（10-2000 字）"></textarea>
             <div class="disc-actions">
               <span class="disc-hint" id="loginHint">登录账号后才能发布</span>
-              <button class="btn" id="postBtn" disabled>发布帖子</button>
+              <span class="disc-actions-btns">
+                <button class="btn" id="postBtn" disabled>发布帖子</button>
+                <button class="btn btn-ghost" id="loginCtaBtn">登录 / 注册</button>
+              </span>
             </div>
           </div>
         </div>
 
+        <div class="disc-cats" id="discCats">
+          <button class="disc-cat active" data-cat="all">全部</button>
+          <button class="disc-cat" data-cat="image">图片工具</button>
+          <button class="disc-cat" data-cat="video">视频工具</button>
+          <button class="disc-cat" data-cat="audio">音频工具</button>
+          <select id="discToolFilter" aria-label="筛选具体工具">
+            <option value="">全部工具</option>
+            <option value="image-compress.html">图片压缩</option>
+            <option value="image-convert.html">图片格式转换</option>
+            <option value="image-crop.html">图片裁剪</option>
+            <option value="image-resize.html">图片改尺寸</option>
+            <option value="image-rotate.html">图片旋转翻转</option>
+            <option value="image-watermark.html">图片加水印</option>
+            <option value="image-nineslice.html">九宫格/三宫格/对半切图</option>
+            <option value="image-bg.html">一键抠图去背景</option>
+            <option value="image-idphoto.html">证件照制作</option>
+            <option value="image-merge.html">图片拼接</option>
+            <option value="video-compress.html">视频压缩</option>
+            <option value="video-to-gif.html">视频转GIF</option>
+            <option value="video-convert.html">视频格式转换</option>
+            <option value="video-trim.html">视频裁剪</option>
+            <option value="video-vertical.html">竖屏裁剪 9:16</option>
+            <option value="video-watermark.html">视频加水印</option>
+            <option value="video-speed.html">视频变速</option>
+            <option value="video-extract-audio.html">视频提取音频</option>
+            <option value="video-merge.html">视频拼接</option>
+            <option value="video-mute.html">视频静音</option>
+            <option value="video-snapshot.html">视频截图</option>
+            <option value="audio-convert.html">音频格式转换</option>
+            <option value="audio-trim.html">音频剪切</option>
+            <option value="audio-merge.html">音频拼接</option>
+            <option value="audio-volume.html">音量调节</option>
+            <option value="audio-speed.html">音频变速</option>
+            <option value="audio-ringtone.html">铃声制作</option>
+            <option value="audio-denoise.html">音频降噪</option>
+            <option value="audio-compress.html">音频压缩</option>
+          </select>
+        </div>
+
         <div class="disc-feed">
-          <div class="disc-feed-head">最新讨论</div>
+          <div class="disc-feed-head">讨论 <span id="feedCount"></span></div>
           <div class="disc-empty" id="emptyState">讨论区正在准备中，很快开放，敬请期待。</div>
         </div>
       </div>

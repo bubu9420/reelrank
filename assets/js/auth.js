@@ -244,13 +244,18 @@
 
   /* ============ 讨论区数据层 ============ */
   window.YingForum = {
-    async listPosts() {
+    async listPosts(filter) {
       if (!sb) return [];
-      var postsRes = await sb
+      filter = filter || {};
+      var q = sb
         .from("posts")
         .select("id,user_id,author_name,tool,content,created_at")
         .order("created_at", { ascending: false })
-        .limit(50);
+        .limit(filter.limit || 100);
+      if (filter.tools && filter.tools.length) {
+        q = q.in("tool", filter.tools);
+      }
+      var postsRes = await q;
       if (postsRes.error) throw new Error(postsRes.error.message);
       var repliesRes = await sb
         .from("replies")

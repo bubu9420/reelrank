@@ -5,9 +5,19 @@
   var toolSel = document.getElementById("postTool");
   var content = document.getElementById("postContent");
   var postBtn = document.getElementById("postBtn");
+  var loginCtaBtn = document.getElementById("loginCtaBtn");
   var hint = document.getElementById("loginHint");
   var emptyState = document.getElementById("emptyState");
   var feedBox = document.querySelector(".disc-feed");
+  var feedCount = document.getElementById("feedCount");
+  var toolFilter = document.getElementById("discToolFilter");
+
+  var CATS = {
+    image: ["image-compress.html", "image-convert.html", "image-crop.html", "image-resize.html", "image-rotate.html", "image-watermark.html", "image-nineslice.html", "image-bg.html", "image-idphoto.html", "image-merge.html"],
+    video: ["video-compress.html", "video-to-gif.html", "video-convert.html", "video-trim.html", "video-vertical.html", "video-watermark.html", "video-speed.html", "video-extract-audio.html", "video-merge.html", "video-mute.html", "video-snapshot.html"],
+    audio: ["audio-convert.html", "audio-trim.html", "audio-merge.html", "audio-volume.html", "audio-speed.html", "audio-ringtone.html", "audio-denoise.html", "audio-compress.html"]
+  };
+  var state = { cat: "all", tool: "" };
 
   function isLoggedIn() {
     return !!(Auth && Auth.isLoggedIn && Auth.isLoggedIn());
@@ -22,7 +32,13 @@
   function refreshGate() {
     var ok = isLoggedIn();
     postBtn.disabled = !ok;
+    postBtn.hidden = !ok;
+    if (loginCtaBtn) loginCtaBtn.hidden = ok;
     setHint(ok ? "已登录，可以发布" : "登录账号后才能发布", ok);
+  }
+
+  if (loginCtaBtn) {
+    loginCtaBtn.addEventListener("click", openLogin);
   }
 
   function openLogin() {
@@ -57,7 +73,9 @@
     if (!feedBox) return;
     var old = feedBox.querySelectorAll(".disc-post");
     old.forEach(function (el) { el.remove(); });
+    if (feedCount) feedCount.textContent = posts.length ? "（" + posts.length + " 条）" : "";
     if (!posts || !posts.length) {
+      emptyState.textContent = "这里还没有讨论，登录后发第一帖吧。";
       emptyState.style.display = "block";
       return;
     }
@@ -119,12 +137,48 @@
   async function loadPosts() {
     if (!Forum || !Forum.listPosts) return;
     try {
-      var posts = await Forum.listPosts();
+      var tools = null;
+      if (state.tool) tools = [state.tool];
+      else if (state.cat !== "all") tools = CATS[state.cat] || null;
+      var posts = await Forum.listPosts({ tools: tools, limit: 100 });
       renderPosts(posts);
     } catch (e) {
       setHint("加载讨论失败：" + e.message);
     }
   }
+
+  /* 分类与工具筛选 */
+  document.querySelectorAll(".disc-cat").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      document.querySelectorAll(".disc-cat").forEach(function (b) { b.classList.remove("active"); });
+      btn.classList.add("active");
+      state.cat = btn.getAttribute("data-cat");
+      state.tool = "";
+      toolFilter.value = "";
+      loadPosts();
+    });
+  });
+  toolFilter.addEventListener("change", function () {
+    state.tool = toolFilter.value;
+    if (state.tool) {
+      state.cat = "all";
+      document.querySelectorAll(".disc-cat").forEach(function (b) { b.classList.remove("active"); });
+      document.querySelector('.disc-cat[data-cat="all"]').classList.add("active");
+    }
+    loadPosts();
+  });
+
+  /* 支持 ?tool=xxx 直达某个工具的讨论 */
+  (function () {
+    var m = /[?&]tool=([^&]+)/.exec(location.search);
+    if (m) {
+      var t = decodeURIComponent(m[1]);
+      if (toolFilter.querySelector('option[value="' + t + '"]')) {
+        state.tool = t;
+        toolFilter.value = t;
+      }
+    }
+  })();
 
   postBtn.addEventListener("click", async function () {
     if (!isLoggedIn()) { openLogin(); return; }

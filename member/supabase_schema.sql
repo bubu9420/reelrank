@@ -29,7 +29,7 @@ create table if not exists public.codes (
 
 create table if not exists public.posts (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid not null references auth.users(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete set null,
   tool text not null,
   content text not null,
   author_name text not null default '用户',
@@ -86,6 +86,9 @@ create or replace function public.set_author_name()
 returns trigger language plpgsql security definer set search_path = public as $$
 declare uname text;
 begin
+  if new.user_id is null then
+    return new; /* 种子帖/匿名帖保留原始作者名 */
+  end if;
   select coalesce(nullif(p.nickname, ''), split_part(p.email, '@', 1), '用户')
     into uname from public.profiles p where p.id = auth.uid();
   new.author_name := coalesce(uname, '用户');

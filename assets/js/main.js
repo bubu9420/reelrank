@@ -208,7 +208,7 @@
     if (s) { var i = s.indexOf("assets/js/main.js"); if (i > -1) prefix = s.slice(0, i); }
   })();
   var MEMBER_URL = prefix + "member.html";
-  var badge = null, modal = null, toast = null, toastTimer = null;
+  var badge = null, loginBtn = null, modal = null, toast = null, toastTimer = null;
 
   function ensureUI() {
     if (modal) return;
@@ -225,6 +225,16 @@
       badge.addEventListener("click", function () { openModal(); });
       var tt = header.querySelector(".theme-toggle");
       header.insertBefore(badge, tt || null);
+
+      loginBtn = document.createElement("button");
+      loginBtn.type = "button";
+      loginBtn.className = "login-btn";
+      loginBtn.id = "loginBtn";
+      loginBtn.addEventListener("click", function () {
+        if (isLoggedIn()) openModal();
+        else openLogin();
+      });
+      header.insertBefore(loginBtn, badge);
 
       var nav = document.getElementById("nav");
       if (nav) {
@@ -334,7 +344,23 @@
     body.appendChild(toast);
 
     refreshBadge();
+    refreshAuthButton();
     injectToolTags();
+  }
+
+  function refreshAuthButton() {
+    if (!loginBtn) return;
+    if (isLoggedIn()) {
+      var u = auth().user();
+      var name = u && u.email ? u.email.split("@")[0] : "我的";
+      loginBtn.textContent = "👤 " + name;
+      loginBtn.classList.add("logged-in");
+      loginBtn.title = "已登录" + (u && u.email ? "：" + u.email : "") + "，点击管理会员";
+    } else {
+      loginBtn.textContent = "登录 / 注册";
+      loginBtn.classList.remove("logged-in");
+      loginBtn.title = "登录领取每日 +5 次免费额度";
+    }
   }
 
   /* 首页/分类页卡片与工具页标题上的「基础免费 / VIP 功能」标记 */
@@ -356,6 +382,11 @@
       tag.className = "tool-tag" + (isVipTool() ? " vip" : " free");
       tag.textContent = isVipTool() ? "VIP 功能 · 每日免费 " + FREE_DAILY + " 次" : "基础功能 · 永久免费";
       h1.appendChild(tag);
+      var disc = document.createElement("a");
+      disc.className = "tool-discuss-link";
+      disc.href = prefix + "discussion.html?tool=" + encodeURIComponent(currentToolPage());
+      disc.textContent = "💬 去讨论";
+      h1.appendChild(disc);
     }
   }
 
@@ -526,6 +557,7 @@
     refreshBadge: refreshBadge,
     onAuthRefresh: function () {
       refreshBadge();
+      refreshAuthButton();
       refreshModal();
       var tag = document.querySelector(".tool-page h1 .tool-tag.vip");
       if (tag && tag.textContent.indexOf("每日免费") > -1) {
