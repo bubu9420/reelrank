@@ -126,11 +126,14 @@ begin
   if not found then
     return json_build_object('ok', false, 'msg', '激活码不存在或已失效');
   end if;
-  if v_code.status = 'used' and v_code.bound_to is distinct from v_uid then
-    return json_build_object('ok', false, 'msg', '该激活码已绑定其他账号');
-  end if;
   if v_code.status = 'used' and v_code.bound_to = v_uid then
     return json_build_object('ok', false, 'msg', '该激活码已绑定你的账号');
+  end if;
+  if v_code.status = 'used' and v_code.bound_to is null then
+    return json_build_object('ok', false, 'msg', '该激活码已被使用，无法再次激活');
+  end if;
+  if v_code.status = 'used' then
+    return json_build_object('ok', false, 'msg', '该激活码已绑定其他账号');
   end if;
 
   update public.codes set status = 'used', bound_to = v_uid, activated_at = now()
