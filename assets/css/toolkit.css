@@ -434,3 +434,89 @@ a:hover { text-decoration: underline; }
   .member-panel { padding: 20px 16px; }
   .member-code { flex-direction: column; }
 }
+
+/* ============ 讨论区 ============ */
+.disc-box { max-width: 860px; }
+.disc-composer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.disc-composer-head {
+  font-weight: 700;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+}
+.disc-composer-body { padding: 16px 18px; }
+.disc-composer-body select,
+.disc-composer-body textarea {
+  width: 100%;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: .92rem;
+  outline: none;
+  font-family: inherit;
+}
+.disc-composer-body select { margin-bottom: 10px; }
+.disc-composer-body textarea { resize: vertical; min-height: 90px; }
+.disc-composer-body select:focus,
+.disc-composer-body textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.disc-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+.disc-hint { font-size: .84rem; color: var(--ink-soft); }
+.disc-hint.ok { color: var(--ok); }
+.disc-feed-head { font-weight: 700; margin-bottom: 12px; font-size: 1.05rem; }
+.disc-empty {
+  text-align: center;
+  color: var(--ink-soft);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 36px 18px;
+  font-size: .92rem;
+}
+.disc-post {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.disc-post-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.disc-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--grad); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: .9rem;
+}
+.disc-author { font-weight: 700; font-size: .92rem; }
+.disc-tag {
+  font-size: .72rem; color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px; padding: 2px 10px;
+}
+.disc-time { margin-left: auto; font-family: var(--font-lcd); font-size: .76rem; color: var(--ink-soft); }
+.disc-post-body { color: var(--ink); line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
+.disc-post-foot { margin-top: 10px; }
+.disc-reply-btn {
+  background: none; border: 1px solid var(--border); color: var(--ink-soft);
+  border-radius: 999px; padding: 4px 14px; font-size: .8rem; cursor: pointer;
+}
+.disc-reply-btn:hover { color: var(--accent); border-color: var(--accent); }
+.disc-replies { margin-top: 12px; padding-left: 14px; border-left: 2px solid var(--border); }
+.disc-reply { font-size: .88rem; color: var(--ink-soft); padding: 6px 0; }
+.disc-reply .disc-author { color: var(--ink); font-weight: 600; margin-right: 6px; }
+.disc-reply-box { margin-top: 10px; }
+.disc-reply-box textarea {
+  width: 100%; background: var(--surface); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 10px; font-size: .88rem; resize: vertical; font-family: inherit; outline: none;
+}
+.disc-reply-box .btn { margin-top: 8px; padding: 7px 16px; font-size: .85rem; }

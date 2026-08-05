@@ -1,114 +1,34 @@
-﻿# ReelRank — AI 视频工具测评站
+# 影剪辑 YingClip
 
-一个英文独立测评站：真实测试 AI 视频生成/编辑工具，输出可信对比和评分，靠联盟佣金 + 广告 + 后续会员付费变现。
+免费在线图片 / 视频 / 音频处理工具箱，部署在 GitHub Pages：<https://reelrank.top>
+
+## 特点
+
+- 所有处理都在浏览器本地完成，文件不上传服务器，保护隐私
+- 图片工具基于 Canvas，视频/音频工具基于 FFmpeg.wasm（本地化部署），AI 抠图基于 RMBG-1.4 量化模型（本地化部署）
+- 无任何外部 CDN 依赖，国内可直接访问
+- 基础功能永久免费；VIP 功能（AI 抠图、视频处理、音频降噪等）每日 3 次免费额度，会员无限使用
+- 会员体系：月卡 / 年卡 / 终身卡，激活码解锁（账号系统接入中）
 
 ## 目录结构
 
 ```
-reelrank/
-├── index.html                        # 首页（SEO 落地页）
-├── leaderboard.html                  # AI 视频模型排行榜（Arena 参考分 + 实测分）
-├── about.html                        # 方法论 / 披露 / 联系
-├── feedback.html                     # 用户反馈页（beta 期走邮件客户端）
-├── robots.txt                        # 搜索引擎规则
-├── sitemap.xml                       # 站点地图（换域名后更新）
-├── assets/
-│   ├── css/style.css                 # 全站样式
-│   └── js/
-│       ├── main.js                   # 移动端菜单等
-│       ├── models-data.js            # 全量模型数据（247 条，英文）
-│       ├── leaderboard.js            # 排行榜渲染（tab/搜索/排序/状态徽章）
-│       └── i18n.js                   # 多语言机制（当前仅英文）
-└── reviews/
-    ├── best-ai-video-generators-2026.html  # 年度对比榜（流量入口）
-    ├── veo-3-review.html             # Veo 3.1 评测
-    ├── kling-3-review.html           # Kling 3.0 评测
-    ├── runway-gen-4-review.html      # Runway Gen-4 评测
-    ├── capcut-director-mode-review.html    # CapCut 导演模式评测
-    ├── seedance-25-review.html       # Seedance 2.5 评测
-    ├── hailuo-30-review.html         # Hailuo 3.0 评测
-    └── sora-2-review.html            # Sora 2 评测（含 API 停服警告）
+index.html                首页
+member.html               会员页
+discussion.html           工具讨论区
+about.html / feedback.html
+tools/                    29 个工具页面（图片 10 / 视频 11 / 音频 8）
+assets/js/toolkit.js      共享工具库（FFmpeg 加载、下载、进度等）
+assets/js/rmbg.js         共享 AI 抠图模块
+assets/js/main.js         主题、导航、会员体系
+assets/js/discussion.js   讨论区逻辑
+assets/bg-removal/        AI 抠图模型 + onnxruntime（本地同源）
+assets/ffmpeg/            FFmpeg.wasm 引擎（本地同源）
+member/gen_codes.cjs      激活码生成脚本（管理员本地使用）
 ```
 
-## 本地预览
+## 会员/激活码
 
-直接双击 `index.html` 即可。更接近线上效果的话，在 `reelrank` 目录下启动一个本地服务器：
-
-```powershell
-python -m http.server 8000
-```
-
-然后浏览器打开 `http://localhost:8000`。
-
-## 怎么加一篇新评测
-
-1. 复制 `REVIEW_TEMPLATE.md` 或现有评测页，改文件名如 `reviews/grok-video-review.html`。
-2. 按模板填内容：结论、实测结果、规格、定价、优劣势、替代品、FAQ。
-3. 真实使用工具（免费额度即可）跑一遍我们统一的 5 项测试：画质、提示词遵循度、音频、速度/成本、工作流。
-4. 把状态徽章从 `Draft` 改成 `Tested`，更新日期。
-5. 更新首页卡片、对比榜表格、`sitemap.xml`。
-
-## 明暗模式
-
-- 右上角 ☾/☀ 按钮切换明亮/暗色模式，选择会保存在浏览器本地。
-- 新访客默认跟随系统偏好（`prefers-color-scheme`）。
-- 所有页面共用 `assets/css/style.css` 里的 CSS 变量，新增页面时保留 `<head>` 里那行主题初始化脚本即可。
-
-## 多语言
-
-- 当前阶段：**纯英文**（国际站定位，先做内容与数据，最后再补翻译）。
-- 保留 i18n 机制与 `data-i18n` 属性、`assets/i18n/en.json`，便于后期恢复多语言。
-- 重新开放多语言时：恢复语言包文件 + 页面语言选择器 + `assets/js/i18n.js` 的 SUPPORTED 列表即可。
-
-## 反馈页说明
-
-- `feedback.html` 提供分类反馈表单（纠错/建议/测试申请/合作）。
-- 网站上线前没有后端，提交按钮会打开邮件客户端并预填内容；正式上线后可换成 Formspree 等免费表单服务。
-
-## 部署（免费）
-
-当前状态（2026-08）：
-
-1. 仓库：`bubu9420/reelrank`，GitHub Pages 托管（免费）。
-2. 域名：reelrank.top（阿里云，DNS 已指向 GitHub Pages，HTTPS 证书已生效）。
-3. 线上：http://reelrank.top 与 https://reelrank.top 均可访问。
-4. 推送方式：本机 git 需走代理（FlClash 127.0.0.1:7890），且必须在非沙箱权限下执行 `git push`（本机精简版 git 的 remote-https 组件在沙箱内会崩溃）。
-
-## 上线前必做清单
-
-- [ ] 买真实域名，把全站 `canonical`、`sitemap.xml`、`robots.txt` 里的 `reelrank.top` 替换成真实域名
-- [ ] 注册 Google Search Console 提交站点地图，申请 Google AdSense（需内容充实且原创，建议先发 10+ 篇）
-- [ ] 逐个真实测试工具，把 `Draft` 改成 `Tested`，补上测试截图/视频
-- [ ] 注册工具联盟计划（Veo/Google、Kling、Runway、CapCut 等）拿到推广链接，替换正文链接
-- [ ] 更新 `about.html` 的邮箱和披露文案
-- [ ] 建立内容更新节奏：每周至少 1 篇新评测或更新
-
-## 变现路线（分阶段）
-
-1. **联盟佣金**（最快）：用户通过你的链接购买工具订阅，你拿 5–30% 佣金。
-2. **广告**（需流量）：AdSense 等，英文站千次曝光收入较高。
-3. **付费产品**（后期）：高级对比报告、专属工具筛选、会员数据库。
-
-## 拓展路线（参考 cocoloop 生态）
-
-参考 top.cocoloop.cn / cocoloop.cn / hub.cocoloop.cn 的三站互链模式，已深度研究其结构：
-
-**cocoloop 排行榜（top）可学的**：盲测投票 + 权威基准（MMLU/SWE-bench/HumanEval/VBench）加权分；表格含厂商/国家/强项/关键规格/单位化定价（$/秒、$/张、$/首）；详情页含核心亮点、适用场景、vs 竞品表、细分基准、定价方案、规格、隐私安全、FAQ、相关推荐。**其弱点：数据陈旧**（视频榜仍停在 Veo 3、Kling 1.6、Hailuo 02），我们的差异化 = 只排实测 + 数据保持最新。
-
-**cocoloop 社区（www）可学的**：Discourse 式论坛，板块 = 技术交流（Codex/Claude/Workbuddy 使用教程合集）+ 综合大区（AI 资讯/使用心得/求助/避坑吐槽/资源分享/创业商业）；教程合集贴是低维护高流量的内容形式。
-
-**cocoloop Skill 商店（hub）可学的**：技能卡片 = 图标 + 名称 + 简介 + 安全评级（S/A）+ CLS 安全认证 + 安装量；有精选 Top 50、专题合集、热门榜（总排行/近期最热/最新上传）；安全提示免责声明。
-
-落地顺序：
-
-1. **更多分类榜单页**：从"AI 视频生成器"扩展到图像生成、AI 剪辑工具、AI 音频等分类（已建 leaderboard.html 骨架），每类保持"只排测过的"差异化。
-2. **AI 社区**：开放用户实测投稿、评分讨论、工具提问答疑（先做静态投稿入口 + 邮件，再上轻量后端或第三方评论服务）。
-3. **技能/工具商店**：收录经过安全审核的 AI 技能与工作流，做订阅或分成变现。
-4. **站点互链**：未来多个子站（榜单站 / 社区站 / 商店站）互相导流，统一品牌与域名前缀。
-
-## 内容质量红线
-
-- 不写没测过的工具，不编造评分。
-- 所有评测页必须带状态徽章（Draft/Tested）。
-- 价格经常变，每篇都要标注“核对日期”并在更新时修正。
-- 有联盟链接就如实披露——信任是这个站的唯一资产。
+- 激活码格式：`YC-<M|Y|L>-XXXXXX-XXXXXXXX`
+- 生成：`node member/gen_codes.cjs Y 5`
+- 注意：激活码校验逻辑在客户端，仅适合现阶段小额人工售卖；接入正式支付后需后端校验
