@@ -1,0 +1,4 @@
+# 影剪辑 YingClip 广告位声明
+# Google AdSense 审核通过后，将下面 pub- 替换为你的真实发布商 ID
+# 格式示例：google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
