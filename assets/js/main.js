@@ -105,9 +105,34 @@
     try { return new Date(ts).toLocaleDateString("zh-CN"); } catch (e) { return ""; }
   }
 
+  function auth() { return window.YingAuth || null; }
+  function isLoggedIn() {
+    var a = auth();
+    return !!(a && a.isLoggedIn && a.isLoggedIn());
+  }
+  function bonusToday() {
+    var a = auth();
+    return !!(a && a.bonusClaimedToday && a.bonusClaimedToday());
+  }
+  function dailyLimit() {
+    var a = auth();
+    var bonus = bonusToday() ? ((a && a.LOGIN_BONUS) || 5) : 0;
+    return FREE_DAILY + bonus;
+  }
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (ch) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+    });
+  }
+
   function getVip() {
     var v = readJSON(LS_VIP);
     if (v && v.expiresAt && Date.now() < v.expiresAt) return v;
+    var a = auth();
+    if (a && a.serverVipActive && a.serverVipActive()) {
+      var p = a.profile();
+      return { plan: a.serverVipPlan() || "VIP", expiresAt: p ? p.vip_expires_at : null, fromServer: true };
+    }
     return null;
   }
   function getQuota() {
@@ -118,14 +143,14 @@
   function isVip() { return !!getVip(); }
   function remaining() {
     if (isVip()) return Infinity;
-    return Math.max(0, FREE_DAILY - getQuota().used);
+    return Math.max(0, dailyLimit() - getQuota().used);
   }
   function consume() {
     if (isVip()) return true;
     var q = getQuota();
     q.used += 1;
     writeJSON(LS_QUOTA, q);
-    return q.used <= FREE_DAILY;
+    return q.used <= dailyLimit();
   }
 
   function sha256Hex(str) {
@@ -152,6 +177,14 @@
   }
 
   function activate(code) {
+    var a = auth();
+    if (a && a.configured) {
+      return a.activateCode(code).then(function (r) {
+        if (!r.ok) return { ok: false, msg: r.msg || "激活失败，请稍后重试" };
+        var planName = r.plan === "M" ? "月卡" : r.plan === "Y" ? "年卡" : "终身";
+        return { ok: true, vip: { plan: planName, expiresAt: r.expires_at, fromServer: true } };
+      });
+    }
     return validateCode(code).then(function (r) {
       if (!r.ok) return r;
       var now = Date.now();
@@ -225,20 +258,23 @@
         '<button class="member-close" data-close aria-label="关闭">×</button>' +
         '<div class="member-title">👑 影剪辑会员</div>' +
         '<div class="member-status" id="memberStatus"></div>' +
+        '<div class="member-auth" id="memberAuthRow"></div>' +
         '<div class="member-quota"><div class="member-quota-bar"><div class="member-quota-fill" id="memberQuotaFill"></div></div><div class="member-quota-text" id="memberQuotaText"></div></div>' +
         '<div class="member-plans" id="memberPlans"></div>' +
         '<div class="member-buy">' +
-          '<div class="member-buy-title">如何开通（当前为人工开通）</div>' +
+          '<div class="member-buy-title">如何开通（人工开通，激活码与账号绑定）</div>' +
           '<ol>' +
+            '<li>注册 / 登录影剪辑账号</li>' +
             '<li>选择套餐，用微信 / 支付宝转账付款，备注你的邮箱</li>' +
             '<li>把付款凭证和邮箱发送到 <a href="mailto:' + CONTACT + '">' + CONTACT + '</a></li>' +
-            '<li>核对后我们会把激活码发回给你，在下方输入即可解锁</li>' +
+            '<li>收到激活码后，登录网站在下方输入即可解锁（一个激活码只能绑定一个账号）</li>' +
           '</ol>' +
         '</div>' +
         '<div class="member-code">' +
           '<input id="memberCodeInput" placeholder="粘贴激活码，如 YC-Y-AB12CD-34EF5678" autocomplete="off" spellcheck="false">' +
           '<button id="memberActivateBtn" class="btn">激活</button>' +
         '</div>' +
+        '<div class="member-login-cta" id="memberLoginCta" hidden><button class="btn" id="memberLoginBtn">登录领取 +5 次免费额度</button></div>' +
         '<div class="member-msg" id="memberCodeMsg"></div>' +
         '<details class="member-faq"><summary>会员有哪些权益？</summary><p>基础功能永久免费；VIP 功能（AI 抠图、全部视频处理、音频降噪等）免费用户每天可免费使用 ' + FREE_DAILY + ' 次，开通会员后无限使用并优先体验新工具。文件处理始终在你的设备本地完成，不会上传。</p></details>' +
       '</div>';
@@ -258,6 +294,12 @@
     var activateBtn = modal.querySelector("#memberActivateBtn");
     var codeMsg = modal.querySelector("#memberCodeMsg");
     function doActivate() {
+      if (!isLoggedIn()) {
+        codeMsg.textContent = "请先登录账号，再激活会员（激活码与账号绑定）";
+        codeMsg.className = "member-msg err";
+        openLogin();
+        return;
+      }
       var code = codeInput.value.trim();
       if (!code) { codeMsg.textContent = "请先输入激活码"; codeMsg.className = "member-msg err"; return; }
       activateBtn.disabled = true;
@@ -280,6 +322,10 @@
     }
     activateBtn.addEventListener("click", doActivate);
     codeInput.addEventListener("keydown", function (e) { if (e.key === "Enter") doActivate(); });
+    modal.querySelector("#memberLoginBtn").addEventListener("click", function () {
+      closeModal();
+      openLogin();
+    });
 
     toast = document.createElement("div");
     toast.className = "member-toast";
@@ -359,7 +405,33 @@
     var status = modal.querySelector("#memberStatus");
     var fill = modal.querySelector("#memberQuotaFill");
     var text = modal.querySelector("#memberQuotaText");
+    var authRow = modal.querySelector("#memberAuthRow");
+    var loginCta = modal.querySelector("#memberLoginCta");
+    var codeBox = modal.querySelector(".member-code");
+    var limit = dailyLimit();
     var v = getVip();
+
+    if (authRow) {
+      if (isLoggedIn()) {
+        var u = auth().user();
+        authRow.innerHTML =
+          '<span class="member-auth-ok">✅ 已登录：' + esc(u.email) + "</span>" +
+          '<button class="member-logout" id="memberLogoutBtn">退出登录</button>';
+        modal.querySelector("#memberLogoutBtn").onclick = function () { auth().logout(); };
+      } else {
+        authRow.innerHTML =
+          "<span>未登录</span>" +
+          '<button class="member-login-link" id="memberLoginLinkBtn">登录 / 注册（领 +5 次）</button>';
+        modal.querySelector("#memberLoginLinkBtn").onclick = function () { closeModal(); openLogin(); };
+      }
+    }
+    if (loginCta) {
+      loginCta.hidden = !(!v && remaining() <= 0 && !isLoggedIn());
+    }
+    if (codeBox) {
+      codeBox.style.display = isLoggedIn() ? "" : "none";
+    }
+
     if (v) {
       status.textContent = "VIP · " + v.plan + " · " + fmtDate(v.expiresAt) + " 到期";
       fill.style.width = "100%";
@@ -368,14 +440,20 @@
       if (isVipTool()) {
         var r = remaining();
         status.textContent = "当前状态：免费用户";
-        fill.style.width = (r / FREE_DAILY * 100) + "%";
-        text.textContent = "VIP 功能每日免费 " + r + " / " + FREE_DAILY + " 次" + (r <= 0 ? "（今日已用完）" : "");
+        fill.style.width = Math.min(100, r / limit * 100) + "%";
+        text.textContent = "VIP 功能每日免费 " + r + " / " + limit + " 次" + (r <= 0 ? "（今日已用完）" : "");
       } else {
         status.textContent = "当前状态：免费用户";
         fill.style.width = "100%";
-        text.textContent = "基础功能永久免费 · VIP 功能每日免费 " + FREE_DAILY + " 次";
+        text.textContent = "基础功能永久免费 · VIP 功能每日免费 " + limit + " 次";
       }
     }
+  }
+
+  function openLogin() {
+    var a = auth();
+    if (a && a.openLogin) a.openLogin();
+    else if (modal) { refreshModal(); modal.classList.add("show"); }
   }
 
   function openModal() {
@@ -404,7 +482,7 @@
     if (btn && isVipTool() && !isVip() && remaining() <= 0) {
       e.stopImmediatePropagation();
       openModal();
-      showToast("今日 VIP 功能免费次数已用完，开通会员即可继续");
+      showToast("今日 VIP 功能免费次数已用完，登录可再领 5 次，或开通会员无限使用");
     }
   }, true);
 
@@ -413,7 +491,7 @@
     if (isVip()) return true;
     if (remaining() <= 0) {
       openModal();
-      showToast("今日 VIP 功能免费次数已用完，开通会员可无限使用");
+      showToast("今日 VIP 功能免费次数已用完，登录可再领 5 次，或开通会员无限使用");
       return false;
     }
     consume();
@@ -431,16 +509,27 @@
 
   window.YingMember = {
     FREE_DAILY: FREE_DAILY,
+    LOGIN_BONUS: (auth() && auth().LOGIN_BONUS) || 5,
     PLANS: PLANS,
     VIP_TOOLS: VIP_TOOLS,
     MEMBER_URL: MEMBER_URL,
     isVip: isVip,
+    isLoggedIn: isLoggedIn,
     isVipTool: isVipTool,
     remaining: remaining,
+    dailyLimit: dailyLimit,
     validateCode: validateCode,
     activate: activate,
     renderPlans: renderPlans,
     refreshBadge: refreshBadge,
+    onAuthRefresh: function () {
+      refreshBadge();
+      refreshModal();
+      var tag = document.querySelector(".tool-page h1 .tool-tag.vip");
+      if (tag && tag.textContent.indexOf("每日免费") > -1) {
+        tag.textContent = "VIP 功能 · 每日免费 " + dailyLimit() + " 次";
+      }
+    },
     guardRun: function () {
       if (!isVipTool()) return true;
       if (isVip()) return true;
@@ -449,6 +538,7 @@
     },
     guardDownload: guardDownload,
     openModal: openModal,
+    openLogin: openLogin,
     showToast: showToast
   };
 })();

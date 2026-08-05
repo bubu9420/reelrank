@@ -520,3 +520,64 @@ a:hover { text-decoration: underline; }
   padding: 8px 10px; font-size: .88rem; resize: vertical; font-family: inherit; outline: none;
 }
 .disc-reply-box .btn { margin-top: 8px; padding: 7px 16px; font-size: .85rem; }
+
+/* ============ 登录/注册 ============ */
+.auth-modal {
+  position: fixed; inset: 0; z-index: 130;
+  display: none; align-items: center; justify-content: center;
+  padding: 18px;
+}
+.auth-modal.show { display: flex; }
+.auth-overlay {
+  position: absolute; inset: 0;
+  background: rgba(8, 12, 30, .55);
+  backdrop-filter: blur(4px);
+}
+.auth-panel {
+  position: relative;
+  width: min(400px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+  animation: member-pop .18s ease;
+}
+.auth-close { position: absolute; top: 10px; right: 14px; background: none; border: none; font-size: 1.4rem; color: var(--ink-soft); cursor: pointer; }
+.auth-close:hover { color: var(--ink); }
+.auth-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 14px; }
+.auth-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.auth-tabs button {
+  flex: 1; padding: 8px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--ink-soft);
+  border-radius: 10px; cursor: pointer; font-weight: 600;
+}
+.auth-tabs button.active { background: var(--grad); color: #fff; border-color: transparent; }
+.auth-body input {
+  width: 100%; margin-bottom: 10px;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; font-size: .92rem; outline: none;
+}
+.auth-body input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.auth-msg { min-height: 1.4em; font-size: .85rem; margin-top: 8px; }
+.auth-msg.err { color: var(--err); }
+.auth-msg.ok { color: var(--ok); }
+.auth-note {
+  margin-top: 12px; font-size: .78rem; color: var(--ink-soft);
+  border-top: 1px dashed var(--border); padding-top: 10px;
+}
+.member-auth {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  font-size: .85rem; color: var(--ink-soft); margin-bottom: 12px;
+  padding: 8px 12px; background: var(--surface-2);
+  border: 1px solid var(--border); border-radius: 10px; flex-wrap: wrap;
+}
+.member-auth-ok { color: var(--ok); }
+.member-logout, .member-login-link {
+  background: none; border: 1px solid var(--border); color: var(--accent);
+  border-radius: 999px; padding: 4px 12px; font-size: .8rem; cursor: pointer;
+}
+.member-login-link { background: var(--accent-soft); border-color: transparent; font-weight: 600; }
+.member-login-cta { margin-top: 10px; }
+.member-login-cta .btn { width: 100%; }
